@@ -114,5 +114,5 @@ if [ -f ~/.zshlocal ] ; then
 fi
 
 if [ -f /usr/local/bin/mdless ] ; then
-    mdless --no-pager ~/.zshcustoms/mod.md
+    mdless --no-pager ~/.zshcustoms/motd.md
 fi
