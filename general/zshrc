@@ -4,27 +4,26 @@
 #
 # Configurações gerais do zshrc com oh-my-zsh
 #
+
 export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
-#POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ON_NEWLINE=false
-POWERLEVEL9K_DIR_HOME_FOREGROUND='white'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-#POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs)
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('status' 'background_jobs' 'root_indicator' 'load' 'ram' 'command_execution_time' 'history' 'todo' 'time')
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=('status' 'background_jobs' 'root_indicator' 'todo')
-POWERLEVEL9K_DISABLE_RPROMPT=true
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX=">"
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+
+
+# source ~/.zshcustoms/themes/daniruiz.sh
+# source ~/.zshcustoms/themes/default.sh
+# source ~/.zshcustoms/themes/mavam.sh
+# source ~/.zshcustoms/themes/sevenfoxes.sh
+# source ~/.zshcustoms/themes/cvuorinen.sh
+source ~/.zshcustoms/themes/hacker.sh
 
 HIST_STAMPS="yyyy-mm-dd"
 plugins=(git history-substring-search bgnotify zsh-autosuggestions zsh-syntax-highlighting)
 DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_UPDATE="true"
+
+export VISUAL=vim
+export EDITOR=$VISUAL
 
 # Previne iniciar tmux sob uma sessao em sudo
 if [ x"$SUDO_USER" = x ] ; then
@@ -102,12 +101,6 @@ export GROFF_NO_SGR=1
 source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-if [ -f /usr/local/bin/colorls ] ; then
-    alias ls="/usr/local/bin/colorls"
-    alias l="ls -la"
-    alias ll="ls -la"
-fi
 
 if [ -f ~/.zshlocal ] ; then
     source ~/.zshlocal

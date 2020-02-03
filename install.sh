@@ -52,5 +52,13 @@ else
 	git clone https://github.com/nsfilho/zshcustom.git ~/.zshcustoms
 fi
 
+if [ ! -d ~/.zshcustoms/iterm2/ ] ; then
+	mkdir ~/.zshcustoms/iterm2/
+fi
+
+if [ ! -d ~/.zshcustoms/iterm2/material-design ] ; then
+	git clone https://github.com/MartinSeeler/iterm2-material-design.git ~/.zshcustoms/iterm2/material-design
+fi
+
 rm -f $UPDATE_MARK
 sh ~/.zshcustoms/configure.sh
