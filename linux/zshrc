@@ -1,0 +1,20 @@
+#
+# E01-AIO Automacao Ltda. ME.
+# Autor: Nelio Santos (nelio@e01aio.com.br)
+# Data: 2017-02-14
+#
+export KUBECONFIG="/etc/kubernetes/admin.conf"
+export GOROOT="/usr/local/go"
+export GOPATH="/usr/local"
+export PATH="$PATH:$GOROOT/bin"
+
+#
+# Alguns atalhos importantes
+#
+alias netmon_type="netstat -atn | awk '/tcp/ {print $6}' | sort | uniq -c"
+alias netmon_timewait="ss -neopt state time-wait | wc -l"
+alias netmon_established="ss -neopt state established | wc -l"
+alias netmon_stats="nstat -a"
+
+alias tm="tail -f /var/log/messages"
+alias tlog="tail -f /var/log/syslog"

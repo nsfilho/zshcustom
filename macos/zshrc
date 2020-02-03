@@ -1,0 +1,40 @@
+#
+# E01-AIO Automacao Ltda. ME.
+# Autor: Nelio Santos (nelio@e01aio.com.br)
+#
+ZSH_TMUX_AUTOSTART='false'
+
+# Definições para Android Emulator (AVD)
+alias emulator="~/Library/Android/sdk/emulator/emulator"
+alias hosts="code /etc/hosts"
+alias c="code ."
+
+# Development variables
+export WORKSPACE_PATH=~/workspace
+export IDF_PATH=$WORKSPACE_PATH/esp/ESP8266_RTOS_SDK
+export XTENSA_PATH=$WORKSPACE_PATH/esp/xtensa-lx106-elf
+export PATH="$PATH:$IDF_PATH/tools:$XTENSA_PATH/bin:/usr/local/opt/ccache/libexec"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# key[F1]        = '^[[[A'
+# key[F2]        = '^[[[B'
+# key[F3]        = '^[[[C'
+# key[F4]        = '^[[[D'
+# key[F5]        = '^[[[E'
+# key[F6]        = '^[[17~'
+# key[F7]        = '^[[18~'
+# key[F8]        = '^[[19~'
+# key[F9]        = '^[[20~'
+# key[F10]       = '^[[21~'
+# key[F11]       = '^[[23~'
+# key[F12]       = '^[[24~'
+
+bindkey -s '^[[17~' 'git pull \C-m'
+bindkey -s '^[[18~' 'git status \C-m'
+bindkey -s '^[[19~' 'git add --patch \C-m'
+bindkey -s '^[[20~' 'git commit \C-m'
+bindkey -s '^[[21~' 'git push \C-m'
+
+
+

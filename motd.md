@@ -1,0 +1,19 @@
+# Teclas de função
+
+-   **F06** : git pull
+-   **F07** : git status
+-   **F08** : git add --patch
+-   **F09** : git commit
+-   **F10** : git push
+-   <CTRL+T>: Pesquisa por um arquivo
+-   <CTRL+R>: Visualiza o historico de comandos
+
+# Apelidos: Docker
+
+-   dsps <stackName>
+    Monitora `docket stack ps <stackName>`
+
+-   ddeploy | drm
+    Efetua o deploy ou rm do docker-compose do diretorio atual.
+
+Enjoy!

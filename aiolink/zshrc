@@ -1,0 +1,8 @@
+#
+# E01-AIO Automacao Ltda. ME.
+# Autor: Nelio Santos (nelio@e01aio.com.br)
+# Data: 2017-02-14
+#
+alias loghass="tail -f /etc/service/hass/log/main/current"
+alias logbridge="tail -f /etc/service/homebridge/log/main/current"
+alias confighass="cd /etc/service/hass/config"
