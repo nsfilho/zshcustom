@@ -9,7 +9,6 @@ export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
-
 # source ~/.zshcustoms/themes/daniruiz.sh
 # source ~/.zshcustoms/themes/default.sh
 # source ~/.zshcustoms/themes/mavam.sh
@@ -21,6 +20,8 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(git history-substring-search bgnotify zsh-autosuggestions zsh-syntax-highlighting)
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE="true"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
 
 export VISUAL=vim
 export EDITOR=$VISUAL
