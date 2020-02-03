@@ -1,4 +1,5 @@
 #!/bin/sh
+UPDATE_MARK="/tmp/.zshcustoms_`whoami`"
 
 echo "Detectando OSTYPE: [$OSTYPE]..."
 
@@ -39,6 +40,11 @@ if [ -f /usr/bin/gem ] ; then
 	fi
 fi
 
+# Se não for um update, elimina o diretorio
+if [ ! -f $UPDATE_MARK ] ; then
+	rm -rf ~/.zshcustoms
+fi
+
 if [ -d ~/.zshcustoms ] ; then
 	cd ~/.zshcustoms
 	git pull
@@ -46,4 +52,5 @@ else
 	git clone https://github.com/nsfilho/zshcustom.git ~/.zshcustoms
 fi
 
+rm -f $UPDATE_MARK
 sh ~/.zshcustoms/configure.sh

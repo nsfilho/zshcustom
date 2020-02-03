@@ -1,21 +1,9 @@
-# Introdução
+# Instalação e re-instalação
 
 Facilitadores de shell universal e atalhos para automação de rotinas.
 
 ```sh
 curl -o - https://raw.githubusercontent.com/nsfilho/zshcustom/master/install.sh | /bin/sh -
-```
-
-# Alteração endereço da shell
-
-Para corrigir o endereço do repositório:
-
-```sh
-cd ~/.zshcustoms
-git remote -v
-git remote set-url origin https://github.com/nsfilho/zshcustom.git
-git remote -v
-zupdate
 ```
 
 # Alterações úteis

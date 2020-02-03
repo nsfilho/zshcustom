@@ -13,9 +13,6 @@ alias ohmyzsh="vi ~/.oh-my-zsh"
 alias zedit="cd ~/.zshcustoms/ ; code ."
 alias zlocal="code ~/.zshlocal"
 
-# Comandos gerais
-alias zupdate="sh ~/.zshcustoms/install.sh"
-
 # Atalhos para o SSH
 alias ssh="ssh -oStrictHostKeyChecking=no"
 alias scp="scp -oStrictHostKeyChecking=no"
@@ -31,6 +28,12 @@ alias ll="ls -la"
 alias dls="docker service ls"
 alias dlogs="docker service logs -f --tail 20"
 alias dupdate="docker service update"
+
+function zupdate {
+    touch /tmp/.zshcustoms_`whoami`
+    sh ~/.zshcustoms/install.sh
+    rm -f /tmp/.zshcustoms_`whoami`
+}
 
 function dsps {
     watch -n 1 "docker stack ps $1"
