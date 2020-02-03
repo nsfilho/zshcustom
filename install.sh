@@ -43,7 +43,7 @@ if [ -d ~/.zshcustoms ] ; then
 	cd ~/.zshcustoms
 	git pull
 else
-	git clone http://gitlab.e01aio.com.br:8080/nsfilho/zshcustoms.git ~/.zshcustoms
+	git clone https://github.com/nsfilho/zshcustom.git ~/.zshcustoms
 fi
 
 sh ~/.zshcustoms/configure.sh
