@@ -80,6 +80,8 @@ if [ -d ~/.zshcustoms ] ; then
 	    echo "Personalizações para estação de trabalho MacOS..."
 		ln -s ~/.zshcustoms/linux/tmux.conf ~/.tmux.conf
 		brew install terminal-notifier
+		brew install asciinema
+		npm install -g svg-term-cli
 	fi
 
 	#
@@ -93,6 +95,10 @@ if [ -d ~/.zshcustoms ] ; then
 		echo "VIM Bundle ja esta instalado..."
 	else
 		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	fi
+
+	if [ -d /usr/local/go/bin ] ; then
+		/usr/local/go/bin/go get -u github.com/jmhobbs/terminal-parrot
 	fi
 
 	set shell=/bin/bash

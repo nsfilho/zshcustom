@@ -36,5 +36,19 @@ bindkey -s '^[[19~' 'git add --patch \C-m'
 bindkey -s '^[[20~' 'git commit \C-m'
 bindkey -s '^[[21~' 'git push \C-m'
 
+if [ -d /usr/local/opt/sqlite/bin ] ; then
+    export PATH="/usr/local/opt/sqlite/bin:$PATH"
+    export LDFLAGS="-L/usr/local/opt/sqlite/lib $LDFLAGS"
+    export CPPFLAGS="-I/usr/local/opt/sqlite/include $CPPFLAGS"
+fi
+
+if [ -d /usr/local/opt/python@3.8/bin ] ; then
+    export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+    export LDFLAGS="-L/usr/local/opt/python@3.8/lib $LDFLAGS"
+fi
+
+if [ -d /usr/local/go/bin ] ; then
+    export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
+fi
 
 
