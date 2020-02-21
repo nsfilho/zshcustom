@@ -5,30 +5,29 @@
 ZSH_TMUX_AUTOSTART='false'
 
 # Definições para Android Emulator (AVD)
-alias emulator="~/Library/Android/sdk/emulator/emulator"
+if [ -f ~/Library/Android/sdk/emulator/emulator ] ; then
+    alias emulator="~/Library/Android/sdk/emulator/emulator"
+fi
+
 alias hosts="code /etc/hosts"
 alias c="code ."
 
 # Development variables
 export WORKSPACE_PATH=~/workspace
-export IDF_PATH=$WORKSPACE_PATH/esp/ESP8266_RTOS_SDK
-export XTENSA_PATH=$WORKSPACE_PATH/esp/xtensa-lx106-elf
-export PATH="$PATH:$IDF_PATH/tools:$XTENSA_PATH/bin:/usr/local/opt/ccache/libexec"
+
+if [ -e $WORKSPACE_PATH/esp/sdk ] ; then
+    export IDF_PATH=$WORKSPACE_PATH/esp/sdk
+    export XTENSA_PATH_8266=$WORKSPACE_PATH/esp/xtensa-lx106-elf
+    export XTENSA_PATH_32=$HOME/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
+    export PATH="$PATH:$IDF_PATH/tools:$XTENSA_PATH_8266/bin:$XTENSA_PATH_32/bin:/usr/local/opt/ccache/libexec"
+fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# key[F1]        = '^[[[A'
-# key[F2]        = '^[[[B'
-# key[F3]        = '^[[[C'
-# key[F4]        = '^[[[D'
-# key[F5]        = '^[[[E'
-# key[F6]        = '^[[17~'
-# key[F7]        = '^[[18~'
-# key[F8]        = '^[[19~'
-# key[F9]        = '^[[20~'
-# key[F10]       = '^[[21~'
-# key[F11]       = '^[[23~'
-# key[F12]       = '^[[24~'
+# key[F1] = '^[[[A'   key[F5] = '^[[[E'    key[F9]  = '^[[20~'
+# key[F2] = '^[[[B'   key[F6] = '^[[17~'   key[F10] = '^[[21~'
+# key[F3] = '^[[[C'   key[F7] = '^[[18~'   key[F11] = '^[[23~'
+# key[F4] = '^[[[D'   key[F8] = '^[[19~'   key[F12] = '^[[24~'
 
 bindkey -s '^[[17~' 'git pull \C-m'
 bindkey -s '^[[18~' 'git status \C-m'
@@ -43,6 +42,8 @@ if [ -d /usr/local/opt/sqlite/bin ] ; then
 fi
 
 if [ -d /usr/local/opt/python@3.8/bin ] ; then
+    alias python="/usr/local/opt/python@3.8/bin/python3"
+    alias pip="/usr/local/opt/python@3.8/bin/pip3"
     export PATH="/usr/local/opt/python@3.8/bin:$PATH"
     export LDFLAGS="-L/usr/local/opt/python@3.8/lib $LDFLAGS"
 fi

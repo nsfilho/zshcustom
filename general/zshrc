@@ -9,18 +9,18 @@ export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
+source ~/.zshcustoms/themes/default.sh
 # source ~/.zshcustoms/themes/daniruiz.sh
-# source ~/.zshcustoms/themes/default.sh
 # source ~/.zshcustoms/themes/mavam.sh
 # source ~/.zshcustoms/themes/sevenfoxes.sh
 # source ~/.zshcustoms/themes/cvuorinen.sh
-source ~/.zshcustoms/themes/hacker.sh
+# source ~/.zshcustoms/themes/hacker.sh
 
 HIST_STAMPS="yyyy-mm-dd"
 plugins=(git history-substring-search bgnotify zsh-autosuggestions zsh-syntax-highlighting)
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE="true"
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"
 
 export VISUAL=vim
@@ -53,9 +53,11 @@ fi
 #
 # Scripts personalizados
 #
-export PATH="$PATH:/usr/local/bin:/usr/local/sbin:$HOME/.zshcustoms/scripts"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.zshcustoms/scripts"
 
+if [ -d $HOME/.yarn ] ; then
+    export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+fi
 
 #
 # Personalizações por sistema operacional

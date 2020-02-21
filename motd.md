@@ -13,7 +13,4 @@
 -   dsps <stackName>
     Monitora `docket stack ps <stackName>`
 
--   ddeploy | drm
-    Efetua o deploy ou rm do docker-compose do diretorio atual.
-
 Enjoy!

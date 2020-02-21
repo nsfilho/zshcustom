@@ -1,3 +1,8 @@
+2020-02-21 Simplificnado o temrinal (outra vez)
+
+- Adicionando melhorias ao VIM
+- Adicionando autocompletar
+
 2020-02-03 Preparando repositorio para ir ao github.
 
 2020-01-28 Adicionado clustercmd (aplicacao node.js)

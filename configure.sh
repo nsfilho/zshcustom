@@ -81,6 +81,8 @@ if [ -d ~/.zshcustoms ] ; then
 		ln -s ~/.zshcustoms/linux/tmux.conf ~/.tmux.conf
 		brew install terminal-notifier
 		brew install asciinema
+		brew install macvim
+		brew install cmake
 		npm install -g svg-term-cli
 	fi
 
@@ -131,6 +133,12 @@ if [ -d ~/.zshcustoms ] ; then
 
 	npm install -g git+https://github.com/nsfilho/clustercmd.git
 	npm install -g git+https://github.com/nsfilho/clusterfile.git
+
+	if [ -d  ~/.vim/bundle/YouCompleteMe ] ; then
+		cd ~/.vim/bundle/YouCompleteMe
+		./install.py --clang-completer --ts-completer
+	fi
+
 
 else
 	echo "Precisa ser feita a instalação!"

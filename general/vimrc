@@ -2,7 +2,6 @@ set nocompatible
 filetype plugin on
 set mouse=a
 syntax enable
-set omnifunc=syntaxcomplete#Complete
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -12,10 +11,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
-" Plugin 'https://github.com/ternjs/tern_for_vim.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -23,7 +22,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'yaml.vim'
 Plugin 'The-NERD-Commenter'
-
 Plugin 'tpope/vim-surround'
 Plugin 'mattn/emmet-vim'
 Plugin 'junegunn/fzf'
@@ -43,8 +41,21 @@ nnoremap <Space> za
 set number relativenumber
 set clipboard=unnamed
 
+" Highlight matching search patterns
+set hlsearch
+" Enable incremental search
+set incsearch
+" Include matching uppercase words with lowercase search term
+set ignorecase
+" Include only uppercase words with uppercase search term
+set smartcase
+
+" Highlight matching pairs of brackets. Use the '%' character to jump between them.
+set matchpairs+=<:>
+
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set ttyfast
 
 map ; :Files<CR>
 

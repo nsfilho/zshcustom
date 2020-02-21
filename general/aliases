@@ -34,9 +34,9 @@ command -v colorls &> /dev/null && alias ls='colorls --sd --gs'
 command -v htop &> /dev/null && alias top='htop'
 command -v gotop &> /dev/null && alias top='gotop -p'
 
-if [ -f /usr/local/bin/colorls ] ; then
-    alias ls="/usr/local/bin/colorls"
-fi
+# if [ -f /usr/local/bin/colorls ] ; then
+#     alias ls="/usr/local/bin/colorls"
+# fi
 
 # Alias do Swarm
 alias dls="docker service ls"

@@ -4,9 +4,12 @@
 # Data: 2017-02-14
 #
 export KUBECONFIG="/etc/kubernetes/admin.conf"
-export GOROOT="/usr/local/go"
-export GOPATH="/usr/local"
-export PATH="$PATH:$GOROOT/bin"
+
+if [ -d /usr/local/go ] ; then
+    export GOROOT="/usr/local/go"
+    export GOPATH="/usr/local"
+    export PATH="$PATH:$GOROOT/bin"
+fi
 
 #
 # Alguns atalhos importantes
@@ -17,4 +20,4 @@ alias netmon_established="ss -neopt state established | wc -l"
 alias netmon_stats="nstat -a"
 
 alias tm="tail -f /var/log/messages"
-alias tlog="tail -f /var/log/syslog"
+alias tsyslog="tail -f /var/log/syslog"
