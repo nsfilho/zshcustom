@@ -1,3 +1,7 @@
+2020-02-22 Adicionando o gvim como padrao para MacOS
+- Tambem habilitado o autocompletar em gvim
+- Tornando o editor padrao
+
 2020-02-21 Simplificnado o temrinal (outra vez)
 
 - Adicionando melhorias ao VIM

@@ -52,4 +52,8 @@ if [ -d /usr/local/go/bin ] ; then
     export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
 fi
 
-
+# Se o gvim esta instalado da preferencia 😉
+if [ -x /usr/local/bin/gvim ] ; then
+    alias vi="gvim"
+    alias vim="gvim"
+fi

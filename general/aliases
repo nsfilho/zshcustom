@@ -10,8 +10,8 @@ alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="vi ~/.oh-my-zsh"
 
 # Usando code como editor
-alias zedit="cd ~/.zshcustoms/ ; code ."
-alias zlocal="code ~/.zshlocal"
+alias zedit="cd ~/.zshcustoms/ ; vi"
+alias zlocal="vi ~/.zshlocal"
 
 # Atalhos para o SSH
 alias ssh="ssh -oStrictHostKeyChecking=no"

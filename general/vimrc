@@ -11,7 +11,12 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-" Plugin 'Valloric/YouCompleteMe'
+
+if has("gui_macvim")
+    Plugin 'Valloric/YouCompleteMe'
+    set guifont=Menlo:h20
+endif
+
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'

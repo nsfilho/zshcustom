@@ -24,7 +24,6 @@ if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linu
 	ln -s /bin/bash /bin/sh
 fi
 
-
 if [ -f /usr/bin/gem ] ; then
 	if [ ! -f /usr/local/bin/colorls ] ; then
 		sudo gem install colorls
