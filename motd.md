@@ -7,10 +7,5 @@
 -   **F10** : git push
 -   <CTRL+T>: Pesquisa por um arquivo
 -   <CTRL+R>: Visualiza o historico de comandos
-
-# Apelidos: Docker
-
 -   dsps <stackName>
     Monitora `docket stack ps <stackName>`
-
-Enjoy!
