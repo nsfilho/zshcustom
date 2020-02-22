@@ -1,22 +1,16 @@
 set nocompatible
-filetype plugin off
+set hidden
 set mouse=a
 syntax enable
+filetype plugin off
 
-" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 if has("gui_macvim")
     Plugin 'Valloric/YouCompleteMe'
-    set guifont=Menlo:h20
+    Plugin 'prettier/vim-prettier'
 endif
-
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
@@ -32,43 +26,72 @@ Plugin 'mattn/emmet-vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'w0rp/ale'
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 autocmd vimenter * NERDTree
 autocmd vimenter * wincmd p
-map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-nnoremap <Space> za
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE
+
 set number relativenumber
 set clipboard=unnamed
-
-" Highlight matching search patterns
 set hlsearch
-" Enable incremental search
 set incsearch
-" Include matching uppercase words with lowercase search term
 set ignorecase
-" Include only uppercase words with uppercase search term
 set smartcase
-
-" Highlight matching pairs of brackets. Use the '%' character to jump between them.
 set matchpairs+=<:>
-
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set ttyfast
-
-map ; :Files<CR>
-
 set splitbelow
 set splitright
+set showcmd
 
-let g:airline#extensions#tabline#enabled = 1
+"set completeopt=menu
+"let g:ycm_add_preview_to_completeopt = 0
 let mapleader=','
+let g:airline#extensions#tabline#enabled = 1
+let g:UltiSnipsEditSplit="vertical"
+let g:ale_fixers = {
+ \ 'javascript': ['eslint'],
+ \ 'typescript': ['eslint']
+ \ }
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
 
-nnoremap  <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
-nnoremap  <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+map <C-n> :NERDTreeToggle<CR>
+map ; :Files<CR>
+nmap <silent> <C-l> <Plug>(jsdoc)
+nnoremap <Space> za
+nnoremap <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+
+if has("gui_macvim")
+    set macligatures
+    set guifont=FuraCode\ Nerd\ Font:h16
+    colorscheme desert
+    let g:prettier#autoformat_require_pragma = 0
+    let g:prettier#autoformat = 0
+    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+endif
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+set statusline=%{LinterStatus()}

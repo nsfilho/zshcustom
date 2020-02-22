@@ -106,10 +106,6 @@ if [ -d ~/.zshcustoms ] ; then
 	set shell=/bin/bash
 	vim +PluginInstall +qall
 
-	#cd ~/.vim/bundle/tern_for_vim
-	#npm install
-	#ln -f -s ~/.zshcustoms/general/tern-project ~/.tern-project
-
 	# Configurando Git
 	gitlg=`git config --get alias.lg`
 	if [ x"$gitlg" = x ] ; then
@@ -133,6 +129,7 @@ if [ -d ~/.zshcustoms ] ; then
 
 	npm install -g git+https://github.com/nsfilho/clustercmd.git
 	npm install -g git+https://github.com/nsfilho/clusterfile.git
+    npm install -g prettier
 
 	if [ -d  ~/.vim/bundle/YouCompleteMe ] ; then
 		cd ~/.vim/bundle/YouCompleteMe
