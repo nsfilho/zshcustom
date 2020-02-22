@@ -76,7 +76,7 @@ if [ -d ~/.zshcustoms ] ; then
 		ln -s ~/.zshcustoms/linux/tmux.conf ~/.tmux.conf
 	fi
 
-	if [ "$OSTYPE" = "darwin17.0" -o  "$OSTYPE" = "darwin18.0" ] ; then
+	if [ "$OSTYPE" = "darwin17.0" -o  "$OSTYPE" = "darwin18.0" -o "$OSTYPE" = "darwin19.0" ] ; then
 	    echo "Personalizações para estação de trabalho MacOS..."
 		ln -s ~/.zshcustoms/linux/tmux.conf ~/.tmux.conf
 		brew install terminal-notifier
