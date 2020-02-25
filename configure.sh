@@ -136,6 +136,13 @@ if [ -d ~/.zshcustoms ] ; then
 	rm -f ~/.config/nvim/coc-settings.json
 	ln -s ~/.zshcustoms/general/init.vim ~/.config/nvim/init.vim
 	ln -s ~/.zshcustoms/general/coc-settings.json ~/.config/nvim/coc-settings.json
+    if [ -d /usr/local/nvim-linux64 ] ; then
+        NEOVIM_LOCAL="/usr/local/nvim-linux64/bin/nvim"
+    fi
+    if [ -x /usr/local/bin/nvim ] ; then
+        NEOVIM_LOCAL="/usr/local/bin/nvim"
+    fi
+    $NEOVIM_LOCAL +PlugInstall +qall
 
 	# Configurando Go
 	if [ -d /usr/local/go/bin ] ; then
