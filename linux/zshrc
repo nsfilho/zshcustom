@@ -26,7 +26,9 @@ alias tm="tail -f /var/log/messages"
 alias tsyslog="tail -f /var/log/syslog"
 
 # Adiciona neovim como editor padrão.
-if [ -f /usr/local/nvim-linux64 ] ; then
+if [ -d /usr/local/nvim-linux64 ] ; then
     alias vi="/usr/local/nvim-linux64/bin/nvim"
     alias vim="/usr/local/nvim-linux64/bin/nvim"
+    export VISUAL="/usr/local/nvim-linux64/bin/nvim"
+    export EDITOR="/usr/local/nvim-linux64/bin/nvim"
 fi
