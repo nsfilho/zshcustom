@@ -3,7 +3,10 @@
 # Autor: Nelio Santos (nelio@e01aio.com.br)
 # Data: 2017-02-14
 #
-export KUBECONFIG="/etc/kubernetes/admin.conf"
+
+if [ -f "/etc/kubernetes/admin.conf" ] ; then
+    export KUBECONFIG="/etc/kubernetes/admin.conf"
+fi
 
 if [ -d /usr/local/go ] ; then
     export GOROOT="/usr/local/go"
@@ -21,3 +24,9 @@ alias netmon_stats="nstat -a"
 
 alias tm="tail -f /var/log/messages"
 alias tsyslog="tail -f /var/log/syslog"
+
+# Adiciona neovim como editor padrão.
+if [ -f /usr/bin/nvim ] ; then
+    alias vi="nvim"
+    alias vim="nvim"
+fi
