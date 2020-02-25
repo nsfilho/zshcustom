@@ -57,3 +57,8 @@ if [ -x /usr/local/bin/gvim ] ; then
     alias vi="gvim"
     alias vim="gvim"
 fi
+
+if [ -x /usr/local/bin/nvim ] ; then
+    alias vi="nvim"
+    alias vim="nvim"
+fi
