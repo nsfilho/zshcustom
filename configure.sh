@@ -77,6 +77,14 @@ if [ -d ~/.zshcustoms ] ; then
 	fi
 
 	if [ "$OSTYPE" = "darwin17.0" -o  "$OSTYPE" = "darwin18.0" -o "$OSTYPE" = "darwin19.0" ] ; then
+		if [ ! -d ~/.zshcustoms/iterm2/ ] ; then
+			mkdir ~/.zshcustoms/iterm2/
+		fi
+
+		if [ ! -d ~/.zshcustoms/iterm2/material-design ] ; then
+			git clone https://github.com/MartinSeeler/iterm2-material-design.git ~/.zshcustoms/iterm2/material-design
+		fi
+
 	    echo "Personalizações para estação de trabalho MacOS..."
 		ln -s ~/.zshcustoms/linux/tmux.conf ~/.tmux.conf
 		brew install terminal-notifier
@@ -89,16 +97,30 @@ if [ -d ~/.zshcustoms ] ; then
 	#
 	# Instalações gerais, independente de sistema operacional
 	#
-
-	ln -f -s ~/.zshcustoms/general/vimrc ~/.vimrc
 	ln -f -s ~/.zshcustoms/general/zshrc ~/.zshrc
 
+	# Configurando Vim
+	ln -f -s ~/.zshcustoms/general/vimrc ~/.vimrc
 	if [ -d ~/.vim/bundle/Vundle.vim ] ; then
 		echo "VIM Bundle ja esta instalado..."
 	else
 		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	fi
 
+	# Configurando NeoVim
+	if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ] ; then
+		curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+			https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	fi
+	if [ ! -d ~/.config/nvim ] ; then
+		mkdir -p ~/.config/nvim
+	fi
+	rm -f ~/.config/nvim/init.vim
+	rm -f ~/.config/nvim/coc-settings.json
+	ln -s ~/.zshcustoms/general/init.vim ~/.config/nvim/init.vim
+	ln -s ~/.zshcustoms/general/coc-settings.json ~/.config/nvim/coc-settings.json
+
+	# Configurando Go
 	if [ -d /usr/local/go/bin ] ; then
 		/usr/local/go/bin/go get -u github.com/jmhobbs/terminal-parrot
 	fi

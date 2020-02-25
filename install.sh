@@ -14,12 +14,13 @@ fi
 
 if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
 	echo "Instalando pacotes adicionais para AIO-Link..."
-	apt-get -y install bash zsh tmux vim git
+	sudo apt-get -y install bash zsh tmux vim git
 fi
 
 if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then
 	echo "Instalando pacotes adicionais para Servidores linux..."
-	apt-get -y install bash zsh tmux vim git
+	sudo apt-get -y install bash zsh tmux vim git neovim
+	# Evita nos debians a shell dash
 	rm -f /bin/sh
 	ln -s /bin/bash /bin/sh
 fi
@@ -49,14 +50,6 @@ if [ -d ~/.zshcustoms ] ; then
 	git pull
 else
 	git clone https://github.com/nsfilho/zshcustom.git ~/.zshcustoms
-fi
-
-if [ ! -d ~/.zshcustoms/iterm2/ ] ; then
-	mkdir ~/.zshcustoms/iterm2/
-fi
-
-if [ ! -d ~/.zshcustoms/iterm2/material-design ] ; then
-	git clone https://github.com/MartinSeeler/iterm2-material-design.git ~/.zshcustoms/iterm2/material-design
 fi
 
 rm -f $UPDATE_MARK

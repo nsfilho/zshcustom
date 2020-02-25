@@ -9,7 +9,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 if has("gui_macvim")
     Plugin 'Valloric/YouCompleteMe'
-    Plugin 'prettier/vim-prettier'
+    " Plugin 'prettier/vim-prettier'
 endif
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
