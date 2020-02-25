@@ -69,11 +69,28 @@ if [ -d ~/.zshcustoms ] ; then
 	if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
 		echo "Personalizações para AIO-Links..."
 		ln -s ~/.zshcustoms/aiolink/tmux.conf ~/.tmux.conf
+        sudo apt-get install -y automake libtool libtool-bin
+        if [ ! -x /usr/local/bin/nvim ] ; then
+            mkdir -p ~/dist
+            cd ~/dist
+            wget -O ~/dist/neovim-0.4.3.tar.gz https://github.com/neovim/neovim/archive/v0.4.3.tar.gz
+            tar xzvf ~/dist/neovim-0.4.3.tar.gz
+            cd neovim-0.4.3
+            make all
+            make install
+        fi
 	fi
 
 	if [ "$OSTYPE" = "linux-gnu" ] ; then
 		echo "Personalizações para servidores linux..."
 		ln -s ~/.zshcustoms/linux/tmux.conf ~/.tmux.conf
+        if [ ! -d /usr/local/nvim-linux64 ] ; then
+            wget -O /tmp/neovim-0.4.3.tar.gz https://github.com/neovim/neovim/releases/download/v0.4.3/nvim-linux64.tar.gz
+            cd /usr/local
+            tar -xzvf /tmp/neovim-0.4.3.tar.gz
+            rm -f /tmp/neovim-0.4.3.tar.gz
+        fi
+
 	fi
 
 	if [ "$OSTYPE" = "darwin17.0" -o  "$OSTYPE" = "darwin18.0" -o "$OSTYPE" = "darwin19.0" ] ; then

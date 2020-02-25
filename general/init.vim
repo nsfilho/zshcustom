@@ -10,6 +10,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
 call plug#end()
 
 set mouse=a
@@ -27,6 +29,7 @@ set signcolumn=yes
 
 colorscheme gruvbox
 
+let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:NERDTreeGitStatusWithFlags = 1
@@ -167,6 +170,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 nmap <F2> <Plug>(coc-rename)
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active

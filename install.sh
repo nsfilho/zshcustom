@@ -14,12 +14,12 @@ fi
 
 if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
 	echo "Instalando pacotes adicionais para AIO-Link..."
-	sudo apt-get -y install bash zsh tmux vim git neovim
+	sudo apt-get -y install bash zsh tmux vim git neovim wget curl
 fi
 
 if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then
 	echo "Instalando pacotes adicionais para Servidores linux..."
-	sudo apt-get -y install bash zsh tmux vim git neovim
+	sudo apt-get -y install bash zsh tmux vim git neovim wget curl
 	# Evita nos debians a shell dash
 	rm -f /bin/sh
 	ln -s /bin/bash /bin/sh
