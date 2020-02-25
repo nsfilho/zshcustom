@@ -79,3 +79,10 @@ function drm {
     docker stack ps $PROJETO
     watch -n 1 docker stack rm $PROJETO
 }
+
+function remoteclip {
+    while true ; do
+        echo "Aguardando buffer: `date`"
+        nc -l 2000 | pbcopy
+    done
+}

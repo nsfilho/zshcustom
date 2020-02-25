@@ -26,6 +26,7 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set ttyfast
 set splitbelow
 set signcolumn=yes
+set clipboard+=unnamedplus
 
 colorscheme gruvbox
 
