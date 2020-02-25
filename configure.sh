@@ -166,9 +166,9 @@ if [ -d ~/.zshcustoms ] ; then
 		git config --global alias.ap "add --patch"
 	fi
 
-	npm install -g git+https://github.com/nsfilho/clustercmd.git
-	npm install -g git+https://github.com/nsfilho/clusterfile.git
-    npm install -g prettier
+	sudo npm install -g git+https://github.com/nsfilho/clustercmd.git
+	sudo npm install -g git+https://github.com/nsfilho/clusterfile.git
+    sudo npm install -g prettier
 
 	if [ -d  ~/.vim/bundle/YouCompleteMe ] ; then
 		cd ~/.vim/bundle/YouCompleteMe
