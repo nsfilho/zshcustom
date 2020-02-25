@@ -14,7 +14,7 @@ fi
 
 if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
 	echo "Instalando pacotes adicionais para AIO-Link..."
-	sudo apt-get -y install bash zsh tmux vim git
+	sudo apt-get -y install bash zsh tmux vim git neovim
 fi
 
 if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then
