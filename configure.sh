@@ -108,6 +108,7 @@ if [ -d ~/.zshcustoms ] ; then
 		brew install asciinema
 		brew install macvim
 		brew install cmake
+        brew install tmux
 		npm install -g svg-term-cli
 	fi
 
