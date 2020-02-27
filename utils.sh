@@ -100,7 +100,7 @@ function checkOS()
 function checkGemInstall()
 {
     package=$1
-    echo -n "Checking Ruby Package [$1]:""
+    echo -n "Checking Ruby Package [$1]:"
     if [ -f /usr/bin/gem ] || [ -f /usr/local/bin/gem ] ; then
         if [ ! -f /usr/local/bin/$package ] ; then
             echo "installing..."
@@ -126,3 +126,5 @@ function gitAlias()
         echo "already configured."
     fi
 }
+
+echo "Utils Library loaded!"
