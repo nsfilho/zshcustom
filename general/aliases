@@ -46,8 +46,7 @@ alias dupdate="docker service update"
 function zupdate {
     touch /tmp/.zshcustoms_`whoami`
     upgrade_oh_my_zsh
-    sh ~/.zshcustoms/install.sh
-    rm -f /tmp/.zshcustoms_`whoami`
+    bash $HOME/.zshcustoms/install.sh
 }
 
 function dsps {
