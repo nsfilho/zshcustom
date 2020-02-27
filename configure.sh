@@ -45,10 +45,6 @@ fi
 if [ -d ~/.zshcustoms ] ; then
 	cd ~/.zshcustoms
 
-	# Configura o tmux
-	if [ -f ~/.tmux.conf ] ; then
-		rm -f ~/.tmux.conf
-	fi
 	# Configura terminal zsh
 	if [ -f ~/.zshrc ] ; then
 		rm -f ~/.zshrc
@@ -68,7 +64,6 @@ if [ -d ~/.zshcustoms ] ; then
 	#
 	if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
 		echo "Personalizações para AIO-Links..."
-		ln -s ~/.zshcustoms/aiolink/tmux.conf ~/.tmux.conf
         sudo apt-get install -y automake libtool libtool-bin
         if [ ! -x /usr/local/bin/nvim ] ; then
             mkdir -p ~/dist
@@ -83,7 +78,6 @@ if [ -d ~/.zshcustoms ] ; then
 
 	if [ "$OSTYPE" = "linux-gnu" ] ; then
 		echo "Personalizações para servidores linux..."
-		ln -s ~/.zshcustoms/linux/tmux.conf ~/.tmux.conf
         if [ ! -d /usr/local/nvim-linux64 ] ; then
             wget -O /tmp/neovim-0.4.3.tar.gz https://github.com/neovim/neovim/releases/download/v0.4.3/nvim-linux64.tar.gz
             cd /usr/local
@@ -103,7 +97,6 @@ if [ -d ~/.zshcustoms ] ; then
 		fi
 
 	    echo "Personalizações para estação de trabalho MacOS..."
-		ln -s ~/.zshcustoms/linux/tmux.conf ~/.tmux.conf
 		brew install terminal-notifier
 		brew install asciinema
 		brew install macvim
@@ -111,6 +104,14 @@ if [ -d ~/.zshcustoms ] ; then
         brew install tmux
 		npm install -g svg-term-cli
 	fi
+
+	# Configura o tmux
+	if [ -f ~/.tmux.conf ] ; then
+		rm -f ~/.tmux.conf
+	fi
+
+    TMUX_VERSION=`tmux -V | sed -nr 's/tmux (.*)/\1/p'`
+    ln -s ~/.zshcustoms/general/tmux-$TMUX_VERSION.conf ~/.tmux.conf
 
 	#
 	# Instalações gerais, independente de sistema operacional
