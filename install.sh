@@ -7,12 +7,14 @@
 function downloadUtils()
 {
     TEMPUTILS=`mktemp`
-    curl -o $TEMPUTILS https://raw.githubusercontent.com/nsfilho/zshcustom/master/utils.sh
+    echo "Downloading library to $TEMPUTILS"
+    curl -s -o $TEMPUTILS https://raw.githubusercontent.com/nsfilho/zshcustom/master/utils.sh
     source $TEMPUTILS
     rm -f $TEMPUTILS
 }
 
 downloadUtils
+
 checkOS
 echo "Operational System: $myOS"
 
