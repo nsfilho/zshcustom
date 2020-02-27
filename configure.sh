@@ -63,6 +63,7 @@ if [ -d ~/.zshcustoms ] ; then
 	# Personalizações por sistema operacional
 	#
 	if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
+        TMUX_VERSION=`tmux -V | sed -nr 's/tmux (.*)/\1/p'`
 		echo "Personalizações para AIO-Links..."
         sudo apt-get install -y automake libtool libtool-bin
         if [ ! -x /usr/local/bin/nvim ] ; then
@@ -77,6 +78,7 @@ if [ -d ~/.zshcustoms ] ; then
 	fi
 
 	if [ "$OSTYPE" = "linux-gnu" ] ; then
+        TMUX_VERSION=`tmux -V | sed -nr 's/tmux (.*)/\1/p'`
 		echo "Personalizações para servidores linux..."
         if [ ! -d /usr/local/nvim-linux64 ] ; then
             wget -O /tmp/neovim-0.4.3.tar.gz https://github.com/neovim/neovim/releases/download/v0.4.3/nvim-linux64.tar.gz
@@ -98,6 +100,7 @@ if [ -d ~/.zshcustoms ] ; then
 
 	    echo "Personalizações para estação de trabalho MacOS..."
 		npm install -g svg-term-cli
+        TMUX_VERSION=`tmux -V | sed -nE 's/tmux (.*)/\1/p'`
 	fi
 
 	# Configura o tmux
@@ -105,7 +108,6 @@ if [ -d ~/.zshcustoms ] ; then
 		rm -f ~/.tmux.conf
 	fi
 
-    TMUX_VERSION=`tmux -V | sed -nr 's/tmux (.*)/\1/p'`
     ln -s ~/.zshcustoms/general/tmux-$TMUX_VERSION.conf ~/.tmux.conf
 
 	#
