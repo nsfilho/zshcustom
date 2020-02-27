@@ -1,1 +1,97 @@
-/Users/neliosantos/.zshcustoms/general/vimrc
+set nocompatible
+set hidden
+set mouse=a
+syntax enable
+filetype plugin off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+if has("gui_macvim")
+    Plugin 'Valloric/YouCompleteMe'
+    " Plugin 'prettier/vim-prettier'
+endif
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'yaml.vim'
+Plugin 'The-NERD-Commenter'
+Plugin 'tpope/vim-surround'
+Plugin 'mattn/emmet-vim'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'w0rp/ale'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+autocmd vimenter * NERDTree
+autocmd vimenter * wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE
+
+set number relativenumber
+set clipboard=unnamed
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set matchpairs+=<:>
+set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
+set ttyfast
+set splitbelow
+set splitright
+set showcmd
+
+"set completeopt=menu
+"let g:ycm_add_preview_to_completeopt = 0
+let mapleader=','
+let g:airline#extensions#tabline#enabled = 1
+let g:UltiSnipsEditSplit="vertical"
+let g:ale_fixers = {
+ \ 'javascript': ['eslint'],
+ \ 'typescript': ['eslint']
+ \ }
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+let g:ale_fix_on_save = 1
+
+map <C-n> :NERDTreeToggle<CR>
+map ; :Files<CR>
+nmap <silent> <C-l> <Plug>(jsdoc)
+nnoremap <Space> za
+nnoremap <silent>   <tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bnext<CR>
+nnoremap <silent> <s-tab>  :if &modifiable && !&readonly && &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+
+if has("gui_macvim")
+    set macligatures
+    set guifont=FuraCode\ Nerd\ Font:h16
+    colorscheme desert
+    let g:prettier#autoformat_require_pragma = 0
+    let g:prettier#autoformat = 0
+    autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+endif
+
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+set statusline=%{LinterStatus()}

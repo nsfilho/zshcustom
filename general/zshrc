@@ -1,1 +1,106 @@
-/Users/neliosantos/.zshcustoms/general/zshrc
+#
+# E01-AIO Automacao Ltda. ME.
+# Autor: Nelio Santos (nelio@e01aio.com.br)
+#
+# Configurações gerais do zshrc com oh-my-zsh
+#
+
+export ZSH=~/.oh-my-zsh
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+source ~/.zshcustoms/themes/default.sh
+# source ~/.zshcustoms/themes/daniruiz.sh
+# source ~/.zshcustoms/themes/mavam.sh
+# source ~/.zshcustoms/themes/sevenfoxes.sh
+# source ~/.zshcustoms/themes/cvuorinen.sh
+# source ~/.zshcustoms/themes/hacker.sh
+
+HIST_STAMPS="yyyy-mm-dd"
+plugins=(git history-substring-search bgnotify zsh-autosuggestions zsh-syntax-highlighting)
+DISABLE_UPDATE_PROMPT=true
+DISABLE_AUTO_UPDATE="true"
+ENABLE_CORRECTION="false"
+COMPLETION_WAITING_DOTS="true"
+
+export VISUAL=vi
+export EDITOR=$VISUAL
+
+# Previne iniciar tmux sob uma sessao em sudo
+if [ x"$SUDO_USER" = x ] ; then
+    if [ -f ~/.notmux ] ; then
+        ZSH_TMUX_AUTOSTART='false'
+    else
+        ZSH_TMUX_AUTOSTART='true'
+        plugins=(tmux git history-substring-search bgnotify zsh-autosuggestions zsh-syntax-highlighting)
+    fi
+else
+    ZSH_TMUX_AUTOSTART='false'
+fi
+
+source ~/.zshcustoms/general/aliases
+
+#
+# Habilitando tools
+#
+# Google Cloud
+
+if [ -d ~/.zshcustoms/tools/google-cloud-sdk ] ; then
+    source ~/.zshcustoms/tools/google-cloud-sdk/completion.zsh.inc
+    source ~/.zshcustoms/tools/google-cloud-sdk/path.zsh.inc
+fi
+
+#
+# Scripts personalizados
+#
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.zshcustoms/scripts"
+
+if [ -d $HOME/.yarn ] ; then
+    export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+fi
+
+#
+# Personalizações por sistema operacional
+#
+
+if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
+    source ~/.zshcustoms/aiolink/zshrc
+fi
+
+if [ "$OSTYPE" = "linux-gnu" ] ; then
+    source ~/.zshcustoms/linux/zshrc
+fi
+
+if [ "$OSTYPE" = "darwin17.0" -o "$OSTYPE" = "darwin18.0" -o "$OSTYPE" = "darwin19.0" ] ; then
+    source ~/.zshcustoms/macos/zshrc
+fi
+
+#
+# SISTEMA DE COR PARA LESS && MAN
+#
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7) # white
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
+export LESS_TERMCAP_ZN=$(tput ssubm)
+export LESS_TERMCAP_ZV=$(tput rsubm)
+export LESS_TERMCAP_ZO=$(tput ssupm)
+export LESS_TERMCAP_ZW=$(tput rsupm)
+export GROFF_NO_SGR=1
+
+source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ -f ~/.zshlocal ] ; then
+    source ~/.zshlocal
+fi
+
+if [ -f /usr/local/bin/mdless ] ; then
+    mdless --no-pager ~/.zshcustoms/motd.md
+fi

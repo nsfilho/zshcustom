@@ -21,7 +21,7 @@ function downloadExtract()
 function deleteAndLink()
 {
     orig=$1
-    dest=$1
+    dest=$2
     deleteIfExists $dest
     echo -n "Linking file $orig -> $dest: "
     ln -sf $orig $dest
