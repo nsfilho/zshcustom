@@ -30,7 +30,7 @@ if [ -d $HOME/.zshcustoms ] ; then
 	#
 	# Personalizações por sistema operacional
 	#
-    myOS=checkOS()
+    myOS=checkOS
 	if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
         echo -n "Checking TMUX version: "
         TMUX_VERSION=`tmux -V | sed -nr 's/tmux (.*)/\1/p'`

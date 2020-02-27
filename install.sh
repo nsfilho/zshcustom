@@ -13,7 +13,7 @@ function downloadUtils()
 }
 
 downloadUtils
-myOS=checkOS()
+myOS=checkOS
 echo "Operational System: $myOS"
 
 echo "Checking basis OS packages..."
