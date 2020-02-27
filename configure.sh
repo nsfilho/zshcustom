@@ -77,7 +77,7 @@ if [ -d ~/.zshcustoms ] ; then
         fi
 	fi
 
-	if [ "$OSTYPE" = "linux-gnu" ] ; then
+    if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then
         TMUX_VERSION=`tmux -V | sed -nr 's/tmux (.*)/\1/p'`
 		echo "Personalizações para servidores linux..."
         if [ ! -d /usr/local/nvim-linux64 ] ; then
@@ -89,7 +89,7 @@ if [ -d ~/.zshcustoms ] ; then
 
 	fi
 
-	if [ "$OSTYPE" = "darwin17.0" -o  "$OSTYPE" = "darwin18.0" -o "$OSTYPE" = "darwin19.0" ] ; then
+	if [ "$OSTYPE" = "darwin17.0" ] || [ "$OSTYPE" = "darwin18.0" ] || [ "$OSTYPE" = "darwin19.0" ] ; then
 		if [ ! -d ~/.zshcustoms/iterm2/ ] ; then
 			mkdir ~/.zshcustoms/iterm2/
 		fi
