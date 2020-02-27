@@ -89,7 +89,7 @@ if [ -d ~/.zshcustoms ] ; then
 
 	fi
 
-	if [ "$OSTYPE" = "darwin17.0" ] || [ "$OSTYPE" = "darwin18.0" ] || [ "$OSTYPE" = "darwin19.0" ] ; then
+    if [ "$OSTYPE" = "darwin17.0" ] || [ "$OSTYPE" = "darwin18.0" ] || [ "$OSTYPE" = "darwin19.0" ] || [ "$OSTYPE" = "darwin19" ] ; then
 		if [ ! -d ~/.zshcustoms/iterm2/ ] ; then
 			mkdir ~/.zshcustoms/iterm2/
 		fi
