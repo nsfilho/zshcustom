@@ -104,10 +104,7 @@ if [ -d ~/.zshcustoms ] ; then
 	fi
 
 	# Configura o tmux
-	if [ -f ~/.tmux.conf ] ; then
-		rm -f ~/.tmux.conf
-	fi
-
+	rm -f ~/.tmux.conf
     ln -s ~/.zshcustoms/general/tmux-$TMUX_VERSION.conf ~/.tmux.conf
 
 	#
