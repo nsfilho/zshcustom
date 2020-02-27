@@ -60,13 +60,13 @@ function isUpdate()
     echo -n "Checking if it is an update: "
     if [ -f  $UPDATE_MARK ] ; then
         echo "yes"
-        return true
+        return 0
     else
         echo "no"
         if [ -d ~/.zshcustoms ] ; then
             rm -rf ~/.zshcustoms
         fi
-        return false
+        return 1
     fi
 }
 
