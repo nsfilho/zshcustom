@@ -1,33 +1,28 @@
 #!/bin/bash
-UPDATE_MARK="/tmp/.zshcustoms_`whoami`"
+#
+# Prepare your computer to receive the shell zsh with esteroids
+# Author: Nelio Santos (nsfilho@icloud.com)
+#
 
-echo "Detectando OSTYPE: [$OSTYPE]..."
+function downloadUtils()
+{
+    TEMPUTILS=`mktemp`
+    curl -o $TEMPUTILS https://raw.githubusercontent.com/nsfilho/zshcustom/master/utils.sh
+    source $TEMPUTILS
+    rm -f $TEMPUTILS
+}
 
-if [ "x$OSTYPE" = "x" ] ; then
-	if [ -d /etc/aiolink ] ; then
-		export OSTYPE="linux-gnueabihf"
-	else
-		export OSTYPE=`uname`
-	fi
-	echo "Shell DASH Detectada, revisando OSTYPE: [$OSTYPE]..."
-fi
+downloadUtils
+myOS=checkOS()
+echo "Operational System: $myOS"
 
-if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
-	echo "Instalando pacotes adicionais para AIO-Link..."
+echo "Checking basis OS packages..."
+if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
+    sudo apt-get update
 	sudo apt-get -y install bash zsh tmux vim git neovim wget curl
 fi
 
-if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then
-	echo "Instalando pacotes adicionais para Servidores linux..."
-	sudo apt-get -y install bash zsh tmux vim git neovim wget curl
-	# Evita nos debians a shell dash
-	rm -f /bin/sh
-	ln -s /bin/bash /bin/sh
-fi
-
-
-if [ "$OSTYPE" = "darwin17.0" ] || [ "$OSTYPE" = "darwin18.0" ] || [ "$OSTYPE" = "darwin19.0" ] || [ "$OSTYPE" = "darwin19" ] ; then
-    echo "Personalizações para estação de trabalho MacOS..."
+if [ "$myOS" = "macos" ] ; then
     brew install terminal-notifier
     brew install asciinema
     brew install macvim
@@ -35,32 +30,14 @@ if [ "$OSTYPE" = "darwin17.0" ] || [ "$OSTYPE" = "darwin18.0" ] || [ "$OSTYPE" =
     brew install tmux
 fi
 
-if [ -f /usr/bin/gem ] ; then
-	if [ ! -f /usr/local/bin/colorls ] ; then
-		sudo gem install colorls
-	fi
-	if [ ! -f /usr/local/bin/artii ] ; then
-		sudo gem install artii
-	fi
-	if [ ! -f /usr/local/bin/lolcat ] ; then
-		sudo gem install lolcat
-	fi
-	if [ ! -f /usr/local/bin/mdless ] ; then
-		sudo gem install mdless
-	fi
-fi
+# For all operational systems
+checkGemInstall colorls
+checkGemInstall artii
+checkGemInstall lolcat
+checkGemInstall mdless
 
-# Se não for um update, elimina o diretorio
-if [ ! -f $UPDATE_MARK ] ; then
-	rm -rf ~/.zshcustoms
-fi
+isUpdate
+cloneOrPull "https://github.com/nsfilho/zshcustom.git" "$HOME/.zshcustoms"
 
-if [ -d ~/.zshcustoms ] ; then
-	cd ~/.zshcustoms
-	git pull
-else
-	git clone https://github.com/nsfilho/zshcustom.git ~/.zshcustoms
-fi
-
-rm -f $UPDATE_MARK
+finishUpdate
 bash ~/.zshcustoms/configure.sh
