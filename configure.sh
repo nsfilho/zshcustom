@@ -105,7 +105,9 @@ if [ -d ~/.zshcustoms ] ; then
 
 	# Configura o tmux
 	rm -f ~/.tmux.conf
-    ln -s ~/.zshcustoms/general/tmux-$TMUX_VERSION.conf ~/.tmux.conf
+    TMUX_FILE="$HOME/.zshcustoms/general/tmux-$TMUX_VERSION.conf"
+    echo Linking $TMUX_FILE para ~/.tmux.conf
+    ln -fs $TMUX_FILE ~/.tmux.conf
 
 	#
 	# Instalações gerais, independente de sistema operacional
