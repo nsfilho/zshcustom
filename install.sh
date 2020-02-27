@@ -25,6 +25,16 @@ if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linu
 	ln -s /bin/bash /bin/sh
 fi
 
+
+if [ "$OSTYPE" = "darwin17.0" -o  "$OSTYPE" = "darwin18.0" -o "$OSTYPE" = "darwin19.0" ] ; then
+    echo "Personalizações para estação de trabalho MacOS..."
+    brew install terminal-notifier
+    brew install asciinema
+    brew install macvim
+    brew install cmake
+    brew install tmux
+fi
+
 if [ -f /usr/bin/gem ] ; then
 	if [ ! -f /usr/local/bin/colorls ] ; then
 		sudo gem install colorls

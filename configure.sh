@@ -97,11 +97,6 @@ if [ -d ~/.zshcustoms ] ; then
 		fi
 
 	    echo "Personalizações para estação de trabalho MacOS..."
-		brew install terminal-notifier
-		brew install asciinema
-		brew install macvim
-		brew install cmake
-        brew install tmux
 		npm install -g svg-term-cli
 	fi
 
