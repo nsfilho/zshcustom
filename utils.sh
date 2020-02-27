@@ -83,24 +83,24 @@ function checkOS()
             return "aiolink"
         else
             export OSTYPE=`uname`
-            return $OSTYPE
+            myOS=$OSTYPE
         fi
     fi
     
     if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then
-        return "linux"
+        myOS="linux"
     fi
 
     if [ "$OSTYPE" = "darwin17.0" ] || [ "$OSTYPE" = "darwin18.0" ] || [ "$OSTYPE" = "darwin19.0" ] || [ "$OSTYPE" = "darwin19" ] ; then
-        return "macos"
+        myOS="macos"
     fi
-
+    return 0 
 }
 
 function checkGemInstall()
 {
     package=$1
-    echo -n "Checking Ruby Package [$1]:"
+    echo -n "Checking Ruby Package [$1]:""
     if [ -f /usr/bin/gem ] || [ -f /usr/local/bin/gem ] ; then
         if [ ! -f /usr/local/bin/$package ] ; then
             echo "installing..."
