@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 UPDATE_MARK="/tmp/.zshcustoms_`whoami`"
 
 echo "Detectando OSTYPE: [$OSTYPE]..."
@@ -63,4 +63,4 @@ else
 fi
 
 rm -f $UPDATE_MARK
-sh ~/.zshcustoms/configure.sh
+bash ~/.zshcustoms/configure.sh

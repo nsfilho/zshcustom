@@ -3,7 +3,7 @@
 Facilitadores de shell universal e atalhos para automação de rotinas.
 
 ```sh
-curl -o - https://raw.githubusercontent.com/nsfilho/zshcustom/master/install.sh | /bin/sh -
+curl -o - https://raw.githubusercontent.com/nsfilho/zshcustom/master/install.sh | /bin/bash -
 ```
 
 # Alterações úteis
