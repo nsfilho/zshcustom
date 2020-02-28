@@ -87,7 +87,15 @@ function checkOS()
             myOS=$OSTYPE
         fi
     fi
-    
+   
+    if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
+        if [ -d /etc/aiolink ] ; then
+            myOS="aiolink"
+        else
+            myOS="linux"
+        fi
+    fi
+
     if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then
         myOS="linux"
     fi
