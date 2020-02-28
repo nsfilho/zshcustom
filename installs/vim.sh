@@ -9,8 +9,8 @@ cloneOrPull "https://github.com/VundleVim/Vundle.vim.git" "$HOME/.vim/bundle/Vun
 set shell=/bin/bash
 vim +PluginInstall +qall
 
-echo "Installing YouCompleteMe dependencies..."
 if [ -d  ~/.vim/bundle/YouCompleteMe ] ; then
+    echo "Installing YouCompleteMe dependencies..."
 	cd ~/.vim/bundle/YouCompleteMe
 	./install.py --clang-completer --ts-completer >> $UPDATE_LOG
 fi

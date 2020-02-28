@@ -5,7 +5,7 @@
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
     NEOVIM_LOCAL="/usr/local/bin/nvim"
 
-    echo -n "Checking neovim:"
+    echo -n "Checking neovim: "
     if [ "$myOS" = "aiolink" ] ; then
         if [ ! -x /usr/local/bin/nvim ] ; then
             echo "installing..."
@@ -25,11 +25,6 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
     fi # generic linux
 fi
 
-
-if [ "$myOS" = "macos" ] ; then
-
-fi
-
 mkdir -p ~/.config/nvim
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ] ; then
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
@@ -37,6 +32,7 @@ if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ] ; then
 fi
 deleteAndLink "$HOME/.zshcustoms/general/init.vim" "$HOME/.config/nvim/init.vim"
 deleteAndLink "$HOME/.zshcustoms/general/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+
 set shell=/bin/bash
 $NEOVIM_LOCAL +PlugInstall +qall
 	
