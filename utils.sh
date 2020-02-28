@@ -49,10 +49,10 @@ function cloneOrPull()
     if [ -d $2 ] ; then
         echo "updating..."
         cd $2
-        git pull >> $UPDATE_LOG
+        git pull >> $UPDATE_LOG 2>>$UPDATE_LOG
     else
         echo "cloning..."
-        git clone $url $2 >> $UPDATE_LOG
+        git clone $url $2 >> $UPDATE_LOG 2>>$UPDATE_LOG
     fi
 }
 
@@ -134,7 +134,7 @@ function npmGlobalInstall()
 {
     package=$1
     echo -n "Installing NPM package [$package]: "
-    npm install -G $package >> $UPDATE_LOG
+    npm install -G $package >> $UPDATE_LOG 2>>$UPDATE_LOG
     echo "done!"
 }
 
@@ -142,18 +142,18 @@ function aptInstall()
 {
     packages=$1
     echo -n "Installing APT packages [$packages]: "
-    sudo apt-get update >> $UPDATE_LOG
-    sudo apt-get install -y $packages >> $UPDATE_LOG
+    sudo apt-get update >> $UPDATE_LOG 2>>$UPDATE_LOG
+    sudo apt-get install -y $packages >> $UPDATE_LOG 2>>$UPDATE_LOG
     echo "done!"
 }
 
 function brewInstall()
 {
     packages=$1
-    brew update >> $UPDATE_LOG
+    brew update >> $UPDATE_LOG 2>>$UPDATE_LOG
     for i in $packages ; do
         echo -n "Installing BREW package [$i]: "
-        brew install $i >> $UPDATE_LOG
+        brew install $i >> $UPDATE_LOG 2>>$UPDATE_LOG
         echo "done!"
     done
 }
