@@ -3,6 +3,7 @@
 # Biblioteca de funcoes e utilitarios
 #
 UPDATE_MARK="/tmp/.zshcustoms_`whoami`"
+UPDATE_LOG="/tmp/zshcustoms_`whoami`_`date +%Y-%m-%d_%H%M%S`.log"
 
 function downloadExtract()
 {
@@ -10,11 +11,11 @@ function downloadExtract()
     dest=$2
     tempFile=`mktemp`
     echo "Downloading Url: $url"
-    wget -O $tempFile $url
+    wget -O $tempFile $url >> $UPDATE_LOG
     mkdir -p $dest
     cd $dest
     echo "Extracting in $dest..."
-    tar xzvf $tempFile --strip-components 1
+    tar xzvf $tempFile --strip-components 1 >> $UPDATE_LOG
     rm -f $tempFile
 }
 
@@ -48,10 +49,10 @@ function cloneOrPull()
     if [ -d $2 ] ; then
         echo "updating..."
         cd $2
-        git pull
+        git pull >> $UPDATE_LOG
     else
         echo "cloning..."
-        git clone $url $2
+        git clone $url $2 >> $UPDATE_LOG
     fi
 }
 
@@ -99,17 +100,19 @@ function checkOS()
 
 function checkGemInstall()
 {
-    package=$1
-    echo -n "Checking Ruby Package [$1]:"
+    packages=$1
     if [ -f /usr/bin/gem ] || [ -f /usr/local/bin/gem ] ; then
-        if [ ! -f /usr/local/bin/$package ] ; then
-            echo "installing..."
-            sudo gem install $package
-        else
-            echo "already installed."
-        fi
+        for package in $packages ; do
+            echo -n "Checking Ruby Package [$package]:"
+            if [ ! -f /usr/local/bin/$package ] ; then
+                echo "installing..."
+                sudo gem install $package >> $UPDATE_LOG
+            else
+                echo "already installed."
+            fi
+        done
     else
-        echo "no ruby installed."
+        echo "Checking Ruby Packages [$packages]: no ruby installed."
     fi
 }
 
@@ -127,6 +130,32 @@ function gitAlias()
     fi
 }
 
+function npmGlobalInstall()
+{
+    package=$1
+    echo -n "Installing NPM package [$package]: "
+    npm install -G $package >> $UPDATE_LOG
+    echo "done!"
+}
 
+function aptInstall()
+{
+    packages=$1
+    echo -n "Installing APT packages [$packages]: "
+    sudo apt-get update >> $UPDATE_LOG
+    sudo apt-get install -y $packages >> $UPDATE_LOG
+    echo "done!"
+}
 
-echo "Utils Library loaded!"
+function brewInstall()
+{
+    packages=$1
+    brew update >> $UPDATE_LOG
+    for i in $packages ; do
+        echo -n "Installing BREW package [$i]: "
+        brew install $i >> $UPDATE_LOG
+        echo "done!"
+    done
+}
+
+echo "Log file: $UPDATE_LOG"

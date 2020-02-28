@@ -17,29 +17,20 @@ downloadUtils
 
 checkOS
 echo "Operational System: $myOS"
-
 echo "Checking basis OS packages..."
+
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
-    sudo apt-get update
-	sudo apt-get -y install bash zsh tmux vim git neovim wget curl
+	aptInstall "bash zsh tmux vim git neovim wget curl"
 fi
 
 if [ "$myOS" = "macos" ] ; then
-    brew install terminal-notifier
-    brew install asciinema
-    brew install macvim
-    brew install cmake
-    brew install tmux
+    brewInstall "terminal-notifier asciinema macvim cmake tmux neovim"
 fi
 
-# For all operational systems
-checkGemInstall colorls
-checkGemInstall artii
-checkGemInstall lolcat
-checkGemInstall mdless
+checkGemInstall "colorls artii lolcat mdless"
 
 isUpdate
 cloneOrPull "https://github.com/nsfilho/zshcustom.git" "$HOME/.zshcustoms"
-
 finishUpdate
+
 bash ~/.zshcustoms/configure.sh
