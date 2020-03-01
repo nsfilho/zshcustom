@@ -2,8 +2,8 @@
 #
 # Code piece to install neovim
 #
+NEOVIM_LOCAL="/usr/local/bin/nvim"
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
-    NEOVIM_LOCAL="/usr/local/bin/nvim"
 
     echo -n "Checking neovim: "
     if [ "$myOS" = "aiolink" ] ; then
