@@ -27,6 +27,8 @@ set ttyfast
 set splitbelow
 set signcolumn=yes
 set clipboard+=unnamedplus
+set nowrap
+let mapleader=","
 
 colorscheme gruvbox
 
@@ -168,6 +170,14 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+
+" Resize Window
+nnoremap <silent> <S-Up>    :call animate#window_delta_height(10)<CR>
+nnoremap <silent> <S-Down>  :call animate#window_delta_height(-10)<CR>
+nnoremap <silent> <S-Left>  :call animate#window_delta_width(10)<CR>
+nnoremap <silent> <S-Right> :call animate#window_delta_width(-10)<CR>
+
+" Others Shortcuts
 autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 nmap <F2> <Plug>(coc-rename)

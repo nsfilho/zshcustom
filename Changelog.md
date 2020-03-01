@@ -1,3 +1,5 @@
+2020-03-01 Melhorando sistema de instalação e elaborando os scripts
+
 2020-02-22 Adicionando o gvim como padrao para MacOS
 - Tambem habilitado o autocompletar em gvim
 - Tornando o editor padrao
