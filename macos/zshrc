@@ -11,6 +11,7 @@ fi
 
 alias hosts="code /etc/hosts"
 alias c="code ."
+alias df="df -h"
 
 # Development variables
 export WORKSPACE_PATH=~/workspace
