@@ -8,11 +8,11 @@ echo "Operational System: $myOS"
 echo "Checking basis OS packages..."
 
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
-	aptInstall "bash zsh tmux vim git neovim wget curl"
+	aptInstall "bash zsh tmux vim git neovim wget curl clang cmake libclang-dev llvm-dev llvm rapidjson-dev"
 fi
 
 if [ "$myOS" = "macos" ] ; then
-    brewInstall "terminal-notifier asciinema macvim cmake tmux neovim"
+    brewInstall "terminal-notifier asciinema macvim cmake tmux neovim llvm"
 fi
 
 checkGemInstall "colorls artii lolcat mdless"

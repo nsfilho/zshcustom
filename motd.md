@@ -1,5 +1,5 @@
 # Teclas de função
-
+-   **F02** : nvim
 -   **F06** : git pull
 -   **F07** : git status
 -   **F08** : git add --patch

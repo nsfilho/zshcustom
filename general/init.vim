@@ -12,6 +12,8 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'luochen1990/rainbow'
 call plug#end()
 
 set mouse=a
@@ -32,6 +34,7 @@ let mapleader=","
 
 colorscheme gruvbox
 
+let g:rainbow_active = 1
 let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -46,6 +49,7 @@ let g:coc_global_extensions = [
   \ 'coc-eslint', 
   \ 'coc-prettier', 
   \ 'coc-json', 
+  \ 'coc-clangd'
   \ ]
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
