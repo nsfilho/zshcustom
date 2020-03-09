@@ -71,6 +71,10 @@ function dhealth {
     docker service inspect $container | jq '.[].Spec.TaskTemplate.ContainerSpec.Healthcheck'
 }
 
+function devents {
+    docker events --format '{{json .}}' | jq 'select(.Action | test("(exec_start|exec_create|exec_die)") | not)'
+}
+
 function drm {
     if [ ! -f docker-compose.yml ] ; then
         echo O diretório atual não contém um projeto do swarm.
