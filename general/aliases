@@ -66,6 +66,11 @@ function ddeploy {
     watch -n 1 docker stack ps $PROJETO
 }
 
+function dhealth {
+    container=$1
+    docker service inspect $container | jq '.[].Spec.TaskTemplate.ContainerSpec.Healthcheck'
+}
+
 function drm {
     if [ ! -f docker-compose.yml ] ; then
         echo O diretório atual não contém um projeto do swarm.
