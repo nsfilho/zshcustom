@@ -142,7 +142,7 @@ function npmGlobalInstall()
 {
     package=$1
     echo -n "Installing NPM package [$package]: "
-    npm install -G $package >> $UPDATE_LOG 2>>$UPDATE_LOG
+    npm install -g $package >> $UPDATE_LOG 2>>$UPDATE_LOG
     echo "done!"
 }
 
