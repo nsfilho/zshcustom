@@ -10,10 +10,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
-Plug 'camspiers/animate.vim'
-Plug 'camspiers/lens.vim'
-Plug 'Yggdroot/indentLine'
-Plug 'luochen1990/rainbow'
+" Plug 'camspiers/animate.vim'
+" Plug 'camspiers/lens.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'majutsushi/tagbar'
 call plug#end()
 
 set mouse=a
@@ -30,6 +30,10 @@ set splitbelow
 set signcolumn=yes
 set clipboard+=unnamedplus
 set nowrap
+set cmdheight=2
+set shortmess+=c
+set cursorline
+set cursorcolumn
 let mapleader=","
 
 colorscheme gruvbox
@@ -49,8 +53,31 @@ let g:coc_global_extensions = [
   \ 'coc-eslint', 
   \ 'coc-prettier', 
   \ 'coc-json', 
-  \ 'coc-clangd'
+  \ 'coc-clangd',
+  \ 'coc-highlight',
+  \ 'coc-tag',
+  \ 'coc-json',
+  \ 'coc-html',
+  \ 'coc-lists',
+  \ 'coc-yaml',
+  \ 'coc-syntax',
+  \ 'coc-git',
+  \ 'coc-emoji',
+  \ 'coc-calc',
+  \ 'coc-xml',
+  \ 'coc-marketplace',
+  \ 'coc-webpack',
+  \ 'coc-word',
+  \ 'coc-lines',
+  \ 'coc-markdownlint',
+  \ 'coc-vimlsp',
+  \ 'coc-ecdict'
   \ ]
+
+
+" TagBar
+let g:tagbar_width = 40
+let g:tagbar_iconchars = ['↠', '↡']
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
@@ -182,6 +209,7 @@ nnoremap <silent> <S-Left>  :call animate#window_delta_width(10)<CR>
 nnoremap <silent> <S-Right> :call animate#window_delta_width(-10)<CR>
 
 " Others Shortcuts
+autocmd vimenter * Tagbar
 autocmd vimenter * NERDTree
 map <C-n> :NERDTreeToggle<CR>
 nmap <F2> <Plug>(coc-rename)
@@ -204,5 +232,14 @@ function! SyncTree()
 endfunction
 
 " Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
+" autocmd BufEnter * call SyncTree()
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+nnoremap <silent> <leader>w :set wrap! wrap?<CR>
+nmap <silent> <leader>r :call SyncTree()<CR>
+nmap <silent> <leader>h :wincmd h<CR>
+nmap <silent> <leader>j :wincmd j<CR>
+nmap <silent> <leader>k :wincmd k<CR>
+nmap <silent> <leader>l :wincmd l<CR>
+nmap <F8> :TagbarToggle<CR>
