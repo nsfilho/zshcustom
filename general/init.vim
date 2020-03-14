@@ -234,7 +234,10 @@ endfunction
 
 " Highlight currently open buffer in NERDTree
 " autocmd BufEnter * call SyncTree()
+" Auto-close nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 nnoremap <silent> <leader>w :set wrap! wrap?<CR>
