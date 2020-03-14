@@ -14,6 +14,7 @@ Plug 'vim-airline/vim-airline'
 " Plug 'camspiers/lens.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'majutsushi/tagbar'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 set mouse=a
@@ -203,10 +204,10 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 
 " Resize Window
-nnoremap <silent> <S-Up>    :call animate#window_delta_height(10)<CR>
-nnoremap <silent> <S-Down>  :call animate#window_delta_height(-10)<CR>
-nnoremap <silent> <S-Left>  :call animate#window_delta_width(10)<CR>
-nnoremap <silent> <S-Right> :call animate#window_delta_width(-10)<CR>
+" nnoremap <silent> <S-Up>    :call animate#window_delta_height(10)<CR>
+" nnoremap <silent> <S-Down>  :call animate#window_delta_height(-10)<CR>
+" nnoremap <silent> <S-Left>  :call animate#window_delta_width(10)<CR>
+" nnoremap <silent> <S-Right> :call animate#window_delta_width(-10)<CR>
 
 " Others Shortcuts
 autocmd vimenter * Tagbar
@@ -243,3 +244,6 @@ nmap <silent> <leader>j :wincmd j<CR>
 nmap <silent> <leader>k :wincmd k<CR>
 nmap <silent> <leader>l :wincmd l<CR>
 nmap <F8> :TagbarToggle<CR>
+
+nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
+
