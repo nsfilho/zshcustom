@@ -39,6 +39,7 @@ let mapleader=","
 
 colorscheme gruvbox
 
+let g:g:NERDTreeShowHidden = 1
 let g:rainbow_active = 1
 let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
 let g:airline#extensions#tabline#enabled = 1
