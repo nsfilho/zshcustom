@@ -48,6 +48,7 @@ if [ -d $HOME/.zshcustoms ] ; then
 	gitAlias "ap" "add --patch"
 	npmGlobalInstall "git+https://github.com/nsfilho/clustercmd.git"
 	npmGlobalInstall "git+https://github.com/nsfilho/clusterfile.git"
+    npmGlobalInstall "git+https://github.com/nsfilho/traefikconfig.git"
     npmGlobalInstall "prettier"
 
     source $HOME/.zshcustoms/installs/tmux.sh
