@@ -37,6 +37,14 @@ bindkey -s '^[[19~' 'git add --patch \C-m'
 bindkey -s '^[[20~' 'git commit \C-m'
 bindkey -s '^[[21~' 'git push \C-m'
 
+# Mapping for ALT+arrow left and ALT+arrow right
+bindkey "[D" backward-word
+bindkey "[C" forward-word
+
+# This mapping needs change iTerm2 Command+Arrow Left and Command+Arrow Right
+bindkey "^[a" beginning-of-line
+bindkey "^[e" end-of-line
+
 if [ -d /usr/local/opt/sqlite/bin ] ; then
     export PATH="/usr/local/opt/sqlite/bin:$PATH"
     export LDFLAGS="-L/usr/local/opt/sqlite/lib $LDFLAGS"
