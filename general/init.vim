@@ -9,12 +9,17 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'jacoborus/tender.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'haishanh/night-owl.vim'
 Plug 'vim-airline/vim-airline'
 " Plug 'camspiers/animate.vim'
 " Plug 'camspiers/lens.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 set mouse=a
@@ -34,10 +39,15 @@ set nowrap
 set cmdheight=2
 set shortmess+=c
 set cursorline
-set cursorcolumn
+" set cursorcolumn
 let mapleader=","
 
-colorscheme gruvbox
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" colorscheme gruvbox
+colorscheme dracula
 
 let g:NERDTreeShowHidden = 1
 let g:rainbow_active = 1

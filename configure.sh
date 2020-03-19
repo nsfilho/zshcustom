@@ -30,6 +30,7 @@ if [ -d $HOME/.zshcustoms ] ; then
     if [ "$myOS" = "macos" ] ; then
 		mkdir -p $HOME/.zshcustoms/iterm2/
         cloneOrPull "https://github.com/MartinSeeler/iterm2-material-design.git" "$HOME/.zshcustoms/iterm2/material-design"
+        cloneOrPull "git clone https://github.com/dracula/iterm.git" "$HOME/.zshcustoms/iterm2/dracula"
         npmGlobalInstall "svg-term-cli"
 	fi
 
