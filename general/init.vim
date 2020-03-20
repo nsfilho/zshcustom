@@ -5,6 +5,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
@@ -23,6 +24,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'hzchirs/vim-material'
 Plug 'Yggdroot/indentLine'
+Plug 'junegunn/gv.vim'
 call plug#end()
 
 set mouse=a
