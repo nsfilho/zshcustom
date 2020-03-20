@@ -22,6 +22,7 @@ Plug 'majutsushi/tagbar'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'hzchirs/vim-material'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 set mouse=a
