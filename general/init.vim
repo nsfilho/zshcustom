@@ -13,6 +13,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'jacoborus/tender.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'haishanh/night-owl.vim'
+Plug 'kaicataldo/material.vim'
 Plug 'vim-airline/vim-airline'
 " Plug 'camspiers/animate.vim'
 " Plug 'camspiers/lens.vim'
@@ -20,6 +21,7 @@ Plug 'plasticboy/vim-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
+Plug 'hzchirs/vim-material'
 call plug#end()
 
 set mouse=a
@@ -47,7 +49,13 @@ if (has("termguicolors"))
 endif
 
 " colorscheme gruvbox
-colorscheme dracula
+" colorscheme dracula
+" colorscheme material
+
+let g:material_style='oceanic'
+set background=dark
+colorscheme vim-material
+let g:airline_theme='material'
 
 let g:NERDTreeShowHidden = 1
 let g:rainbow_active = 1
@@ -221,8 +229,9 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " nnoremap <silent> <S-Right> :call animate#window_delta_width(-10)<CR>
 
 " Others Shortcuts
-autocmd vimenter * Tagbar
-autocmd vimenter * NERDTree
+" autocmd vimenter * Tagbar
+" autocmd vimenter * NERDTree
+
 map <C-n> :NERDTreeToggle<CR>
 nmap <F2> <Plug>(coc-rename)
 map <C-J> :bnext<CR>
@@ -247,8 +256,6 @@ endfunction
 " autocmd BufEnter * call SyncTree()
 " Auto-close nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 nnoremap <silent> <leader>w :set wrap! wrap?<CR>
