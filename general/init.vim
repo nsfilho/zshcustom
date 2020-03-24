@@ -20,11 +20,13 @@ Plug 'vim-airline/vim-airline'
 " Plug 'camspiers/lens.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'majutsushi/tagbar'
+" Plug 'liuchengxu/vista.vim'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'hzchirs/vim-material'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/gv.vim'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 call plug#end()
 
 set mouse=a
@@ -38,6 +40,7 @@ set matchpairs+=<:>
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set ttyfast
 set splitbelow
+set splitright
 set signcolumn=yes
 set clipboard+=unnamedplus
 set nowrap
@@ -68,6 +71,14 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:NERDTreeGitStatusWithFlags = 1
 let g:NERDTreeIgnore = ['^node_modules$']
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" To enable fzf's preview window set g:vista_fzf_preview.
+" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
+" For example:
+" let g:vista_fzf_preview = ['right:50%']
+" let g:vista#renderer#enable_icon = 1
+ 
+
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -99,8 +110,8 @@ let g:coc_global_extensions = [
 
 
 " TagBar
-let g:tagbar_width = 40
-let g:tagbar_iconchars = ['↠', '↡']
+" let g:tagbar_width = 40
+" let g:tagbar_iconchars = ['↠', '↡']
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
@@ -206,6 +217,13 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+
+" function! NearestMethodOrFunction() abort
+"   return get(b:, 'vista_nearest_method_or_function', '')
+" endfunction
+" 
+" set statusline+=%{NearestMethodOrFunction()}
+
 " Mappings using CoCList:
 " Show all diagnostics.
 nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
@@ -237,8 +255,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 map <C-n> :NERDTreeToggle<CR>
 nmap <F2> <Plug>(coc-rename)
-map <C-J> :bnext<CR>
-map <C-K> :bprev<CR>
+map <S-j> :bnext<CR>
+map <S-k> :bprev<CR>
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
@@ -263,11 +281,22 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd CursorHold * silent call CocActionAsync('highlight')
 nnoremap <silent> <leader>w :set wrap! wrap?<CR>
 nmap <silent> <leader>r :call SyncTree()<CR>
-nmap <silent> <leader>h :wincmd h<CR>
-nmap <silent> <leader>j :wincmd j<CR>
-nmap <silent> <leader>k :wincmd k<CR>
-nmap <silent> <leader>l :wincmd l<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-l> :wincmd l<CR>
 nmap <F8> :TagbarToggle<CR>
-
+"nmap <F8> :Vista!!<CR>
+nnoremap <leader>r :source $MYVIMRC<CR>
 nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
+nnoremap <leader>c :close<CR>
 
+" Navigate neovim + neovim terminal emulator with alt+direction
+tnoremap <silent><C-h> <C-\><C-n><C-w>h
+tnoremap <silent><C-j> <C-\><C-n><C-w>j
+tnoremap <silent><C-k> <C-\><C-n><C-w>k
+tnoremap <silent><C-l> <C-\><C-n><C-w>l
+
+" Keep selection when indenting/outdenting.
+vnoremap > >gv
+vnoremap < <gv
