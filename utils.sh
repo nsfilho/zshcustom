@@ -150,8 +150,12 @@ function aptInstall()
 {
     packages=$1
     echo -n "Installing APT packages [$packages]: "
-    sudo apt-get update >> $UPDATE_LOG 2>>$UPDATE_LOG
-    sudo apt-get install -y $packages >> $UPDATE_LOG 2>>$UPDATE_LOG
+    SUDOPREFIX=""
+    if [ -x /usr/bin/sudo ] ; then
+        SUDOPREFIX="/usr/bin/sudo"
+    fi
+    $SUDOPREFIX apt-get update >> $UPDATE_LOG 2>>$UPDATE_LOG
+    $SUDOPREFIX apt-get install -y $packages >> $UPDATE_LOG 2>>$UPDATE_LOG
     echo "done!"
 }
 
