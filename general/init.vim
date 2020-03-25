@@ -15,6 +15,7 @@ Plug 'jacoborus/tender.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'haishanh/night-owl.vim'
 Plug 'kaicataldo/material.vim'
+Plug 'hzchirs/vim-material'
 Plug 'vim-airline/vim-airline'
 " Plug 'camspiers/animate.vim'
 " Plug 'camspiers/lens.vim'
@@ -23,7 +24,6 @@ Plug 'majutsushi/tagbar'
 " Plug 'liuchengxu/vista.vim'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
-Plug 'hzchirs/vim-material'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/gv.vim'
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -255,8 +255,9 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 map <C-n> :NERDTreeToggle<CR>
 nmap <F2> <Plug>(coc-rename)
-map <S-j> :bnext<CR>
-map <S-k> :bprev<CR>
+map ∆ :bnext<CR>
+map ˚ :bprev<CR>
+
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
