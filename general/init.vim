@@ -31,7 +31,8 @@ call plug#end()
 
 set mouse=a
 set hidden
-set relativenumber
+" set relativenumber
+set number
 set hlsearch
 set incsearch
 set ignorecase
@@ -54,15 +55,17 @@ if (has("termguicolors"))
  set termguicolors
 endif
 
+" Colorscheme definitions
 " colorscheme gruvbox
 " colorscheme dracula
 " colorscheme material
 
-let g:material_style='oceanic'
 set background=dark
-colorscheme vim-material
+let g:material_style='oceanic'
 let g:airline_theme='material'
+colorscheme vim-material
 
+" General definitions
 let g:NERDTreeShowHidden = 1
 let g:rainbow_active = 1
 let g:lens#disabled_filetypes = ['nerdtree', 'fzf']
@@ -71,10 +74,9 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:NERDTreeGitStatusWithFlags = 1
 let g:NERDTreeIgnore = ['^node_modules$']
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" To enable fzf's preview window set g:vista_fzf_preview.
-" The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
-" For example:
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+let g:indentLine_setConceal = 0
 " let g:vista_fzf_preview = ['right:50%']
 " let g:vista#renderer#enable_icon = 1
  
@@ -105,7 +107,8 @@ let g:coc_global_extensions = [
   \ 'coc-lines',
   \ 'coc-markdownlint',
   \ 'coc-vimlsp',
-  \ 'coc-ecdict'
+  \ 'coc-ecdict',
+  \ 'coc-import-cost'
   \ ]
 
 
@@ -176,6 +179,7 @@ augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  autocmd FileType markdown,typescript,json,jsonc set conceallevel=0
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -281,12 +285,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 nnoremap <silent> <leader>w :set wrap! wrap?<CR>
-nmap <silent> <leader>r :call SyncTree()<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-k> :wincmd k<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 nmap <F8> :TagbarToggle<CR>
+nmap <F7> :call SyncTree()<CR>
 "nmap <F8> :Vista!!<CR>
 nnoremap <leader>r :source $MYVIMRC<CR>
 nnoremap <leader>s :CocCommand snippets.editSnippets<CR>
@@ -301,3 +305,4 @@ tnoremap <silent><C-l> <C-\><C-n><C-w>l
 " Keep selection when indenting/outdenting.
 vnoremap > >gv
 vnoremap < <gv
+
