@@ -53,7 +53,7 @@ if [ -d $HOME/.zshcustoms ] ; then
     npmGlobalInstall "prettier"
 
     source $HOME/.zshcustoms/installs/tmux.sh
-    source $HOME/.zshcustoms/installs/vim.sh
+    # source $HOME/.zshcustoms/installs/vim.sh
     source $HOME/.zshcustoms/installs/neovim.sh
 else
 	echo "ZshCustoms is not installed yet!"
