@@ -57,13 +57,13 @@ endif
 
 " Colorscheme definitions
 " colorscheme gruvbox
-" colorscheme dracula
+colorscheme dracula
 " colorscheme material
 
-set background=dark
-let g:material_style='oceanic'
-let g:airline_theme='material'
-colorscheme vim-material
+" set background=dark
+" let g:material_style='oceanic'
+" let g:airline_theme='material'
+" colorscheme vim-material
 
 " General definitions
 let g:NERDTreeShowHidden = 1
