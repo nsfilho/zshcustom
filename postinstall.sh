@@ -8,7 +8,12 @@ echo "Operational System: $myOS"
 echo "Checking basis OS packages..."
 
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
-	aptInstall "sudo bash net-tools htop zsh tmux vim git neovim wget curl clang cmake libclang-dev llvm-dev llvm rapidjson-dev exuberant-ctags"
+	aptInstall "sudo bash net-tools htop iftop rsync mtr vbetool zsh tmux vim git neovim wget curl clang cmake libclang-dev llvm-dev llvm rapidjson-dev exuberant-ctags"
+    if [ ! -f /usr/bin/node ] ; then
+        # Install Node 13.x
+        curl -sL https://deb.nodesource.com/setup_13.x | bash -
+        apt-get install -y nodejs
+    fi
 fi
 
 if [ "$myOS" = "macos" ] ; then
