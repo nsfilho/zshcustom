@@ -60,6 +60,12 @@ function ddeploy {
         echo
         exit 1        
     fi
+
+    if [ -f prepare.sh ] ; then
+        echo "Executando script de preparação: prepare.sh"
+        bash prepare.sh
+    fi
+
     PROJETO=${PWD##*/}
     echo Projeto: $PROJETO
     docker stack deploy --with-registry-auth -c docker-compose.yml $PROJETO
