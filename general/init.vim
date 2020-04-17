@@ -80,7 +80,6 @@ let g:indentLine_setConceal = 0
 " let g:vista_fzf_preview = ['right:50%']
 " let g:vista#renderer#enable_icon = 1
  
-
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-snippets',
@@ -89,7 +88,6 @@ let g:coc_global_extensions = [
   \ 'coc-eslint', 
   \ 'coc-prettier', 
   \ 'coc-json', 
-  \ 'coc-clangd',
   \ 'coc-highlight',
   \ 'coc-tag',
   \ 'coc-json',
@@ -108,6 +106,7 @@ let g:coc_global_extensions = [
   \ 'coc-markdownlint',
   \ 'coc-vimlsp',
   \ 'coc-ecdict',
+  \ 'coc-clangd',
   \ 'coc-import-cost'
   \ ]
 

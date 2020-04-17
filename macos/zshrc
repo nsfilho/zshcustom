@@ -16,12 +16,11 @@ alias df="df -h"
 # Development variables
 export WORKSPACE_PATH=~/workspace
 
-if [ -e $WORKSPACE_PATH/esp/sdk ] ; then
-    export IDF_PATH=$WORKSPACE_PATH/esp/sdk
-    export XTENSA_PATH_8266=$WORKSPACE_PATH/esp/xtensa-lx106-elf
-    export XTENSA_PATH_32=$HOME/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
-    export PATH="$PATH:$IDF_PATH/tools:$XTENSA_PATH_8266/bin:$XTENSA_PATH_32/bin:/usr/local/opt/ccache/libexec"
-fi
+# if [ -e $WORKSPACE_PATH/esp/sdk ] ; then
+#     export XTENSA_PATH_8266=$WORKSPACE_PATH/esp/xtensa-lx106-elf
+#     export XTENSA_PATH_32=$HOME/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
+#     export PATH="$PATH:$XTENSA_PATH_8266/bin:$XTENSA_PATH_32/bin:/usr/local/opt/ccache/libexec"
+# fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
