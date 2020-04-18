@@ -256,10 +256,11 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " autocmd vimenter * Tagbar
 " autocmd vimenter * NERDTree
 
-map <C-n> :NERDTreeToggle<CR>
-nmap <F2> <Plug>(coc-rename)
-map ∆ :bnext<CR>
-map ˚ :bprev<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <F2> <Plug>(coc-rename)
+nnoremap ¬ :bnext<CR>
+nnoremap ˙ :bprev<CR>
+nnoremap <C-x> :bd<CR>
 
 
 " sync open file with NERDTree
@@ -284,12 +285,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 nnoremap <silent> <leader>w :set wrap! wrap?<CR>
-nmap <silent> <C-h> :wincmd h<CR>
-nmap <silent> <C-j> :wincmd j<CR>
-nmap <silent> <C-k> :wincmd k<CR>
-nmap <silent> <C-l> :wincmd l<CR>
-nmap <F8> :TagbarToggle<CR>
-nmap <F7> :call SyncTree()<CR>
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
+nnoremap <F8> :TagbarToggle<CR>
+nnoremap <F7> :call SyncTree()<CR>
 "nmap <F8> :Vista!!<CR>
 nnoremap <leader>r :source $MYVIMRC<CR>
 nnoremap <leader>s :CocCommand snippets.editSnippets<CR>

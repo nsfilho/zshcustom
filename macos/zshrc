@@ -16,12 +16,6 @@ alias df="df -h"
 # Development variables
 export WORKSPACE_PATH=~/workspace
 
-# if [ -e $WORKSPACE_PATH/esp/sdk ] ; then
-#     export XTENSA_PATH_8266=$WORKSPACE_PATH/esp/xtensa-lx106-elf
-#     export XTENSA_PATH_32=$HOME/.espressif/tools/xtensa-esp32-elf/esp-2019r2-8.2.0/xtensa-esp32-elf
-#     export PATH="$PATH:$XTENSA_PATH_8266/bin:$XTENSA_PATH_32/bin:/usr/local/opt/ccache/libexec"
-# fi
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # key[F1] = '^[[[A'   key[F5] = '^[[[E'    key[F9]  = '^[[20~'
@@ -29,7 +23,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # key[F3] = '^[[[C'   key[F7] = '^[[18~'   key[F11] = '^[[23~'
 # key[F4] = '^[[[D'   key[F8] = '^[[19~'   key[F12] = '^[[24~'
 
-bindkey -s '^[[[B' 'nvim'
 bindkey -s '^[[17~' 'git pull \C-m'
 bindkey -s '^[[18~' 'git status \C-m'
 bindkey -s '^[[19~' 'git add --patch \C-m'
@@ -46,16 +39,16 @@ bindkey "^[e" end-of-line
 
 if [ -d /usr/local/opt/sqlite/bin ] ; then
     export PATH="/usr/local/opt/sqlite/bin:$PATH"
-    export LDFLAGS="-L/usr/local/opt/sqlite/lib $LDFLAGS"
-    export CPPFLAGS="-I/usr/local/opt/sqlite/include $CPPFLAGS"
+#    export LDFLAGS="-L/usr/local/opt/sqlite/lib $LDFLAGS"
+#    export CPPFLAGS="-I/usr/local/opt/sqlite/include $CPPFLAGS"
 fi
 
-if [ -d /usr/local/opt/python@3.8/bin ] ; then
-    alias python="/usr/local/opt/python@3.8/bin/python3"
-    alias pip="/usr/local/opt/python@3.8/bin/pip3"
-    export PATH="/usr/local/opt/python@3.8/bin:$PATH"
-    export LDFLAGS="-L/usr/local/opt/python@3.8/lib $LDFLAGS"
-fi
+# if [ -d /usr/local/opt/python@3.8/bin ] ; then
+#     alias python="/usr/local/opt/python@3.8/bin/python3"
+#     alias pip="/usr/local/opt/python@3.8/bin/pip3"
+#     export PATH="/usr/local/opt/python@3.8/bin:$PATH"
+#     export LDFLAGS="-L/usr/local/opt/python@3.8/lib $LDFLAGS"
+# fi
 
 if [ -d /usr/local/go/bin ] ; then
     export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin"
@@ -67,12 +60,13 @@ if [ -x /usr/local/bin/gvim ] ; then
     alias vim="gvim"
 fi
 
+# Mas se houver o neovim, melhor ainda 🥳
 if [ -x /usr/local/bin/nvim ] ; then
     alias vi="nvim"
     alias vim="nvim"
 fi
 
 if [ -d /usr/local/opt/llvm/bin ] ; then
-    export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib -L/usr/local/opt/libffi/lib $LDFLAGS"
+#    export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib -L/usr/local/opt/libffi/lib $LDFLAGS"
     export PATH="$PATH:/usr/local/opt/llvm/bin"
 fi

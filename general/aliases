@@ -29,8 +29,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias diff='diff --color=auto'
-command -v lsd &> /dev/null && alias ls='lsd --group-dirs first'
-command -v colorls &> /dev/null && alias ls='colorls --sd --gs'
+# command -v lsd &> /dev/null && alias ls='lsd --group-dirs first'
+# command -v colorls &> /dev/null && alias ls='colorls --sd --gs'
 command -v htop &> /dev/null && alias top='htop'
 command -v gotop &> /dev/null && alias top='gotop -p'
 
@@ -50,7 +50,12 @@ function zupdate {
 }
 
 function dsps {
-    watch -n 1 "docker stack ps $1"
+    if [ -f docker-compose.yml ] ; then
+        PROJETO=${PWD##*/}
+    else
+        PROJETO=$1
+    fi
+    watch -n 1 "docker stack ps --no-trunc $PROJETO"
 }
 
 function ddeploy {
