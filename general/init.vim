@@ -56,8 +56,8 @@ if (has("termguicolors"))
 endif
 
 " Colorscheme definitions
-" colorscheme gruvbox
-colorscheme dracula
+colorscheme gruvbox
+" colorscheme dracula
 " colorscheme material
 
 " set background=dark
