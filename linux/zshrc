@@ -24,6 +24,7 @@ alias netmon_stats="nstat -a"
 
 alias tm="tail -f /var/log/messages"
 alias tsyslog="tail -f /var/log/syslog"
+alias iftop="TERM=vt100 iftop"
 
 # Adiciona neovim como editor padrão.
 if [ -d /usr/local/nvim-linux64 ] ; then
