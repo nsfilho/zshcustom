@@ -48,6 +48,7 @@ set nowrap
 set cmdheight=2
 set shortmess+=c
 set cursorline
+set pyx=3
 " set cursorcolumn
 let mapleader=","
 

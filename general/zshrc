@@ -16,6 +16,7 @@ source ~/.zshcustoms/themes/default.sh
 # source ~/.zshcustoms/themes/cvuorinen.sh
 # source ~/.zshcustoms/themes/hacker.sh
 
+ZSH_DISABLE_COMPFIX="true"
 HIST_STAMPS="yyyy-mm-dd"
 plugins=(git history-substring-search bgnotify zsh-autosuggestions zsh-syntax-highlighting)
 DISABLE_UPDATE_PROMPT=true
