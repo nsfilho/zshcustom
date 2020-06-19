@@ -102,6 +102,10 @@ if [ -f ~/.zshlocal ] ; then
     source ~/.zshlocal
 fi
 
-if [ -f /usr/local/bin/mdless ] ; then
-    mdless --no-pager ~/.zshcustoms/motd.md
-fi
+
+function help() {
+    if [ -f /usr/local/bin/mdless ] ; then
+        mdless --no-pager ~/.zshcustoms/motd.md
+    fi
+}
+
