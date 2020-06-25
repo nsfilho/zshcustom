@@ -18,7 +18,7 @@ source ~/.zshcustoms/themes/default.sh
 
 ZSH_DISABLE_COMPFIX="true"
 HIST_STAMPS="yyyy-mm-dd"
-plugins=(git history-substring-search bgnotify zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE="true"
 ENABLE_CORRECTION="false"
@@ -33,7 +33,7 @@ if [ x"$SUDO_USER" = x ] ; then
         ZSH_TMUX_AUTOSTART='false'
     else
         ZSH_TMUX_AUTOSTART='true'
-        plugins=(tmux git history-substring-search bgnotify zsh-autosuggestions zsh-syntax-highlighting)
+        plugins=(tmux git history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
     fi
 else
     ZSH_TMUX_AUTOSTART='false'
