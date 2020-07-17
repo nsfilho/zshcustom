@@ -24,7 +24,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # key[F3] = '^[[[C'   key[F7] = '^[[18~'   key[F11] = '^[[23~'
 # key[F4] = '^[[[D'   key[F8] = '^[[19~'   key[F12] = '^[[24~'
 
-bindkey -s '^[[17~' 'git pull --recurse-submodules \C-m'
+bindkey -s '^[[17~' 'git pull --all --tags --recurse-submodules \C-m'
 bindkey -s '^[[18~' 'git status \C-m'
 bindkey -s '^[[19~' 'git add --patch \C-m'
 bindkey -s '^[[20~' 'git commit \C-m'
