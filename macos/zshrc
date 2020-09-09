@@ -27,8 +27,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 bindkey -s '^[[17~' 'git pull --all --tags --recurse-submodules \C-m'
 bindkey -s '^[[18~' 'git status \C-m'
 bindkey -s '^[[19~' 'git add --patch \C-m'
-bindkey -s '^[[20~' 'git commit \C-m'
-bindkey -s '^[[21~' 'git push \C-m'
+bindkey -s '^[[20~' 'git cz \C-m'
+bindkey -s '^[[21~' 'git push -u --follow-tags \C-m'
 
 # Mapping for ALT+arrow left and ALT+arrow right
 bindkey "[D" backward-word
