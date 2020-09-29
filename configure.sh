@@ -10,7 +10,8 @@ else
     echo "already installed."
 fi
 
-cloneOrPull "https://github.com/bhilburn/powerlevel9k.git" "$HOME/.oh-my-zsh/custom/themes/powerlevel9k"
+#cloneOrPull "https://github.com/bhilburn/powerlevel9k.git" "$HOME/.oh-my-zsh/custom/themes/powerlevel9k"
+cloneOrPull "https://github.com/romkatv/powerlevel10k.git" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
 cloneOrPull "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 cloneOrPull "https://github.com/zsh-users/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"

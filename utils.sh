@@ -52,7 +52,7 @@ function cloneOrPull()
         git pull >> $UPDATE_LOG 2>>$UPDATE_LOG
     else
         echo "cloning..."
-        git clone $url $2 >> $UPDATE_LOG 2>>$UPDATE_LOG
+        git clone --depth 1 $url $2 >> $UPDATE_LOG 2>>$UPDATE_LOG
     fi
 }
 
