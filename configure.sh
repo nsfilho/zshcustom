@@ -37,6 +37,7 @@ if [ -d $HOME/.zshcustoms ] ; then
 
 	deleteAndLink "$HOME/.zshcustoms/general/zshrc" "$HOME/.zshrc"
 	deleteAndLink "$HOME/.zshcustoms/general/e01aio.zsh-theme" "$HOME/.oh-my-zsh/themes/e01aio.zsh-theme"
+	deleteAndLink "$HOME/.zshcustoms/themes/p10k.zsh" "$HOME/.p10k.zsh"
 
 	# Configurando Go
 	if [ -d /usr/local/go/bin ] ; then
