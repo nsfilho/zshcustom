@@ -49,6 +49,7 @@ if [ -d $HOME/.zshcustoms ] ; then
 	gitAlias "apply-gitignore" '!git ls-files -ci --exclude-standard -z | xargs -0 git rm --cached'
 	gitAlias "slog" "log --pretty=oneline --abbrev-commit"
 	gitAlias "ap" "add --patch"
+    git config --global push.followTags true
 	npmGlobalInstall "git+https://github.com/nsfilho/clustercmd.git"
 	npmGlobalInstall "git+https://github.com/nsfilho/clusterfile.git"
     npmGlobalInstall "git+https://github.com/nsfilho/traefikconfig.git"
