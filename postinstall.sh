@@ -9,6 +9,7 @@ echo "Checking basis OS packages..."
 
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
 	aptInstall "sudo bash net-tools htop iftop rsync mtr vbetool zsh tmux vim git neovim wget curl clang cmake libclang-dev llvm-dev llvm rapidjson-dev exuberant-ctags"
+    aptInstall "ripgrep"
     if [ ! -f /usr/bin/node ] ; then
         # Install Node 14.x
         curl -sL https://deb.nodesource.com/setup_14.x | bash -
@@ -17,7 +18,7 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
 fi
 
 if [ "$myOS" = "macos" ] ; then
-    brewInstall "terminal-notifier asciinema macvim cmake tmux neovim llvm"
+    brewInstall "terminal-notifier asciinema macvim cmake tmux neovim llvm ripgrep"
 fi
 
 checkGemInstall "colorls artii lolcat mdless"
