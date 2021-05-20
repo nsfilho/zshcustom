@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 #
 # E01-AIO Automacao Ltda. ME.
 # Autor: Nelio Santos (nelio@e01aio.com.br)
@@ -12,11 +5,14 @@ fi
 # Configurações gerais do zshrc com oh-my-zsh
 #
 
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-#source ~/.zshcustoms/themes/default.sh
+# source ~/.zshcustoms/themes/default.sh
 # source ~/.zshcustoms/themes/daniruiz.sh
 # source ~/.zshcustoms/themes/mavam.sh
 # source ~/.zshcustoms/themes/sevenfoxes.sh
@@ -52,7 +48,6 @@ source ~/.zshcustoms/general/aliases
 # Habilitando tools
 #
 # Google Cloud
-
 if [ -d ~/.zshcustoms/tools/google-cloud-sdk ] ; then
     source ~/.zshcustoms/tools/google-cloud-sdk/completion.zsh.inc
     source ~/.zshcustoms/tools/google-cloud-sdk/path.zsh.inc
@@ -62,7 +57,6 @@ fi
 # Scripts personalizados
 #
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.zshcustoms/scripts"
-
 if [ -d $HOME/.yarn ] ; then
     export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
 fi
@@ -70,7 +64,6 @@ fi
 #
 # Personalizações por sistema operacional
 #
-
 if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
     source ~/.zshcustoms/aiolink/zshrc
 fi
@@ -108,7 +101,6 @@ source $ZSH/oh-my-zsh.sh
 if [ -f ~/.zshlocal ] ; then
     source ~/.zshlocal
 fi
-
 
 function help() {
     if [ -f /usr/local/bin/mdless ] ; then

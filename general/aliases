@@ -1,17 +1,12 @@
 #
 # Principais Alias de ações
 #
-
-#if [ -x /usr/local/bin/code-insiders ] ; then
-#    alias code="/usr/local/bin/code-insiders"
-#fi
-
 alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="vi ~/.oh-my-zsh"
 
 # Usando code como editor
-alias zedit="cd ~/.zshcustoms/ ; vi"
-alias zlocal="vi ~/.zshlocal"
+alias zedit="code ~/.zshcustoms/"
+alias zlocal="code ~/.zshlocal"
 
 # Atalhos para o SSH
 alias ssh="ssh -oStrictHostKeyChecking=no"
