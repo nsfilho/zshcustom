@@ -30,3 +30,17 @@ chsh -s /bin/zsh
 ```sh
 touch ~/.notmux
 ```
+
+## Atalhos do Neovim
+
+```txt
+<leader> => ,
+<CTRL>+h => Window left
+<CTRL>+l => Window Right
+<ALT>+h => Buffer Left
+<ALT>+l => Buffer right
+<CTRL>+n => Nerd Tree
+<CTRL>+x => exit
+,t => procura arquivos no diretorio atual
+,j => procura pela palavra do cursor atual
+```

@@ -25,6 +25,12 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
     fi # generic linux
 fi
 
+# Install python modules
+which pip
+if [ $? -eq 0 ] ; then
+    pip install neovim
+fi
+
 mkdir -p ~/.config/nvim
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ] ; then
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
