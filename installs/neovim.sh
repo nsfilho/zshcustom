@@ -47,5 +47,7 @@ deleteAndLink "$HOME/.zshcustoms/general/coc-settings.json" "$HOME/.config/nvim/
 
 set shell=/bin/bash
 $NEOVIM_LOCAL +PlugClean! +qall
+$NEOVIM_LOCAL +PlugUpgrade +qall
 $NEOVIM_LOCAL +PlugInstall +qall
+$NEOVIM_LOCAL +CocUpdateSync +qall
 	
