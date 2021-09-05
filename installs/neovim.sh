@@ -31,6 +31,7 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
 fi
 
 # Install python modules
+aptInstall "python3-pip"
 which pip
 if [ $? -eq 0 ] ; then
     pip install neovim
@@ -45,5 +46,6 @@ deleteAndLink "$HOME/.zshcustoms/general/init.vim" "$HOME/.config/nvim/init.vim"
 deleteAndLink "$HOME/.zshcustoms/general/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
 
 set shell=/bin/bash
+$NEOVIM_LOCAL +PlugClean! +qall
 $NEOVIM_LOCAL +PlugInstall +qall
 	
