@@ -19,6 +19,7 @@ fi
 
 if [ "$myOS" = "macos" ] ; then
     brewInstall "terminal-notifier asciinema macvim cmake tmux neovim llvm ripgrep"
+    brewUpgrade "neovim"
 fi
 
 checkGemInstall "colorls artii lolcat mdless neovim"

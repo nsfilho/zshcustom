@@ -159,6 +159,17 @@ function aptInstall()
     echo "done!"
 }
 
+function brewUpdate()
+{
+    packages=$1
+    brew update >> $UPDATE_LOG 2>>$UPDATE_LOG
+    for i in $packages ; do
+        echo -n "Upgrading BREW package [$i]: "
+        brew upgrade $i >> $UPDATE_LOG 2>>$UPDATE_LOG
+        echo "done!"
+    done
+}
+
 function brewInstall()
 {
     packages=$1
