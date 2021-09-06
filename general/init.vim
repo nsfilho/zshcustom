@@ -36,15 +36,21 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set ttyfast
 set splitbelow
 set splitright
-set signcolumn=yes
 set clipboard+=unnamedplus
 set nowrap
 set cmdheight=2
+set updatetime=300
 set shortmess+=c
 set cursorline
 set pyx=3
 " set cursorcolumn
 let mapleader=","
+
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 
 if (has("termguicolors"))
  set termguicolors
@@ -127,16 +133,16 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
 else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -154,8 +160,10 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -188,18 +196,32 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 
-" Introduce function text object
+" Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
 omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -240,7 +262,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-
 " Resize Window
 " nnoremap <silent> <S-Up>    :call animate#window_delta_height(10)<CR>
 " nnoremap <silent> <S-Down>  :call animate#window_delta_height(-10)<CR>
@@ -256,7 +277,6 @@ nnoremap <F2> <Plug>(coc-rename)
 nnoremap ¬ :bnext<CR>
 nnoremap ˙ :bprev<CR>
 nnoremap <C-x> :bd<CR>
-
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
@@ -278,7 +298,6 @@ endfunction
 " Auto-close nerdtree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-autocmd CursorHold * silent call CocActionAsync('highlight')
 nnoremap <silent> <leader>w :set wrap! wrap?<CR>
 nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
