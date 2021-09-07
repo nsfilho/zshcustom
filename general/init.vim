@@ -20,7 +20,7 @@ Plug 'preservim/tagbar'
 " Plug 'junegunn/gv.vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
+Plug 'phaazon/hop.nvim'
 call plug#end()
 
 set mouse=a
@@ -325,7 +325,9 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
+nnoremap <leader>hw :HopWord<cr>
+nnoremap <leader>hl :HopLine<cr>
+nnoremap <leader>hp :HopPattern<cr>
 
 lua require('telescope').setup{ defaults = { file_ignore_patterns = {"node_modules"} } }
 

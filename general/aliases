@@ -16,9 +16,17 @@ alias sftp="sftp -oStrictHostKeyChecking=no"
 # Alias gerais
 export LESS='-R'
 alias x="exit"
-alias ls='ls --color=auto'
+if [ -f /usr/local/bin/hexa ] ; then
+    alias ls="exa --icons --color-scale"
+else
+    alias ls='ls --color=auto'
+fi
 alias l="ls -la"
 alias ll="ls -la"
+
+if [ -f /usr/local/bat ] ; then
+    alias cat="bat --paging=never"
+fi
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'

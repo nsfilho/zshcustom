@@ -18,7 +18,7 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
 fi
 
 if [ "$myOS" = "macos" ] ; then
-    brewInstall "terminal-notifier asciinema macvim cmake tmux neovim llvm ripgrep"
+    brewInstall "terminal-notifier asciinema macvim cmake tmux neovim llvm ripgrep exa bat"
     brewUpgrade "neovim"
 fi
 
