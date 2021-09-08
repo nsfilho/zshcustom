@@ -12,13 +12,6 @@ fi
 export ZSH=~/.oh-my-zsh
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-# source ~/.zshcustoms/themes/default.sh
-# source ~/.zshcustoms/themes/daniruiz.sh
-# source ~/.zshcustoms/themes/mavam.sh
-# source ~/.zshcustoms/themes/sevenfoxes.sh
-# source ~/.zshcustoms/themes/cvuorinen.sh
-# source ~/.zshcustoms/themes/hacker.sh
-
 ZSH_DISABLE_COMPFIX="true"
 HIST_STAMPS="yyyy-mm-dd"
 plugins=(git history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
@@ -42,7 +35,6 @@ else
     ZSH_TMUX_AUTOSTART='false'
 fi
 
-source ~/.zshcustoms/general/aliases
 
 #
 # Habilitando tools
@@ -95,6 +87,7 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 export GROFF_NO_SGR=1
 
 source $ZSH/oh-my-zsh.sh
+source ~/.zshcustoms/general/aliases
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
