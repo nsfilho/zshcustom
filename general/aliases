@@ -16,7 +16,7 @@ alias sftp="sftp -oStrictHostKeyChecking=no"
 # Alias gerais
 export LESS='-R'
 alias x="exit"
-if [ -f /usr/local/bin/hexa ] ; then
+if [ -f /usr/local/bin/exa ] ; then
     alias ls="exa --icons --color-scale"
 else
     alias ls='ls --color=auto'
