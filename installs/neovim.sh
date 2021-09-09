@@ -4,6 +4,7 @@
 #
 NEOVIM_LAST_VERSION="0.5.0"
 NEOVIM_LOCAL="/usr/local/bin/nvim"
+
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
     echo -n "Checking neovim: "
     if [ "$myOS" = "aiolink" ] ; then
@@ -37,13 +38,16 @@ if [ $? -eq 0 ] ; then
     pip install neovim
 fi
 
-mkdir -p ~/.config/nvim
+# In past, nvim is a directory. This small block is for compatibility upgrade
+if [ -d ~/.config/nvim ] ; then
+    rm -rf ~/.config/nvim
+fi
+
 if [ ! -e ~/.local/share/nvim/site/autoload/plug.vim ] ; then
 	curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 		https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
-deleteAndLink "$HOME/.zshcustoms/general/init.vim" "$HOME/.config/nvim/init.vim"
-deleteAndLink "$HOME/.zshcustoms/general/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
+deleteAndLink "$HOME/.zshcustoms/nvim" "$HOME/.config/nvim"
 
 set shell=/bin/bash
 $NEOVIM_LOCAL +PlugClean! +qall

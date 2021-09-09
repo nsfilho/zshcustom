@@ -78,6 +78,7 @@ nvim_lsp.tsserver.setup {
   filetypes = { "typescript", "typescriptreact" }
 }
 nvim_lsp.rust_analyzer.setup {}
+nvim_lsp.bashls.setup{}
 
 local function setup_servers()
   require('lspinstall').setup()
