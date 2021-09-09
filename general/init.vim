@@ -3,8 +3,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
+Plug 'kyazdani42/nvim-web-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 " Plug 'morhetz/gruvbox'
@@ -341,5 +341,22 @@ nnoremap <leader>hw :HopWord<cr>
 nnoremap <leader>hl :HopLine<cr>
 nnoremap <leader>hp :HopPattern<cr>
 
-lua require('telescope').setup{ defaults = { file_ignore_patterns = {"node_modules"} } }
-
+lua << EOF
+require('telescope').setup{ 
+    defaults = { 
+        file_ignore_patterns = {
+            'node_modules'
+        }, 
+        vimgrep_arguments = {
+          'rg',
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--hidden',
+          '--line-number',
+          '--column',
+          '--smart-case'
+        } 
+    } 
+}
+EOF
