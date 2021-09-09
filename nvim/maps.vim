@@ -30,6 +30,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+nnoremap <silent> <F3> <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
+tnoremap <silent> <F3> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
 
 lua << EOF
 local function map(mode, lhs, rhs, opts)
