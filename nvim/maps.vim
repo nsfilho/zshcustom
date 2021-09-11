@@ -1,6 +1,6 @@
 nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <silent> <leader>[ :BufferLineCycleNext<CR>
-nnoremap <silent> <leader>] :BufferLineCyclePrev<CR>
+nnoremap <silent> <leader>] :BufferLineCycleNext<CR>
+nnoremap <silent> <leader>[ :BufferLineCyclePrev<CR>
 nnoremap <C-x> :bd<CR>
 
 nnoremap <silent> <leader>w :set wrap! wrap?<CR>

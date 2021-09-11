@@ -3,6 +3,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-fugitive'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'phaazon/hop.nvim'
+Plug 'nvim-lua/popup.nvim'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
