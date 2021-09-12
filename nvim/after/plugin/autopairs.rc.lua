@@ -4,7 +4,6 @@ require('nvim-autopairs').setup({
 
 local remap = vim.api.nvim_set_keymap
 local status, npairs = pcall(require, "nvim-autopairs")
-if (not status) then return end
 
 -- skip it, if you use another global object
 _G.MUtils= {}
