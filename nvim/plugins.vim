@@ -22,4 +22,5 @@ Plug 'windwp/nvim-autopairs'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'folke/which-key.nvim'
 call plug#end()
