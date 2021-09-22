@@ -17,6 +17,9 @@ tnoremap <silent><C-j> <C-\><C-n><C-w>j
 tnoremap <silent><C-k> <C-\><C-n><C-w>k
 tnoremap <silent><C-l> <C-\><C-n><C-w>l
 
+nnoremap <A-Down> :m .+1<CR>==
+nnoremap <A-Up> :m .-2<CR>==
+
 " Keep selection when indenting/outdenting.
 vnoremap > >gv
 vnoremap < <gv
