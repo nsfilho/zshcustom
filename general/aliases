@@ -1,12 +1,12 @@
 #
 # Principais Alias de ações
 #
-alias zshconfig="vi ~/.zshrc"
-alias ohmyzsh="vi ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
 
 # Usando code como editor
 alias zedit="cd ~/.zshcustoms/ ; nvim"
-alias zlocal="code ~/.zshlocal"
+alias zlocal="nvim ~/.zshlocal"
 
 # Atalhos para o SSH
 alias ssh="ssh -oStrictHostKeyChecking=no"

@@ -19,7 +19,7 @@ set cursorline
 set pyx=3
 let mapleader=","
 set signcolumn=yes
-set completeopt=menuone,noinsert,noselect
+set completeopt=menuone,noselect
 let g:nvim_tree_hijack_cursor = 0
 let g:nvim_tree_lsp_diagnostics = 1
 let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
@@ -34,6 +34,8 @@ let g:completion_chain_complete_list = {
         \   }
         \}
 
+let g:dashboard_default_executive = 'telescope'
+
 if (has("termguicolors"))
  set termguicolors
 endif
@@ -41,6 +43,7 @@ endif
 runtime ./plugins.vim
 runtime ./maps.vim
 runtime ./macos.vim
+runtime ./others.vim
 
 colorscheme dracula
 
