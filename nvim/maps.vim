@@ -9,7 +9,6 @@ nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
 nnoremap <leader>r :source $MYVIMRC<CR>
-nnoremap <leader>c :close<CR>
 
 " Navigate neovim + neovim terminal emulator with alt+direction
 tnoremap <silent><C-h> <C-\><C-n><C-w>h
@@ -25,7 +24,7 @@ vnoremap > >gv
 vnoremap < <gv
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>lua require("telescope.builtin").find_files({hidden = true})<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -55,15 +54,15 @@ local function map(mode, lhs, rhs, opts)
   end
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
-
+map("n", "<F7>", ":NvimTreeRefresh<cr>:NvimTreeFindFile<cr>", { silent = true})
 map("n", "<leader>h", "<cmd>lua require'hop'.hint_words()<cr>")
 map("n", "<leader>l", "<cmd>lua require'hop'.hint_lines()<cr>")
 map("v", "<leader>h", "<cmd>lua require'hop'.hint_words()<cr>")
 map("v", "<leader>l", "<cmd>lua require'hop'.hint_lines()<cr>")
 map("n", "<leader>cf", ":Lspsaga lsp_finder<CR>", { silent = true })
-map("n", "<leader>ca", ":Lspsaga code_action<CR>", { silent = true })
-map("v", "<leader>ca", ":<C-U>Lspsaga range_code_action<CR>", { silent = true })
-map("n", "K", ":Lspsaga hover_doc<CR>", { silent = true })
+-- map("n", "<leader>ca", ":Lspsaga code_action<CR>", { silent = true })
+-- map("v", "<leader>ca", ":<C-U>Lspsaga range_code_action<CR>", { silent = true })
+-- map("n", "K", ":Lspsaga hover_doc<CR>", { silent = true })
 map("n", "<leader>ck", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', { silent = true })
 map("n", "<leader>cj", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', { silent = true })
 map("n", "<leader>cs", ":Lspsaga signature_help<CR>", { silent = true })

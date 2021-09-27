@@ -11,7 +11,7 @@ set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set ttyfast
 set splitbelow
 set splitright
-set nowrap
+set wrap
 set cmdheight=2
 set updatetime=300
 set shortmess+=c
@@ -20,6 +20,8 @@ set pyx=3
 let mapleader=","
 set signcolumn=yes
 set completeopt=menuone,noselect
+setlocal colorcolumn=120
+let g:vscode_style = "dark"
 let g:nvim_tree_hijack_cursor = 0
 let g:nvim_tree_lsp_diagnostics = 1
 let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
@@ -45,5 +47,6 @@ runtime ./maps.vim
 runtime ./macos.vim
 runtime ./others.vim
 
-colorscheme dracula
-
+" colorscheme dracula
+colorscheme vscode
+" hi LspDiagnosticsUnderlineError guifg=NONE
