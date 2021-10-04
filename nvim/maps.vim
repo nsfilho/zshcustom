@@ -23,8 +23,11 @@ nnoremap <A-Up> :m .-2<CR>==
 vnoremap > >gv
 vnoremap < <gv
 
+nnoremap <F2> <cmd>Format<cr>
+
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>lua require("telescope.builtin").find_files({hidden = true})<cr>
+nnoremap <leader>ft <cmd>Telescope file_browser<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
