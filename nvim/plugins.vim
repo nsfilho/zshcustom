@@ -30,4 +30,5 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'folke/lsp-colors.nvim'
+Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 call plug#end()
