@@ -12,10 +12,10 @@ function downloadExtract()
     tempFile=`mktemp`
     echo "Downloading Url: $url"
     wget -O $tempFile $url >> $UPDATE_LOG
-    mkdir -p $dest
+    sudo mkdir -p $dest
     cd $dest
     echo "Extracting in $dest..."
-    tar xzvf $tempFile --strip-components 1 >> $UPDATE_LOG
+    sudo tar xzvf $tempFile --strip-components 1 >> $UPDATE_LOG
     rm -f $tempFile
 }
 
