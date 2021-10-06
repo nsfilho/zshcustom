@@ -2,6 +2,7 @@
 #
 # Code piece to install neovim
 #
+source $HOME/.zshcustoms/utils.sh
 NEOVIM_LAST_VERSION="0.5.0"
 NEOVIM_LOCAL="/usr/local/bin/nvim"
 
