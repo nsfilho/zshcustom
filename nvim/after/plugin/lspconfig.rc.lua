@@ -162,9 +162,6 @@ end
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menu,menuone,noselect"
 
--- luasnip setup
-local luasnip = require "luasnip"
-
 -- nvim-cmp setup
 local lspkind = require("lspkind")
 
@@ -179,9 +176,9 @@ local source_mapping = {
 local cmp = require "cmp"
 cmp.setup {
     snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
     },
     formatting = {
         format = function(entry, vim_item)
@@ -231,7 +228,7 @@ cmp.setup {
         {name = "nvim_lua"},
         {name = "nvim_lsp"},
         {name = "buffer"},
-        {name = "luasnip"},
+        {name = 'vsnip'},
         {name = "cmp_tabnine"}
     }
 }
