@@ -19,7 +19,8 @@ set cursorline
 set pyx=3
 let mapleader=","
 set signcolumn=yes
-set completeopt=menuone,noselect
+set completeopt=menu,menuone,noselect
+
 setlocal colorcolumn=120
 let g:vscode_style = "dark"
 let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
