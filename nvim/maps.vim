@@ -33,8 +33,8 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nnoremap <silent> <F3> <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
 tnoremap <silent> <F3> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
 
@@ -48,6 +48,8 @@ nmap <Leader>sl :<C-u>SessionLoad<CR>
 " nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
 " nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
 " nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 
 lua << EOF
 local function map(mode, lhs, rhs, opts)
