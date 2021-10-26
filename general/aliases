@@ -9,7 +9,11 @@ alias zedit="cd ~/.zshcustoms/ ; nvim"
 alias zlocal="nvim ~/.zshlocal"
 
 # Atalhos para o SSH
-alias ssh="ssh -oStrictHostKeyChecking=no"
+if [ "$TERM" = "xterm-kitty" ] ; then
+   alias ssh="kitty +kitten ssh -oStrictHostKeyChecking=no"
+else
+   alias ssh="ssh -oStrictHostKeyChecking=no"
+fi
 alias scp="scp -oStrictHostKeyChecking=no"
 alias sftp="sftp -oStrictHostKeyChecking=no"
 

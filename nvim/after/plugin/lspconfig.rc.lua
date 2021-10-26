@@ -170,7 +170,9 @@ local source_mapping = {
     nvim_lsp = "[LSP]",
     nvim_lua = "[Lua]",
     cmp_tabnine = "[TN]",
-    path = "[Path]"
+    path = "[Path]",
+    spell = "[Spell]",
+    calc = "[Calc]",
 }
 
 local cmp = require "cmp"
@@ -221,10 +223,13 @@ cmp.setup {
         end
     },
     sources = {
-        {name = "nvim_lua"},
-        {name = "nvim_lsp"},
         {name = "buffer"},
-        {name = 'vsnip'},
+        {name = "nvim_lsp"},
+        {name = "nvim_lua"},
+        {name = "path"},
+        {name = "calc"},
+        {name = "spell"},
+        {name = "vsnip"},
         {name = "cmp_tabnine"}
     }
 }
