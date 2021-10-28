@@ -47,5 +47,6 @@ runtime ./macos.vim
 runtime ./others.vim
 
 " colorscheme dracula
-colorscheme vscode
+" colorscheme vscode
+colorscheme ayu
 " hi LspDiagnosticsUnderlineError guifg=NONE
