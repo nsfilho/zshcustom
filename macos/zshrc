@@ -57,12 +57,12 @@ fi
 
 
 # Mas se houver o neovim, melhor ainda 🥳
-if [ -x /usr/local/bin/nvim ] ; then
+if [ -f /usr/local/bin/nvim ] ; then
     alias vi="nvim"
     alias vim="nvim"
 else
     # Se o gvim esta instalado da preferencia 😉
-    if [ -x /usr/local/bin/gvim ] ; then
+    if [ -f /usr/local/bin/gvim ] ; then
         alias vi="gvim"
         alias vim="gvim"
     fi

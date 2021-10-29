@@ -12,13 +12,13 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
     aptInstall "ripgrep"
     if [ ! -f /usr/bin/node ] ; then
         # Install Node 14.x
-        curl -sL https://deb.nodesource.com/setup_14.x | bash -
+        curl -sL https://deb.nodesource.com/setup_16.x | bash -
         apt-get install -y nodejs
     fi
 fi
 
 if [ "$myOS" = "macos" ] ; then
-    brewInstall "terminal-notifier asciinema cmake tmux neovim llvm ripgrep exa bat fd"
+    brewInstall "terminal-notifier asciinema cmake tmux neovim llvm ripgrep exa bat wget ncdu fd"
     brewUpgrade "neovim"
 fi
 

@@ -100,7 +100,7 @@ function checkOS()
         myOS="linux"
     fi
 
-    if [ "$OSTYPE" = "darwin17.0" ] || [ "$OSTYPE" = "darwin18.0" ] || [ "$OSTYPE" = "darwin19.0" ] || [ "$OSTYPE" = "darwin19" ] ; then
+    if [ "$OSTYPE" = "darwin17.0" ] || [ "$OSTYPE" = "darwin18.0" ] || [ "$OSTYPE" = "darwin19.0" ] || [ "$OSTYPE" = "darwin19" ] || [ "$OSTYPE" = "darwin21.0" ] ; then
         myOS="macos"
     fi
     return 0 
