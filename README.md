@@ -1,17 +1,16 @@
 # Shell Customizations
 
-## Instalação e re-instalação
+## Instalação e reinstalação
 
 Facilitadores de shell universal e atalhos para automação de rotinas.
 
 ```sh
-curl -o - https://raw.githubusercontent.com/nsfilho/zshcustom/master/install.sh \
-    | /bin/bash -
+curl -o - https://raw.githubusercontent.com/nsfilho/zshcustom/master/install.sh | /bin/bash -
 ```
 
 ## Alterações úteis
 
-## Ativando sudo sem passwd
+## Ativando sudo sem password
 
 Utilize o comando `visudo` e altere as linhas:
 

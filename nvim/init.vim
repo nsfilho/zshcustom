@@ -22,8 +22,11 @@ set signcolumn=yes
 set completeopt=menu,menuone,noselect
 
 setlocal colorcolumn=120
+set spelllang=en,pt
+set spell!
+let g:netrw_http_cmd = "wget"
 let g:vscode_style = "dark"
-let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
+" let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
 let g:completion_confirm_key = ""
 let g:completion_chain_complete_list = {
         \ 'default' : {
