@@ -3,7 +3,7 @@
 # Code piece to install neovim
 #
 source $HOME/.zshcustoms/utils.sh
-NEOVIM_LAST_VERSION="0.5.0"
+NEOVIM_LAST_VERSION="0.5.1"
 NEOVIM_LOCAL="/usr/local/bin/nvim"
 
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
@@ -12,7 +12,7 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
         if [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ] ; then
             echo "installing..."
             # downloadExtract "https://github.com/neovim/neovim/archive/v0.4.3.tar.gz" "$HOME/dist/neovim-0.4.3"
-            downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v0.5.0.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
+            downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v0.5.1.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
             make all install >> $UPDATE_LOG
             touch $HOME/.neovim-$NEOVIM_LAST_VERSION
         else
@@ -24,7 +24,7 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
             rm -rf /usr/local/nvim-linux64
             echo "installing..."
             # downloadExtract "https://github.com/neovim/neovim/releases/download/v0.4.3/nvim-linux64.tar.gz" "/usr/local/nvim-linux64"
-            downloadExtract "https://github.com/neovim/neovim/releases/download/v0.5.0/nvim-linux64.tar.gz" "/usr/local/nvim-linux64"
+            downloadExtract "https://github.com/neovim/neovim/releases/download/v0.5.1/nvim-linux64.tar.gz" "/usr/local/nvim-linux64"
             touch $HOME/.neovim-$NEOVIM_LAST_VERSION
         else
             echo "already installed."
