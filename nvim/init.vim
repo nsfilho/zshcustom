@@ -23,7 +23,7 @@ set completeopt=menu,menuone,noselect
 
 setlocal colorcolumn=120
 set spelllang=en,pt
-set spell!
+" set spell!
 let g:netrw_http_cmd = "wget"
 let g:vscode_style = "dark"
 " let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]

@@ -72,3 +72,7 @@ if [ -d /usr/local/opt/llvm/bin ] ; then
 #    export LDFLAGS="-L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib -L/usr/local/opt/libffi/lib $LDFLAGS"
     export PATH="$PATH:/usr/local/opt/llvm/bin"
 fi
+
+if [ -d /usr/local/opt/openjdk ] ; then
+    export PATH="/usr/local/opt/openjdk/bin:$PATH"
+fi
