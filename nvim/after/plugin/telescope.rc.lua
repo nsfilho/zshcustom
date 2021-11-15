@@ -14,7 +14,14 @@ require('telescope').setup {
           '--column',
           '--smart-case',
           '--hidden',
-        } 
-    } 
+        },
+    },
+    pickers = {
+        buffers = {
+            ignore_current_buffer = true,
+            sort_lastused = true,
+            -- sort_mru = true,
+        }
+    }
 }
 

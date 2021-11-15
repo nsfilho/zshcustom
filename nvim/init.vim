@@ -21,6 +21,11 @@ let mapleader=","
 set signcolumn=yes
 set completeopt=menu,menuone,noselect
 
+set foldmethod=syntax   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+
 setlocal colorcolumn=120
 set spelllang=en,pt
 " set spell!
