@@ -24,7 +24,7 @@ set completeopt=menu,menuone,noselect
 set foldmethod=syntax   
 set foldnestmax=10
 set nofoldenable
-set foldlevel=2
+set foldlevel=99
 
 setlocal colorcolumn=120
 set spelllang=en,pt
