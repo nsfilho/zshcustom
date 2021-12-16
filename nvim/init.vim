@@ -16,6 +16,7 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set cursorline
+set cursorcolumn
 set pyx=3
 let mapleader=","
 set signcolumn=yes

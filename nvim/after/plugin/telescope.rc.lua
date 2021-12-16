@@ -21,6 +21,18 @@ require('telescope').setup {
             ignore_current_buffer = true,
             sort_lastused = true,
             -- sort_mru = true,
+            mappings = {
+                 i = {
+                   ["<c-d>"] = require("telescope.actions").delete_buffer,
+                   -- or right hand side can also be a the name of the action as string
+                   -- ["<c-a>"] = function() vim.cmd ":norm I" end,
+                   -- ["<c-e>"] = function() vim.cmd ":norm A" end,
+                   -- ["<c-u>"] = function() vim.cmd ":norm c0" end,
+                 },
+                 n = {
+                   ["<c-d>"] = require("telescope.actions").delete_buffer,
+                 }
+            }
         }
     }
 }

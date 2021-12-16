@@ -63,6 +63,7 @@ end)
 
 nvim_lsp.diagnosticls.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     filetypes = {
         "javascript",
         "javascriptreact",
@@ -235,7 +236,12 @@ cmp.setup {
         {name = "spell"},
         {name = "vsnip"},
         {name = "cmp_tabnine"},
-        {name = "buffer"}
+        {
+            name = "buffer", 
+            option = {
+                get_bufnrs = function() return { vim.api.nvim_get_current_buf() } end
+            },
+        }
     }
 }
 
