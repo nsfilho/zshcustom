@@ -37,6 +37,7 @@ aptInstall "python3-pip"
 which pip
 if [ $? -eq 0 ] ; then
     pip install neovim
+    pip3 install pynvim
 fi
 
 # In past, nvim is a directory. This small block is for compatibility upgrade

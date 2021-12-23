@@ -9,7 +9,7 @@ echo "Checking basis OS packages..."
 
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
 	aptInstall "sudo bash net-tools htop iftop rsync mtr vbetool zsh tmux vim git neovim wget curl clang cmake libclang-dev llvm-dev llvm rapidjson-dev exuberant-ctags dialog"
-    aptInstall "ripgrep"
+    aptInstall "ripgrep fd-find"
     if [ ! -f /usr/bin/node ] ; then
         # Install Node 14.x
         curl -sL https://deb.nodesource.com/setup_16.x | bash -

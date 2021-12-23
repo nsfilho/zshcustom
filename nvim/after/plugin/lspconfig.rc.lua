@@ -1,68 +1,58 @@
 local nvim_lsp = require("lspconfig")
 local protocol = require("vim.lsp.protocol")
 
-local on_attach = function(_, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
+local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     local opts = {noremap = true, silent = true}
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>wa", "<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(
-    --     bufnr,
-    --     "n",
-    --     "<leader>wl",
-    --     "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-    --     opts
-    -- )
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ca", ":Telescope lsp_code_actions<CR>", opts)
-   --  vim.api.nvim_buf_set_keymap(bufnr, "v", "<leader>ca", "<cmd>lua vim.lsp.buf.range_code_action()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(
-        bufnr,
+
+    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+    buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
+    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+    buf_set_keymap("n", "<leader>ca", ":Telescope lsp_code_actions<CR>", opts)
+    buf_set_keymap(
         "n",
         "<leader>e",
         ":Lspsaga show_line_diagnostics<CR>",
         opts
     )
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", ":Telescope lsp_workspace_diagnostics<CR>", opts)
-    vim.api.nvim_buf_set_keymap(
-        bufnr,
+    buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<leader>q", ":Telescope lsp_workspace_diagnostics<CR>", opts)
+    buf_set_keymap(
         "n",
         "<leader>so",
         [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]],
         opts
     )
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    if client.resolved_capabilities.document_formatting then
+        vim.api.nvim_exec([[
+          augroup LspAutocommands
+            autocmd! * <buffer>
+            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
+          augroup END
+        ]], true)
+    end
+end
 
---    vim.cmd [[augroup Format]]
---    vim.cmd [[autocmd! * <buffer>]]
---    vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
---    vim.cmd [[augroup END]]
+local on_attach_tsserver = function (client, buffnr) 
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+    on_attach(client, buffnr)
 end
 
 local capabilities = protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-    server:setup({
-      on_attach = on_attach,
-      capabilities = capabilities
-    })
-end)
-
-nvim_lsp.diagnosticls.setup {
+local diagnosticls_opts = {
     on_attach = on_attach,
+    capabilities = capabilities,
     filetypes = {
         "javascript",
         "javascriptreact",
@@ -78,11 +68,11 @@ nvim_lsp.diagnosticls.setup {
     init_options = {
         linters = {
             eslint = {
-                command = "eslint_d",
+                command = "./node_modules/.bin/eslint",
                 rootPatterns = {".git"},
                 debounce = 100,
                 args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
-                sourceName = "eslint_d",
+                sourceName = "eslint",
                 parseJson = {
                     errorsRoot = "[0].messages",
                     line = "line",
@@ -105,38 +95,47 @@ nvim_lsp.diagnosticls.setup {
             typescriptreact = "eslint"
         },
         formatters = {
-            eslint_d = {
-                command = "eslint_d",
-                args = {"--stdin", "--stdin-filename", "%filename", "--fix-to-stdout"},
-                rootPatterns = {".git"}
-            },
             prettier = {
-                command = "prettier",
+                command = "./node_modules/.bin/prettier",
                 args = {"--stdin-filepath", "%filename"}
             }
         },
         formatFiletypes = {
             css = "prettier",
-            javascript = "eslint_d",
-            javascriptreact = "eslint_d",
+            javascript = "prettier",
+            javascriptreact = "prettier",
             json = "prettier",
             scss = "prettier",
             less = "prettier",
-            typescript = "eslint_d",
-            typescriptreact = "eslint_d",
+            typescript = "prettier",
+            typescriptreact = "prettier",
             markdown = "prettier"
         }
     }
 }
 
--- icon
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.on_server_ready(function(server)
+    local opts = {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
+
+    if server.name == "tsserver" then
+        opts.on_attach = on_attach_tsserver
+    elseif server.name == "diagnosticls" then
+        opts = diagnosticls_opts
+    end
+
+    server:setup(opts)
+end)
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
         underline = true,
         signs = true,
-        -- This sets the spacing and the prefix, obviously.
         virtual_text = {
             spacing = 4,
             prefix = ""
