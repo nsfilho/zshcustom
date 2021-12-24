@@ -54,6 +54,7 @@ if [ -d $HOME/.zshcustoms ] ; then
 	npmGlobalInstall "git+https://github.com/nsfilho/clusterfile.git"
     npmGlobalInstall "git+https://github.com/nsfilho/traefikconfig.git"
     npmGlobalInstall "neovim"
+    npmGlobalInstall "tree-sitter-cli"
 
     source $HOME/.zshcustoms/installs/tmux.sh
     source $HOME/.zshcustoms/installs/neovim.sh
