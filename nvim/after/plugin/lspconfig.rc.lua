@@ -50,85 +50,32 @@ end
 local capabilities = protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local diagnosticls_opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    filetypes = {
-        "javascript",
-        "javascriptreact",
-        "json",
-        "typescript",
-        "typescriptreact",
-        "css",
-        "less",
-        "scss",
-        "markdown",
-        "pandoc"
-    },
-    init_options = {
-        linters = {
-            eslint = {
-                command = "./node_modules/.bin/eslint",
-                rootPatterns = {".git"},
-                debounce = 100,
-                args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
-                sourceName = "eslint",
-                parseJson = {
-                    errorsRoot = "[0].messages",
-                    line = "line",
-                    column = "column",
-                    endLine = "endLine",
-                    endColumn = "endColumn",
-                    message = "[eslint] ${message} [${ruleId}]",
-                    security = "severity"
-                },
-                securities = {
-                    [2] = "error",
-                    [1] = "warning"
-                }
-            }
-        },
-        filetypes = {
-            javascript = "eslint",
-            javascriptreact = "eslint",
-            typescript = "eslint",
-            typescriptreact = "eslint"
-        },
-        formatters = {
-            prettier = {
-                command = "./node_modules/.bin/prettier",
-                args = {"--stdin-filepath", "%filename"}
-            }
-        },
-        formatFiletypes = {
-            css = "prettier",
-            javascript = "prettier",
-            javascriptreact = "prettier",
-            json = "prettier",
-            scss = "prettier",
-            less = "prettier",
-            typescript = "prettier",
-            typescriptreact = "prettier",
-            markdown = "prettier"
-        }
-    }
-}
-
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
     local opts = {
         on_attach = on_attach,
         capabilities = capabilities,
     }
-
     if server.name == "tsserver" then
         opts.on_attach = on_attach_tsserver
-    elseif server.name == "diagnosticls" then
-        opts = diagnosticls_opts
     end
-
     server:setup(opts)
 end)
+
+local null_ls = require("null-ls")
+local sources = { 
+    null_ls.builtins.formatting.prettier.with({
+        prefer_local = "node_modules/.bin",
+    }),
+    null_ls.builtins.diagnostics.eslint.with({
+        prefer_local = "node_modules/.bin",
+    }),
+    null_ls.builtins.code_actions.eslint.with({
+        prefer_local = "node_modules/.bin",
+    }),
+    null_ls.builtins.completion.vsnip,
+}
+null_ls.setup({ sources = sources })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(
@@ -142,26 +89,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
         }
     }
 )
-
-do
-    local method = "textDocument/publishDiagnostics"
-    local default_handler = vim.lsp.handlers[method]
-    vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)
-        default_handler(err, method, result, client_id, bufnr, config)
-        local diagnostics = vim.lsp.diagnostic.get_all()
-        local qflist = {}
-        for bufnr, diagnostic in pairs(diagnostics) do
-            for _, d in ipairs(diagnostic) do
-                d.bufnr = bufnr
-                d.lnum = d.range.start.line + 1
-                d.col = d.range.start.character + 1
-                d.text = d.message
-                table.insert(qflist, d)
-            end
-        end
-        vim.lsp.util.set_qflist(qflist)
-    end
-end
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menu,menuone,noselect"

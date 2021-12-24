@@ -53,12 +53,9 @@ if [ -d $HOME/.zshcustoms ] ; then
 	npmGlobalInstall "git+https://github.com/nsfilho/clustercmd.git"
 	npmGlobalInstall "git+https://github.com/nsfilho/clusterfile.git"
     npmGlobalInstall "git+https://github.com/nsfilho/traefikconfig.git"
-    npmGlobalInstall "prettier"
     npmGlobalInstall "neovim"
-    npmGlobalInstall "eslint_d"
 
     source $HOME/.zshcustoms/installs/tmux.sh
-    # source $HOME/.zshcustoms/installs/vim.sh
     source $HOME/.zshcustoms/installs/neovim.sh
 else
 	echo "ZshCustoms is not installed yet!"

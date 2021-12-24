@@ -39,7 +39,7 @@ nnoremap <leader>fr <cmd>Telescope registers<cr>
 nnoremap <silent> <F3> <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
 tnoremap <silent> <F3> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
 
-nnoremap <esc><esc> :noh<return>
+nnoremap <leader><esc> :noh<return>
 
 nmap <Leader>ss :<C-u>SessionSave<CR>
 nmap <Leader>sl :<C-u>SessionLoad<CR>
