@@ -1,3 +1,10 @@
+if has("unix")
+  let s:arch = system("uname -s")
+  " Do Mac stuff
+endif
+
+
+
 call plug#begin('~/.vim/plugged')
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Mofiqul/vscode.nvim'
@@ -39,5 +46,10 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'folke/lsp-colors.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
-Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+
+if s:arch == "x86_64\n" || s:arch == "i386"
+    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+endif
+
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()

@@ -54,7 +54,16 @@ if [ -d $HOME/.zshcustoms ] ; then
 	npmGlobalInstall "git+https://github.com/nsfilho/clusterfile.git"
     npmGlobalInstall "git+https://github.com/nsfilho/traefikconfig.git"
     npmGlobalInstall "neovim"
-    npmGlobalInstall "tree-sitter-cli"
+
+    if [ "$myArch" = "i386" ] || [ "$myArch" = "x86_64" ] ; then    
+        npmGlobalInstall "tree-sitter-cli"
+    else
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rust.sh
+        chmod +x /tmp/rust.sh
+        /tmp/rust.sh -y
+        $HOME/.cargo/bin/cargo install tree-sitter-cli
+        rm -f /tmp/rust.sh
+    fi
 
     source $HOME/.zshcustoms/installs/tmux.sh
     source $HOME/.zshcustoms/installs/neovim.sh

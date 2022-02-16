@@ -33,3 +33,10 @@ if [ -d /usr/local/nvim-linux64 ] ; then
     export VISUAL="/usr/local/nvim-linux64/bin/nvim"
     export EDITOR="/usr/local/nvim-linux64/bin/nvim"
 fi
+
+if [ -x /usr/local/bin/nvim ] ; then
+    alias vi="/usr/local/bin/nvim"
+    alias vim="/usr/local/bin/nvim"
+    export VISUAL="/usr/local/bin/nvim"
+    export EDITOR="/usr/local/bin/nvim"
+fi

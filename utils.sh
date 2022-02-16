@@ -103,6 +103,7 @@ function checkOS()
     if [ "$OSTYPE" = "darwin17.0" ] || [ "$OSTYPE" = "darwin18.0" ] || [ "$OSTYPE" = "darwin19.0" ] || [ "$OSTYPE" = "darwin19" ] || [ "$OSTYPE" = "darwin21.0" ] ; then
         myOS="macos"
     fi
+    myArch=$(arch)
     return 0 
 }
 
