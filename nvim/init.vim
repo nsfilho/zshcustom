@@ -22,10 +22,11 @@ let mapleader=","
 set signcolumn=yes
 set completeopt=menu,menuone,noselect
 
-set foldmethod=syntax   
-set foldnestmax=10
-set nofoldenable
-set foldlevel=99
+" set nofoldenable
+augroup filetype_vim
+    autocmd!
+    autocmd FileType go,rust,java,c,typescript,javascript,typescriptreact,javascriptreact setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
+augroup END
 
 setlocal colorcolumn=120
 set spelllang=en,pt
