@@ -14,13 +14,14 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'windwp/nvim-autopairs'
+" Plug 'windwp/nvim-autopairs'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'folke/which-key.nvim'
-Plug 'hoob3rt/lualine.nvim'
+" Plug 'hoob3rt/lualine.nvim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
 " Plug 'glepnir/dashboard-nvim'
-Plug 'sbdchd/neoformat'
+" Plug 'sbdchd/neoformat'
 
 " Auto-complete plugins
 Plug 'neovim/nvim-lspconfig'
