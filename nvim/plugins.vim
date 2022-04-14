@@ -47,6 +47,8 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 
 if g:arch == "x86_64" || g:arch == "i386"
     Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+    " Plug 'github/copilot.vim'
+    " Plug 'hrsh7th/cmp-copilot'
 endif
 
 Plug 'editorconfig/editorconfig-vim'

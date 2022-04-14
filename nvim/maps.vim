@@ -27,7 +27,6 @@ nnoremap <F2> <cmd>Format<cr>
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>lua require("telescope.builtin").find_files({hidden = true})<cr>
-nnoremap <leader>ft <cmd>Telescope file_browser<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
@@ -36,8 +35,11 @@ nnoremap <leader>fr <cmd>Telescope registers<cr>
 " Use <Tab> and <S-Tab> to navigate through popup menu
 " inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 " inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-nnoremap <silent> <F3> <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
-tnoremap <silent> <F3> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
+nnoremap <silent> <leader>tg <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
+tnoremap <silent> <leader>tg <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
+
+nnoremap <silent> <leader>tt <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR>
+tnoremap <silent> <leader>tt <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
 
 nnoremap <leader><esc> :noh<return>
 
