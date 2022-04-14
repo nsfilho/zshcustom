@@ -1,5 +1,12 @@
 
+require("telescope").load_extension "file_browser"
+
 require('telescope').setup { 
+    extensions = {
+        file_browser = {
+            theme = "ivy",
+        },
+    },
     defaults = { 
         file_ignore_patterns = {
             'node_modules',
