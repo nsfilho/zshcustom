@@ -16,11 +16,16 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set cursorline
-set cursorcolumn
 set pyx=3
 let mapleader=","
 set signcolumn=yes
 set completeopt=menu,menuone,noselect
+
+" set cursorcolumn modes
+augroup cursor_nvim
+    autocmd InsertEnter * set cursorcolumn
+    autocmd InsertLeave * set nocursorcolumn
+augroup END
 
 " set nofoldenable
 augroup filetype_vim

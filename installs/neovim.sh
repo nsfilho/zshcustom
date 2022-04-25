@@ -3,7 +3,7 @@
 # Code piece to install neovim
 #
 source $HOME/.zshcustoms/utils.sh
-NEOVIM_LAST_VERSION="0.6.1"
+NEOVIM_LAST_VERSION="0.7.0"
 NEOVIM_LOCAL="/usr/local/bin/nvim"
 
 if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
@@ -11,7 +11,7 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
     if [ "$myOS" = "aiolink" ] || [ "$myArch" = "aarch64" ] ; then
         if [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ] ; then
             echo "installing..."
-            downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v0.6.1.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
+            downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v0.7.0.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
             make all install >> $UPDATE_LOG
             touch $HOME/.neovim-$NEOVIM_LAST_VERSION
         else
@@ -22,7 +22,7 @@ if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
         if [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ] ; then
             rm -rf /usr/local/nvim-linux64
             echo "installing..."
-            downloadExtract "https://github.com/neovim/neovim/releases/download/v0.6.1/nvim-linux64.tar.gz" "/usr/local/nvim-linux64"
+            downloadExtract "https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.tar.gz" "/usr/local/nvim-linux64"
             touch $HOME/.neovim-$NEOVIM_LAST_VERSION
         else
             echo "already installed."
@@ -52,5 +52,6 @@ deleteAndLink "$HOME/.zshcustoms/nvim" "$HOME/.config/nvim"
 set shell=/bin/bash
 $NEOVIM_LOCAL +PlugClean! +qall
 $NEOVIM_LOCAL +PlugUpgrade +qall
+$NEOVIM_LOCAL +PlugUpdate +qall
 $NEOVIM_LOCAL +PlugInstall +qall
 	
