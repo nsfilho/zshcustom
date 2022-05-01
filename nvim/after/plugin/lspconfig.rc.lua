@@ -3,27 +3,30 @@ local protocol = require("vim.lsp.protocol")
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-    local opts = {noremap = true, silent = true}
+
+    local opts = { noremap = true, silent = true }
 
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-    buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+    buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
     buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    buf_set_keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
     buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
     buf_set_keymap("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
     buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
     buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_set_keymap("n", "<leader>ca", ":Telescope lsp_code_actions<CR>", opts)
+    -- buf_set_keymap("n", "<leader>ca", ":Telescope lsp_code_actions<CR>", opts)
+    buf_set_keymap("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
     buf_set_keymap(
         "n",
         "<leader>e",
         ":Lspsaga show_line_diagnostics<CR>",
         opts
     )
-    buf_set_keymap("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<leader>q", ":Telescope lsp_workspace_diagnostics<CR>", opts)
+    buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<leader>q", ":Telescope diagnostics<CR>", opts)
     buf_set_keymap(
         "n",
         "<leader>so",
@@ -41,7 +44,7 @@ local on_attach = function(client, bufnr)
     end
 end
 
-local on_attach_tsserver = function (client, buffnr) 
+local on_attach_tsserver = function(client, buffnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
     on_attach(client, buffnr)
@@ -63,7 +66,7 @@ lsp_installer.on_server_ready(function(server)
 end)
 
 local null_ls = require("null-ls")
-local sources = { 
+local sources = {
     null_ls.builtins.formatting.prettier.with({
         prefer_local = "node_modules/.bin",
     }),
@@ -77,17 +80,16 @@ local sources = {
 }
 null_ls.setup({ sources = sources })
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
-        underline = true,
-        signs = true,
-        virtual_text = {
-            spacing = 4,
-            prefix = ""
-        }
+    underline = true,
+    signs = true,
+    virtual_text = {
+        spacing = 4,
+        prefix = ""
     }
+}
 )
 
 -- Set completeopt to have a better completion experience
@@ -109,9 +111,9 @@ local source_mapping = {
 local cmp = require "cmp"
 cmp.setup {
     snippet = {
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-      end,
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+        end,
     },
     formatting = {
         format = function(entry, vim_item)
@@ -154,15 +156,15 @@ cmp.setup {
         end
     },
     sources = {
-        {name = "nvim_lsp"},
-        {name = "nvim_lua"},
-        {name = "path"},
-        {name = "calc"},
-        {name = "spell"},
-        {name = "vsnip"},
-        {name = "cmp_tabnine"},
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
+        { name = "path" },
+        { name = "calc" },
+        { name = "spell" },
+        { name = "vsnip" },
+        { name = "cmp_tabnine" },
         {
-            name = "buffer", 
+            name = "buffer",
             option = {
                 get_bufnrs = function() return { vim.api.nvim_get_current_buf() } end
             },
