@@ -66,11 +66,11 @@ if [ -d $HOME/.zshcustoms ] ; then
 
     # Install rust packages
     if [ ! -f /root/.cargo/bin/btm ] ; then
-        cargo install bottom
+        /root/.cargo/bin/cargo install bottom
     fi
 
     if [ ! -f /root/.cargo/bin/gitui ] ; then
-        cargo install gitui
+        /root/.cargo/bin/cargo install gitui
     fi
 
     #
