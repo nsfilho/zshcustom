@@ -55,14 +55,31 @@ if [ -d $HOME/.zshcustoms ] ; then
     # npmGlobalInstall "git+https://github.com/nsfilho/traefikconfig.git"
     npmGlobalInstall "neovim"
 
-    if [ "$myArch" = "i386" ] || [ "$myArch" = "x86_64" ] ; then    
-        npmGlobalInstall "tree-sitter-cli"
-    else
+
+    # Install rust language
+    if [ ! -f /root/.cargo/bin/cargo ] ; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rust.sh
         chmod +x /tmp/rust.sh
         /tmp/rust.sh -y
-        $HOME/.cargo/bin/cargo install tree-sitter-cli
         rm -f /tmp/rust.sh
+    fi
+
+    # Install rust packages
+    if [ ! -f /root/.cargo/bin/btm ] ; then
+        cargo install bottom
+    fi
+
+    if [ ! -f /root/.cargo/bin/gitui ] ; then
+        cargo install gitui
+    fi
+
+    #
+    # Dependencies for Neovim
+    #
+    if [ "$myArch" = "i386" ] || [ "$myArch" = "x86_64" ] ; then    
+        npmGlobalInstall "tree-sitter-cli"
+    else
+        $HOME/.cargo/bin/cargo install tree-sitter-cli
     fi
 
     source $HOME/.zshcustoms/installs/tmux.sh
