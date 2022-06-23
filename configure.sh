@@ -76,9 +76,8 @@ if [ -d $HOME/.zshcustoms ] ; then
     #
     # Dependencies for Neovim
     #
-    if [ "$myArch" = "i386" ] || [ "$myArch" = "x86_64" ] ; then    
-        npmGlobalInstall "tree-sitter-cli"
-    else
+    npmGlobalRemove tree-sitter-cli
+    if [ ! -f /root/.cargo/bin/treesitter ] ; then
         $HOME/.cargo/bin/cargo install tree-sitter-cli
     fi
 

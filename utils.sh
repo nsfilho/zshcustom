@@ -147,6 +147,14 @@ function npmGlobalInstall()
     echo "done!"
 }
 
+function npmGlobalRemove()
+{
+    package=$1
+    echo -n "Removing NPM package [$package]: "
+    npm remove -g $package >> $UPDATE_LOG 2>>$UPDATE_LOG
+    echo "done!"
+}
+
 function aptInstall()
 {
     packages=$1
