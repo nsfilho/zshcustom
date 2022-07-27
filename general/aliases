@@ -136,7 +136,7 @@ function typescript-prettier-eslint {
 
     npm install --save-dev @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint \
         eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import prettier ts-node typescript \
-        husky
+        husky @types/debug
 
     npm install debug axios dayjs nanoid@3.3.4
     npx husky install
