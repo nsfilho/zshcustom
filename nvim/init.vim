@@ -32,6 +32,7 @@ augroup filetype_vim
     autocmd!
     autocmd FileType go,rust,java,c,typescript,javascript,typescriptreact,javascriptreact setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
     autocmd FileType yaml setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
+    autocmd BufRead,BufNewFile *.json set filetype=jsonc
 augroup END
 
 setlocal colorcolumn=120
