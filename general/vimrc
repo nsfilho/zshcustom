@@ -31,8 +31,6 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'heavenshell/vim-jsdoc'
 Plugin 'w0rp/ale'
-Plugin 'neoclide/jsonc.vim'
-
 call vundle#end()            " required
 filetype plugin indent on    " required
 
