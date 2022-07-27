@@ -142,7 +142,7 @@ function typescript-prettier-eslint {
     npx husky install
 
     typescript-download README.md
-    typescript-download .eslintrc.json
+    typescript-download .eslintrc.js
     typescript-download tsconfig.json
     typescript-download .prettierrc.js
     typescript-download Dockerfile
