@@ -121,50 +121,8 @@ function typescript-download {
 }
 
 function typescript-prettier-eslint {
-    echo "Preparando projeto..."
-    if [ ! -f package.json ] ; then
-        npm init -y
-        npm pkg delete scripts.test
-    fi
-
-    npm pkg set scripts.prepare="husky install"
-    npm pkg set scripts.postlint="tsc --noEmit -p tsconfig.json"
-    npm pkg set scripts.format="prettier --write src/**/*.ts package.json"
-    npm pkg set scripts.lint="eslint --fix src/**/*.ts"
-    npm pkg set scripts.start="DEBUG=* ts-node src/index.ts"
-    npm pkg set scripts.build="tsc"
-
-    npm install --save-dev @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint \
-        eslint-config-airbnb-base eslint-config-prettier eslint-plugin-import prettier ts-node typescript \
-        husky @types/debug
-
-    npm install debug axios dayjs nanoid@3.3.4
-    npx husky install
-
-    typescript-download README.md
-    typescript-download .eslintrc.js
-    typescript-download tsconfig.json
-    typescript-download .prettierrc.js
-    typescript-download Dockerfile
-    typescript-download entrypoint.sh
-    typescript-download .gitlab-ci.yml
-    typescript-download .gitignore
-
-    if [ -f entrypoint.sh ] ; then
-        chmod a+rx entrypoint.sh
-    fi
-
-    if [ ! -d src ] ; then
-        mkdir src
-    fi
-
-    typescript-download "src/index.ts"
-    typescript-download ".husky/pre-commit"
-
-    if [ -f .husky/pre-commit ] ; then
-        chmod a+rx .husky/pre-commit
-    fi
-
-    ls -la
+    typescript-download prepare.sh
+    chmod +x prepare.sh
+    ./prepare.sh
 }
 

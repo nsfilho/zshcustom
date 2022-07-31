@@ -33,15 +33,7 @@ local on_attach = function(client, bufnr)
         [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]],
         opts
     )
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-    if client.resolved_capabilities.document_formatting then
-        vim.cmd([[
-          augroup LspAutocommands
-            autocmd! * <buffer>
-            autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()
-          augroup END
-        ]], true)
-    end
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
 end
 
 local on_attach_tsserver = function(client, buffnr)
@@ -65,31 +57,47 @@ lsp_installer.on_server_ready(function(server)
     server:setup(opts)
 end)
 
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local null_ls = require("null-ls")
-local sources = {
-    null_ls.builtins.formatting.prettier.with({
-        prefer_local = "node_modules/.bin",
-    }),
-    null_ls.builtins.diagnostics.eslint.with({
-        prefer_local = "node_modules/.bin",
-    }),
-    null_ls.builtins.code_actions.eslint.with({
-        prefer_local = "node_modules/.bin",
-    }),
-    null_ls.builtins.completion.vsnip,
-}
-null_ls.setup({ sources = sources })
+
+local sources = null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.prettier.with({
+            prefer_local = "node_modules/.bin",
+        }),
+        null_ls.builtins.diagnostics.eslint.with({
+            prefer_local = "node_modules/.bin",
+        }),
+        null_ls.builtins.code_actions.eslint.with({
+            prefer_local = "node_modules/.bin",
+        }),
+        null_ls.builtins.completion.vsnip,
+    },
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                    vim.lsp.buf.formatting_sync()
+                end,
+            })
+        end
+    end,
+})
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     vim.lsp.diagnostic.on_publish_diagnostics,
     {
-    underline = true,
-    signs = true,
-    virtual_text = {
-        spacing = 4,
-        prefix = ""
+        underline = true,
+        signs = true,
+        virtual_text = {
+            spacing = 4,
+            prefix = ""
+        }
     }
-}
 )
 
 -- Set completeopt to have a better completion experience
