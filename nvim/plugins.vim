@@ -25,7 +25,8 @@ Plug 'akinsho/bufferline.nvim'
 " Auto-complete plugins
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
-Plug 'tami5/lspsaga.nvim'
+" Plug 'tami5/lspsaga.nvim'
+Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-vsnip'
