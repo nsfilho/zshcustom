@@ -12,7 +12,7 @@ set ttyfast
 set splitbelow
 set splitright
 set wrap
-set cmdheight=2
+set cmdheight=1
 set updatetime=300
 set shortmess+=c
 set cursorline
@@ -30,8 +30,7 @@ augroup END
 " set nofoldenable
 augroup filetype_vim
     autocmd!
-    autocmd FileType go,rust,java,c,typescript,javascript,typescriptreact,javascriptreact setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
-    autocmd FileType yaml setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
+    autocmd FileType yaml,go,rust,java,c,typescript,javascript,typescriptreact,javascriptreact setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
     autocmd BufRead,BufNewFile *.json set filetype=jsonc
 augroup END
 
@@ -40,7 +39,7 @@ set spelllang=en,pt
 " set spell!
 let g:netrw_http_cmd = "wget"
 let g:vscode_style = "dark"
-" let g:nvim_tree_ignore = [ '.git', 'node_modules', '.cache' ]
+let g:tokyonight_style = "night"
 let g:completion_confirm_key = ""
 let g:completion_chain_complete_list = {
         \ 'default' : {
@@ -52,8 +51,6 @@ let g:completion_chain_complete_list = {
         \   }
         \}
 
-let g:dashboard_default_executive = 'telescope'
-
 if (has("termguicolors"))
  set termguicolors
 endif
@@ -63,7 +60,8 @@ runtime ./maps.vim
 runtime ./macos.vim
 runtime ./others.vim
 
-colorscheme dracula
+colorscheme tokyonight
+" colorscheme dracula
 " colorscheme vscode
 " colorscheme ayu
 " hi LspDiagnosticsUnderlineError guifg=NONE

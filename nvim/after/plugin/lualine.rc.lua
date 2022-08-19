@@ -1,7 +1,8 @@
 
 require('lualine').setup {
     options = {
-        theme = 'dracula'
+        theme = 'tokyonight'
+        -- theme = 'dracula'
         -- theme = 'vscode'
     },
     sections = {

@@ -3,6 +3,7 @@ if has("unix")
 endif
 
 call plug#begin('~/.vim/plugged')
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'Mofiqul/vscode.nvim'
 Plug 'rafi/awesome-vim-colorschemes'
@@ -18,17 +19,12 @@ Plug 'lewis6991/gitsigns.nvim'
 " Plug 'windwp/nvim-autopairs'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'folke/which-key.nvim'
-" Plug 'hoob3rt/lualine.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
-" Plug 'glepnir/dashboard-nvim'
-" Plug 'sbdchd/neoformat'
 
 " Auto-complete plugins
 Plug 'neovim/nvim-lspconfig'
-" Plug 'kabouzeid/nvim-lspinstall'
 Plug 'williamboman/nvim-lsp-installer'
-" Plug 'glepnir/lspsaga.nvim'
 Plug 'tami5/lspsaga.nvim'
 Plug 'onsails/lspkind-nvim'
 Plug 'hrsh7th/nvim-cmp'

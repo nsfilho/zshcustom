@@ -1,7 +1,7 @@
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <silent> <leader>] :BufferLineCycleNext<CR>
 nnoremap <silent> <leader>[ :BufferLineCyclePrev<CR>
-nnoremap <C-x> :bd<CR>
+nnoremap <C-x> :bd!<CR>
 
 nnoremap <silent> <leader>w :set wrap! wrap?<CR>
 nnoremap <silent> <C-h> :wincmd h<CR>
@@ -15,6 +15,13 @@ tnoremap <silent><C-h> <C-\><C-n><C-w>h
 tnoremap <silent><C-j> <C-\><C-n><C-w>j
 tnoremap <silent><C-k> <C-\><C-n><C-w>k
 tnoremap <silent><C-l> <C-\><C-n><C-w>l
+nnoremap <leader>t <cmd>:split <bar> :terminal<cr>
+
+augroup TerminalSplitup
+    autocmd!
+    autocmd TermOpen * setlocal list
+    autocmd TermOpen,TermEnter * startinsert
+augroup END
 
 nnoremap <A-Down> :m .+1<CR>==
 nnoremap <A-Up> :m .-2<CR>==
@@ -25,30 +32,21 @@ vnoremap < <gv
 
 nnoremap <F2> <cmd>Format<cr>
 
+
+" git signs
+nnoremap <leader>sn <cmd>Gitsigns next_hunk<cr>
+nnoremap <leader>sp <cmd>Gitsigns next_hunk<cr>
+nnoremap <leader>ss <cmd>Gitsigns preview_hunk<cr>
+
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>lua require("telescope.builtin").find_files({hidden = true})<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fr <cmd>Telescope registers<cr>
-nnoremap <leader>fn <cmd>Telescope file_browser<cr>
-
-" Use <Tab> and <S-Tab> to navigate through popup menu
-" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-nnoremap <silent> <F3> <cmd>lua require('lspsaga.floaterm').open_float_terminal('lazygit')<CR>
-tnoremap <silent> <F3> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
-
+nnoremap <leader>fn <cmd>Telescope file_browser grouped=true theme=dropdown previewer=false hidden=true respect_gitignore=false<cr>
 nnoremap <leader><esc> :noh<return>
 
-nmap <Leader>ss :<C-u>SessionSave<CR>
-nmap <Leader>sl :<C-u>SessionLoad<CR>
-" nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
-" nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
-" nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
-" nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
-" nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
-" nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
 imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 
