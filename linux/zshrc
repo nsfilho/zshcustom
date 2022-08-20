@@ -17,11 +17,6 @@ fi
 #
 # Alguns atalhos importantes
 #
-alias netmon_type="netstat -atn | awk '/tcp/ {print $6}' | sort | uniq -c"
-alias netmon_timewait="ss -neopt state time-wait | wc -l"
-alias netmon_established="ss -neopt state established | wc -l"
-alias netmon_stats="nstat -a"
-
 alias tm="tail -f /var/log/messages"
 alias tsyslog="tail -f /var/log/syslog"
 alias iftop="TERM=vt100 iftop"

@@ -10,7 +10,6 @@ else
     echo "already installed."
 fi
 
-#cloneOrPull "https://github.com/bhilburn/powerlevel9k.git" "$HOME/.oh-my-zsh/custom/themes/powerlevel9k"
 cloneOrPull "https://github.com/romkatv/powerlevel10k.git" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
 cloneOrPull "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 cloneOrPull "https://github.com/zsh-users/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
@@ -19,13 +18,14 @@ cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"
 echo "Installing fzf..."
 $HOME/.fzf/install --all >> $UPDATE_LOG
 
+
 # Outra customizações
 
 if [ -d $HOME/.zshcustoms ] ; then
 	cd $HOME/.zshcustoms
 
     checkOS
-	if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
+	if [ "$myOS" = "linux" ] ; then
         aptInstall "automake libtool libtool-bin"
     fi
     if [ "$myOS" = "macos" ] ; then
@@ -36,7 +36,6 @@ if [ -d $HOME/.zshcustoms ] ; then
 	fi
 
 	deleteAndLink "$HOME/.zshcustoms/general/zshrc" "$HOME/.zshrc"
-	deleteAndLink "$HOME/.zshcustoms/general/e01aio.zsh-theme" "$HOME/.oh-my-zsh/themes/e01aio.zsh-theme"
 	deleteAndLink "$HOME/.zshcustoms/themes/p10k.zsh" "$HOME/.p10k.zsh"
 
 	# Configurando Go
@@ -50,14 +49,11 @@ if [ -d $HOME/.zshcustoms ] ; then
 	gitAlias "slog" "log --pretty=oneline --abbrev-commit"
 	gitAlias "ap" "add --patch"
     git config --global push.followTags true
-	# npmGlobalInstall "git+https://github.com/nsfilho/clustercmd.git"
-	# npmGlobalInstall "git+https://github.com/nsfilho/clusterfile.git"
-    # npmGlobalInstall "git+https://github.com/nsfilho/traefikconfig.git"
     npmGlobalInstall "neovim"
 
 
     # Install rust language
-    if [ ! -f /root/.cargo/bin/cargo ] ; then
+    if [ ! -f $HOME/.cargo/bin/cargo ] ; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rust.sh
         chmod +x /tmp/rust.sh
         /tmp/rust.sh -y
@@ -65,19 +61,23 @@ if [ -d $HOME/.zshcustoms ] ; then
     fi
 
     # Install rust packages
-    if [ ! -f /root/.cargo/bin/btm ] ; then
-        /root/.cargo/bin/cargo install bottom
+    if [ ! -f $HOME/.cargo/bin/btm ] ; then
+        $HOME/.cargo/bin/cargo install bottom
     fi
 
-    if [ ! -f /root/.cargo/bin/gitui ] ; then
-        /root/.cargo/bin/cargo install gitui
+    if [ ! -f $HOME/.cargo/bin/gitui ] ; then
+        $HOME/.cargo/bin/cargo install gitui
+    fi
+
+    if [ ! -f $HOME/.cargo/bin/exa ] ; then
+        $HOME/.cargo/bin/cargo install exa
     fi
 
     #
     # Dependencies for Neovim
     #
     npmGlobalRemove tree-sitter-cli
-    if [ ! -f /root/.cargo/bin/treesitter ] ; then
+    if [ ! -f $HOME/.cargo/bin/treesitter ] ; then
         $HOME/.cargo/bin/cargo install tree-sitter-cli
     fi
 

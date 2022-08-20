@@ -2,7 +2,7 @@
 #
 # Piece of code for setup tmux
 #
-if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
+if [ "$myOS" = "linux" ] ; then
     echo -n "Checking TMUX version: "
     TMUX_VERSION=`tmux -V | sed -nr 's/tmux (.*)/\1/p'`
     echo "$TMUX_VERSION"

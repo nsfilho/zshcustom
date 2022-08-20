@@ -80,20 +80,12 @@ function finishUpdate()
 function checkOS()
 {
     if [ "x$OSTYPE" = "x" ] ; then
-        if [ -d /etc/aiolink ] ; then
-            return "aiolink"
-        else
-            export OSTYPE=`uname`
-            myOS=$OSTYPE
-        fi
+        export OSTYPE=`uname`
+        myOS=$OSTYPE
     fi
    
     if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
-        if [ -d /etc/aiolink ] ; then
-            myOS="aiolink"
-        else
-            myOS="linux"
-        fi
+        myOS="linux"
     fi
 
     if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then

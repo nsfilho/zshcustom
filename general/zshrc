@@ -24,43 +24,35 @@ export VISUAL=vi
 export EDITOR=$VISUAL
 
 # Previne iniciar tmux sob uma sessao em sudo
+ZSH_TMUX_AUTOSTART='false'
 if [ x"$SUDO_USER" = x ] ; then
-    if [ -f ~/.notmux ] ; then
-        ZSH_TMUX_AUTOSTART='false'
-    else
+    if [ ! -f ~/.notmux ] ; then
         ZSH_TMUX_AUTOSTART='true'
         plugins=(tmux git history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
     fi
-else
-    ZSH_TMUX_AUTOSTART='false'
 fi
-
 
 #
 # Habilitando tools
 #
-# Google Cloud
-if [ -d ~/.zshcustoms/tools/google-cloud-sdk ] ; then
-    source ~/.zshcustoms/tools/google-cloud-sdk/completion.zsh.inc
-    source ~/.zshcustoms/tools/google-cloud-sdk/path.zsh.inc
-fi
 
 #
 # Scripts personalizados
 #
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH:$HOME/.zshcustoms/scripts"
+
 if [ -d $HOME/.yarn ] ; then
     export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+fi
+
+if [ -d $HOME/.deno ] ; then
+    export PATH="$PATH:$HOME/.deno/bin"
 fi
 
 #
 # Personalizações por sistema operacional
 #
-if [ "$OSTYPE" = "linux-gnueabihf" ] ; then
-    source ~/.zshcustoms/aiolink/zshrc
-fi
-
-if [ "$OSTYPE" = "linux-gnu" ] ; then
+if [ "$OSTYPE" = "linux-gnueabihf" ] || [ "$OSTYPE" = "linux-gnu" ]; then
     source ~/.zshcustoms/linux/zshrc
 fi
 
@@ -101,8 +93,6 @@ function help() {
     fi
 }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -111,6 +101,3 @@ export NVM_DIR="$HOME/.nvm"
 # To customize prompt, run `p10k configure` or edit ~/.zshcustoms/themes/p10k.zsh.
 [[ ! -f ~/.zshcustoms/themes/p10k.zsh ]] || source ~/.zshcustoms/themes/p10k.zsh
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

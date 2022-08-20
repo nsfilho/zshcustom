@@ -6,9 +6,9 @@ source $HOME/.zshcustoms/utils.sh
 NEOVIM_LAST_VERSION="0.7.0"
 NEOVIM_LOCAL="/usr/local/bin/nvim"
 
-if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
+if [ "$myOS" = "linux" ] ; then
     echo -n "Checking neovim: "
-    if [ "$myOS" = "aiolink" ] || [ "$myArch" = "aarch64" ] ; then
+    if [ "$myArch" = "aarch64" ] ; then
         if [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ] ; then
             echo "installing..."
             downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v0.7.0.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"

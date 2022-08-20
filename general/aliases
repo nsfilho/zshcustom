@@ -54,15 +54,6 @@ function zupdate {
     bash $HOME/.zshcustoms/install.sh
 }
 
-function dsps {
-    if [ -f docker-compose.yml ] ; then
-        PROJETO=${PWD##*/}
-    else
-        PROJETO=$1
-    fi
-    watch -n 1 "docker stack ps --no-trunc $PROJETO"
-}
-
 function ddeploy {
     if [ ! -f docker-compose.yml ] ; then
         echo O diretório atual não contém um projeto do swarm.
@@ -82,11 +73,6 @@ function ddeploy {
     watch -n 1 docker stack ps $PROJETO
 }
 
-function dhealth {
-    container=$1
-    docker service inspect $container | jq '.[].Spec.TaskTemplate.ContainerSpec.Healthcheck'
-}
-
 function devents {
     docker events --format '{{json .}}' | jq 'select(.Action | test("(exec_start|exec_create|exec_die)") | not)'
 }
@@ -102,13 +88,6 @@ function drm {
     echo Projeto: $PROJETO
     docker stack ps $PROJETO
     watch -n 1 docker stack rm $PROJETO
-}
-
-function remoteclip {
-    while true ; do
-        echo "Aguardando buffer: `date`"
-        nc -l 2000 | pbcopy
-    done
 }
 
 function typescript-download {

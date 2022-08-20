@@ -7,11 +7,11 @@ checkOS
 echo "Operational System: $myOS"
 echo "Checking basis OS packages..."
 
-if [ "$myOS" = "linux" ] || [ "$myOS" = "aiolink" ] ; then
+if [ "$myOS" = "linux" ] ; then
 	aptInstall "sudo bash net-tools htop iftop rsync mtr vbetool zsh tmux vim git neovim wget curl clang cmake libclang-dev llvm-dev llvm rapidjson-dev exuberant-ctags dialog git telnet build-essential cmake dnsutils openvpn gettext iptables iputils-ping zsh lynx mc mosquitto-clients python3 ruby tcpdump ruby-dev"
     aptInstall "ripgrep fd-find"
     if [ ! -f /usr/bin/node ] ; then
-        # Install Node 14.x
+        # Install Node 16.x
         curl -sL https://deb.nodesource.com/setup_16.x | bash -
         apt-get install -y nodejs
     fi
