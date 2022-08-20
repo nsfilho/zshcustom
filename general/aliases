@@ -23,10 +23,19 @@ alias x="exit"
 if [ -f /usr/local/bin/exa ] ; then
     alias ls="exa --icons --color-scale"
 fi
+
+if [ -f $HOME/.cargo/bin/exa ] ; then
+    alias ls="exa --icons --color-scale"
+fi
+
 alias l="ls -la"
 alias ll="ls -la"
 
 if [ -f /usr/local/bat ] ; then
+    alias cat="bat --paging=never"
+fi
+
+if [ -f $HOME/.cargo/bin/bat ] ; then
     alias cat="bat --paging=never"
 fi
 

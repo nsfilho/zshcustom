@@ -58,6 +58,8 @@ if [ -d $HOME/.zshcustoms ] ; then
         chmod +x /tmp/rust.sh
         /tmp/rust.sh -y
         rm -f /tmp/rust.sh
+    else
+        rustup update
     fi
 
     # Install rust packages
@@ -71,6 +73,10 @@ if [ -d $HOME/.zshcustoms ] ; then
 
     if [ ! -f $HOME/.cargo/bin/exa ] ; then
         $HOME/.cargo/bin/cargo install exa
+    fi
+
+    if [ ! -f $HOME/.cargo/bin/bat ] ; then
+        $HOME/.cargo/bin/cargo install bat 
     fi
 
     #
