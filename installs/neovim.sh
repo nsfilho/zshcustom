@@ -6,28 +6,22 @@ source $HOME/.zshcustoms/utils.sh
 NEOVIM_LAST_VERSION="0.7.0"
 NEOVIM_LOCAL="/usr/local/bin/nvim"
 
-if [ "$myOS" = "linux" ] ; then
+if [ "$myOS" = "linux" ] && [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
     echo -n "Checking neovim: "
-    if [ "$myArch" = "aarch64" ] ; then
-        if [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ] ; then
-            echo "installing..."
-            downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v0.7.0.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
-            make all install >> $UPDATE_LOG
-            touch $HOME/.neovim-$NEOVIM_LAST_VERSION
-        else
-            echo "already installed."
-        fi
+    if [ "$myArch" = "aarch64" ] || [ "$myArch" = "armv7l" ] ; then
+        echo "installing..."
+        downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v0.7.0.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
+        make all install >> $UPDATE_LOG
+        touch $HOME/.neovim-$NEOVIM_LAST_VERSION
     else
         NEOVIM_LOCAL="/usr/local/nvim-linux64/bin/nvim"
-        if [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ] ; then
-            rm -rf /usr/local/nvim-linux64
-            echo "installing..."
-            downloadExtract "https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.tar.gz" "/usr/local/nvim-linux64"
-            touch $HOME/.neovim-$NEOVIM_LAST_VERSION
-        else
-            echo "already installed."
-        fi
+        rm -rf /usr/local/nvim-linux64
+        echo "installing..."
+        downloadExtract "https://github.com/neovim/neovim/releases/download/v0.7.0/nvim-linux64.tar.gz" "/usr/local/nvim-linux64"
+        touch $HOME/.neovim-$NEOVIM_LAST_VERSION
     fi # generic linux
+else
+    echo "already installed."
 fi
 
 # Install python modules
