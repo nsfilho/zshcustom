@@ -3,9 +3,7 @@ local protocol = require("vim.lsp.protocol")
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
     local opts = { noremap = true, silent = true }
 
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -57,35 +55,26 @@ lsp_installer.on_server_ready(function(server)
     server:setup(opts)
 end)
 
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-local null_ls = require("null-ls")
 
-local sources = null_ls.setup({
+local null_ls = require("null-ls")
+null_ls.setup({
+    default_timeout = 10000,
+    debug = false,
     sources = {
+        null_ls.builtins.code_actions.gitsigns,
+--        null_ls.builtins.diagnostics.eslint.with({
+--            prefer_local = "node_modules/.bin",
+--        }),
+--        null_ls.builtins.code_actions.eslint.with({
+--            prefer_local = "node_modules/.bin",
+--        }),
+        null_ls.builtins.code_actions.eslint_d,
+        null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.formatting.prettier.with({
-            prefer_local = "node_modules/.bin",
-        }),
-        null_ls.builtins.diagnostics.eslint.with({
-            prefer_local = "node_modules/.bin",
-        }),
-        null_ls.builtins.code_actions.eslint.with({
             prefer_local = "node_modules/.bin",
         }),
         null_ls.builtins.completion.vsnip,
     },
-    on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                    vim.lsp.buf.formatting_sync()
-                end,
-            })
-        end
-    end,
 })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(

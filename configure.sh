@@ -50,6 +50,7 @@ if [ -d $HOME/.zshcustoms ] ; then
 	gitAlias "ap" "add --patch"
     git config --global push.followTags true
     npmGlobalInstall "neovim"
+    npmGlobalInstall "eslint_d"
 
 
     # Install rust language
