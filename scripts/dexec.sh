@@ -80,7 +80,7 @@ if [ $RESULTADO -eq 0 ] ; then
             exec 3>&-
             ;;
     esac
-
+    clear
     echo -e "\n\n\ndocker exec -it $RESPOSTA $CMD"
     docker exec -it $RESPOSTA $CMD
 fi
