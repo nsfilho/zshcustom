@@ -3,7 +3,9 @@ local protocol = require("vim.lsp.protocol")
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
     local opts = { noremap = true, silent = true }
 
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -34,11 +36,9 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
 end
 
-local on_attach_tsserver = function(client, buffnr)
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-    on_attach(client, buffnr)
-end
+-- local ih = require("inlay-hints")
+-- ih.setup();
+require('Comment').setup()
 
 local capabilities = protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
@@ -49,8 +49,43 @@ lsp_installer.on_server_ready(function(server)
         on_attach = on_attach,
         capabilities = capabilities,
     }
+    if server.name == "rust_analyzer" then
+        opts.on_attach = function(c, b)
+            -- ih.on_attach(c, b)
+            on_attach(c, b)
+        end
+    end
     if server.name == "tsserver" then
-        opts.on_attach = on_attach_tsserver
+        opts.on_attach = function(c, b)
+            c.resolved_capabilities.document_formatting = false
+            c.resolved_capabilities.document_range_formatting = false
+            -- ih.on_attach(c, b)
+            on_attach(c, b)
+        end
+--        opts.settings = {
+--            javascript = {
+--                inlayHints = {
+--                    includeInlayEnumMemberValueHints = true,
+--                    includeInlayFunctionLikeReturnTypeHints = true,
+--                    includeInlayFunctionParameterTypeHints = true,
+--                    includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+--                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+--                    includeInlayPropertyDeclarationTypeHints = true,
+--                    includeInlayVariableTypeHints = true,
+--                },
+--            },
+--            typescript = {
+--                inlayHints = {
+--                    includeInlayEnumMemberValueHints = true,
+--                    includeInlayFunctionLikeReturnTypeHints = true,
+--                    includeInlayFunctionParameterTypeHints = true,
+--                    includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+--                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+--                    includeInlayPropertyDeclarationTypeHints = true,
+--                    includeInlayVariableTypeHints = true,
+--                },
+--            },
+--        }
     end
     server:setup(opts)
 end)
@@ -61,13 +96,12 @@ null_ls.setup({
     default_timeout = 10000,
     debug = false,
     sources = {
-        null_ls.builtins.code_actions.gitsigns,
---        null_ls.builtins.diagnostics.eslint.with({
---            prefer_local = "node_modules/.bin",
---        }),
---        null_ls.builtins.code_actions.eslint.with({
---            prefer_local = "node_modules/.bin",
---        }),
+        --        null_ls.builtins.diagnostics.eslint.with({
+        --            prefer_local = "node_modules/.bin",
+        --        }),
+        --        null_ls.builtins.code_actions.eslint.with({
+        --            prefer_local = "node_modules/.bin",
+        --        }),
         null_ls.builtins.code_actions.eslint_d,
         null_ls.builtins.diagnostics.eslint_d,
         null_ls.builtins.formatting.prettier.with({

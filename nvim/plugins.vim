@@ -42,6 +42,9 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-nvim-lua'
 Plug 'folke/lsp-colors.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+" Plug 'simrat39/inlay-hints.nvim'
+Plug 'numToStr/Comment.nvim'
+
 
 if g:arch == "x86_64" || g:arch == "i386"
     Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
