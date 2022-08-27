@@ -55,7 +55,7 @@ lsp_installer.on_server_ready(function(server)
     server:setup(opts)
 end)
 
-
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local null_ls = require("null-ls")
 null_ls.setup({
     default_timeout = 10000,
@@ -75,6 +75,19 @@ null_ls.setup({
         }),
         null_ls.builtins.completion.vsnip,
     },
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                    vim.lsp.buf.formatting_sync()
+                end,
+            })
+        end
+    end,
 })
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
