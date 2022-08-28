@@ -62,30 +62,30 @@ lsp_installer.on_server_ready(function(server)
             -- ih.on_attach(c, b)
             on_attach(c, b)
         end
---        opts.settings = {
---            javascript = {
---                inlayHints = {
---                    includeInlayEnumMemberValueHints = true,
---                    includeInlayFunctionLikeReturnTypeHints = true,
---                    includeInlayFunctionParameterTypeHints = true,
---                    includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
---                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
---                    includeInlayPropertyDeclarationTypeHints = true,
---                    includeInlayVariableTypeHints = true,
---                },
---            },
---            typescript = {
---                inlayHints = {
---                    includeInlayEnumMemberValueHints = true,
---                    includeInlayFunctionLikeReturnTypeHints = true,
---                    includeInlayFunctionParameterTypeHints = true,
---                    includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
---                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
---                    includeInlayPropertyDeclarationTypeHints = true,
---                    includeInlayVariableTypeHints = true,
---                },
---            },
---        }
+        --        opts.settings = {
+        --            javascript = {
+        --                inlayHints = {
+        --                    includeInlayEnumMemberValueHints = true,
+        --                    includeInlayFunctionLikeReturnTypeHints = true,
+        --                    includeInlayFunctionParameterTypeHints = true,
+        --                    includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        --                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        --                    includeInlayPropertyDeclarationTypeHints = true,
+        --                    includeInlayVariableTypeHints = true,
+        --                },
+        --            },
+        --            typescript = {
+        --                inlayHints = {
+        --                    includeInlayEnumMemberValueHints = true,
+        --                    includeInlayFunctionLikeReturnTypeHints = true,
+        --                    includeInlayFunctionParameterTypeHints = true,
+        --                    includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+        --                    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        --                    includeInlayPropertyDeclarationTypeHints = true,
+        --                    includeInlayVariableTypeHints = true,
+        --                },
+        --            },
+        --        }
     end
     server:setup(opts)
 end)
@@ -154,6 +154,9 @@ local source_mapping = {
 
 local cmp = require "cmp"
 cmp.setup {
+    view = {
+        entries = { name = 'custom', selection_order = 'near_cursor' }
+    },
     snippet = {
         expand = function(args)
             vim.fn["vsnip#anonymous"](args.body)
@@ -215,6 +218,28 @@ cmp.setup {
         }
     }
 }
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+    view = {
+        entries = { name = 'custom' }
+    },
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    })
+})
+
 
 -- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 -- cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
