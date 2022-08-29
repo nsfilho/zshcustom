@@ -45,9 +45,13 @@ Plug 'folke/lsp-colors.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 " Plug 'simrat39/inlay-hints.nvim'
 Plug 'numToStr/Comment.nvim'
-
+Plug 'folke/todo-comments.nvim'
+Plug 'karb94/neoscroll.nvim'
 
 if g:arch == "x86_64" || g:arch == "i386"
+    Plug 'tpope/vim-dadbod'
+    Plug 'kristijanhusak/vim-dadbod-completion'
+    Plug 'kristijanhusak/vim-dadbod-ui'
     Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
     " Plug 'github/copilot.vim'
     " Plug 'hrsh7th/cmp-copilot'

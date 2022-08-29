@@ -30,9 +30,11 @@ augroup END
 " set nofoldenable
 augroup filetype_vim
     autocmd!
-    autocmd FileType yaml,go,rust,java,c,typescript,javascript,typescriptreact,javascriptreact setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
     autocmd BufRead,BufNewFile *.json set filetype=jsonc
+    autocmd FileType yaml,go,rust,java,c,typescript,javascript,typescriptreact,javascriptreact setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
+    autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
 augroup END
+
 
 setlocal colorcolumn=120
 set spelllang=en,pt
