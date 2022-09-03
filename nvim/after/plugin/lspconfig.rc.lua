@@ -36,8 +36,8 @@ local on_attach = function(_, bufnr)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
 end
 
--- local ih = require("inlay-hints")
--- ih.setup();
+local ih = require("inlay-hints")
+ih.setup();
 require('Comment').setup()
 
 local capabilities = protocol.make_client_capabilities()
@@ -51,9 +51,27 @@ lsp_installer.on_server_ready(function(server)
     }
     if server.name == "rust_analyzer" then
         opts.on_attach = function(c, b)
-            -- ih.on_attach(c, b)
+            ih.on_attach(c, b)
             on_attach(c, b)
         end
+        opts.settings = {
+            ["rust-analyzer"] = {
+                imports = {
+                    granularity = {
+                        group = "module",
+                    },
+                    prefix = "self",
+                },
+                cargo = {
+                    buildScripts = {
+                        enable = true,
+                    },
+                },
+                procMacro = {
+                    enable = true
+                },
+            }
+        }
     end
     if server.name == "tsserver" then
         opts.on_attach = function(c, b)
@@ -207,9 +225,9 @@ cmp.setup {
         { name = "nvim_lua" },
         { name = "path" },
         { name = "calc" },
-        { name = "spell" },
-        { name = "vsnip" },
         { name = "cmp_tabnine" },
+        { name = "vsnip" },
+        { name = "spell" },
         {
             name = "buffer",
             option = {
