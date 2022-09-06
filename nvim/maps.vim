@@ -8,7 +8,6 @@ nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
-nnoremap <leader>r :source $MYVIMRC<CR>
 
 " Navigate neovim + neovim terminal emulator with alt+direction
 tnoremap <silent><C-h> <C-\><C-n><C-w>h
@@ -29,9 +28,6 @@ nnoremap <A-Up> :m .-2<CR>==
 " Keep selection when indenting/outdenting.
 vnoremap > >gv
 vnoremap < <gv
-
-nnoremap <F2> <cmd>Format<cr>
-
 
 " git signs
 nnoremap <leader>sn <cmd>Gitsigns next_hunk<cr>
@@ -60,8 +56,8 @@ local function map(mode, lhs, rhs, opts)
 end
 map("n", "<F7>", ":NvimTreeRefresh<cr>:NvimTreeFindFile<cr>", { silent = true})
 map("n", "<space>h", "<cmd>lua require'hop'.hint_words()<cr>")
-map("n", "<space>l", "<cmd>lua require'hop'.hint_lines()<cr>")
 map("v", "<space>h", "<cmd>lua require'hop'.hint_words()<cr>")
+map("n", "<space>l", "<cmd>lua require'hop'.hint_lines()<cr>")
 map("v", "<space>l", "<cmd>lua require'hop'.hint_lines()<cr>")
 map("n", "<leader>cf", ":Lspsaga lsp_finder<CR>", { silent = true })
 -- map("n", "<leader>ca", ":Lspsaga code_action<CR>", { silent = true })

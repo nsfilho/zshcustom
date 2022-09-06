@@ -6,7 +6,6 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set matchpairs+=<:>
 set tabstop=4 softtabstop=0 expandtab shiftwidth=4 smarttab
 set ttyfast
 set splitbelow
@@ -42,16 +41,6 @@ set spelllang=en,pt
 let g:netrw_http_cmd = "wget"
 let g:vscode_style = "dark"
 let g:tokyonight_style = "night"
-let g:completion_confirm_key = ""
-let g:completion_chain_complete_list = {
-        \ 'default' : {
-        \   'default': [
-        \       {'complete_items': ['lsp', 'snippet', 'path']},
-        \       {'mode': '<c-p>'},
-        \       {'mode': '<c-n>'}],
-        \   'comment': []
-        \   }
-        \}
 
 if (has("termguicolors"))
  set termguicolors

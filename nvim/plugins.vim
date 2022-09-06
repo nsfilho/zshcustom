@@ -47,6 +47,8 @@ Plug 'simrat39/inlay-hints.nvim'
 Plug 'numToStr/Comment.nvim'
 Plug 'folke/todo-comments.nvim'
 Plug 'karb94/neoscroll.nvim'
+Plug 'rmagatti/auto-session'
+Plug 'rmagatti/session-lens'
 
 if g:arch == "x86_64" || g:arch == "i386"
     Plug 'tpope/vim-dadbod'
