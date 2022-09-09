@@ -49,6 +49,8 @@ Plug 'folke/todo-comments.nvim'
 Plug 'karb94/neoscroll.nvim'
 Plug 'rmagatti/auto-session'
 Plug 'rmagatti/session-lens'
+Plug 'SmiteshP/nvim-navic'
+Plug 'haringsrob/nvim_context_vt'
 
 if g:arch == "x86_64" || g:arch == "i386"
     Plug 'tpope/vim-dadbod'

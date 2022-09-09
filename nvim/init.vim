@@ -51,7 +51,7 @@ runtime ./maps.vim
 runtime ./macos.vim
 runtime ./others.vim
 
-colorscheme tokyonight
+colorscheme tokyonight-night
 " colorscheme dracula
 " colorscheme vscode
 " colorscheme ayu

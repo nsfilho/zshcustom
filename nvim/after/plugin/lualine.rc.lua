@@ -1,3 +1,4 @@
+local navic = require("nvim-navic")
 
 require('lualine').setup {
     options = {
@@ -6,11 +7,13 @@ require('lualine').setup {
         -- theme = 'vscode'
     },
     sections = {
-        lualine_c = { {
-            'filename',
-            file_status = true,
-            path = 1,
-        } }
-    }
+        lualine_c = {
+            {
+                'filename',
+                file_status = true,
+                path = 1,
+            },
+            { navic.get_location, cond = navic.is_available },
+        },
+    },
 }
-

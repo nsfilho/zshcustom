@@ -36,8 +36,10 @@ local on_attach = function(_, bufnr)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
 end
 
+local navic = require("nvim-navic");
 local ih = require("inlay-hints")
 ih.setup();
+navic.setup();
 require('Comment').setup()
 
 local capabilities = protocol.make_client_capabilities()
@@ -46,11 +48,15 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 local lsp_installer = require("nvim-lsp-installer")
 lsp_installer.on_server_ready(function(server)
     local opts = {
-        on_attach = on_attach,
+        on_attach = function (c, b)
+            navic.attach(c, b)
+            on_attach(c, b)
+        end,
         capabilities = capabilities,
     }
     if server.name == "rust_analyzer" then
         opts.on_attach = function(c, b)
+            navic.attach(c, b)
             ih.on_attach(c, b)
             on_attach(c, b)
         end
@@ -78,6 +84,7 @@ lsp_installer.on_server_ready(function(server)
             c.resolved_capabilities.document_formatting = false
             c.resolved_capabilities.document_range_formatting = false
             -- ih.on_attach(c, b)
+            navic.attach(c, b)
             on_attach(c, b)
         end
         --        opts.settings = {
