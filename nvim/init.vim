@@ -1,6 +1,6 @@
 set mouse=a
 set hidden
-set relativenumber
+" set relativenumber
 set number
 set hlsearch
 set incsearch
