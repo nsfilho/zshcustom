@@ -40,7 +40,11 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(
 )
 
 lspconfig.tsserver.setup {
-    on_attach = on_attach,
+    on_attach = function(c, b)
+        c.resolved_capabilities.document_formatting = false
+        c.resolved_capabilities.document_range_formatting = false
+        on_attach(c, b)
+    end,
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     cmd = { "typescript-language-server", "--stdio" },
     capabilities = capabilities
@@ -54,12 +58,31 @@ lspconfig.sumneko_lua.setup {
                 -- Get the language server to recognize the `vim` global
                 globals = { 'vim' },
             },
-
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file("", true),
                 checkThirdParty = false
             },
+        },
+    },
+}
+
+lspconfig.rust_analyzer.setup {
+    on_attach = on_attach,
+    settings = {
+        imports = {
+            granularity = {
+                group = "module",
+            },
+            prefix = "self",
+        },
+        cargo = {
+            buildScripts = {
+                enable = true,
+            },
+        },
+        procMacro = {
+            enable = true
         },
     },
 }

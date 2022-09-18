@@ -68,8 +68,8 @@ cmp.setup {
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "path" },
-        { name = "cmp_tabnine" },
         { name = "vsnip" },
+        { name = "cmp_tabnine" },
         { name = "spell" },
         {
             name = "buffer",
