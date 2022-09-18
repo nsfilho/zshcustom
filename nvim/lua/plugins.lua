@@ -55,7 +55,7 @@ packer.startup(function(use)
     use 'norcalli/nvim-colorizer.lua' -- see colors #ffee00 in buffer
     use 'dinhhuy258/git.nvim' -- For git blame & browse
 
-    if vim.fn.has("macunix") then
+    if (vim.g.arch == 'i386' or vim.g.arch == 'x86_64') then
         use 'tpope/vim-dadbod'
         use 'kristijanhusak/vim-dadbod-completion'
         use 'kristijanhusak/vim-dadbod-ui'
