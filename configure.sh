@@ -18,9 +18,7 @@ cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"
 echo "Installing fzf..."
 $HOME/.fzf/install --all >> $UPDATE_LOG
 
-
 # Outra customizações
-
 if [ -d $HOME/.zshcustoms ] ; then
 	cd $HOME/.zshcustoms
 

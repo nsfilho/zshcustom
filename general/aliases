@@ -1,9 +1,6 @@
 #
 # Principais Alias de ações
 #
-alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
-
 # Usando code como editor
 alias zedit="cd ~/.zshcustoms/ ; nvim"
 alias zlocal="nvim ~/.zshlocal"
@@ -20,6 +17,7 @@ alias sftp="sftp -oStrictHostKeyChecking=no"
 # Alias gerais
 export LESS='-R'
 alias x="exit"
+
 if [ -f /usr/local/bin/exa ] ; then
     alias ls="exa --icons --color-scale"
 fi
@@ -59,7 +57,7 @@ alias dupdate="docker service update"
 
 function zupdate {
     touch /tmp/.zshcustoms_`whoami`
-    upgrade_oh_my_zsh
+    omz update
     bash $HOME/.zshcustoms/install.sh
 }
 

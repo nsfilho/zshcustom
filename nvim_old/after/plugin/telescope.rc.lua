@@ -1,21 +1,10 @@
-local status, telescope = pcall(require, "telescope")
-if (not status) then return end
-
-local actions = require('telescope.actions')
-local builtin = require('telescope.builtin')
-
-telescope.setup {
+require('telescope').setup {
     extensions = {
         file_browser = {
             theme = "ivy",
         },
     },
     defaults = {
-        mappings = {
-            n = {
-                ["q"] = actions.close
-            },
-        },
         file_ignore_patterns = {
             'node_modules',
             '.git/'
@@ -52,5 +41,9 @@ telescope.setup {
     }
 }
 
-telescope.load_extension("file_browser")
+-- require('session-lens').setup {
+--     path_display={'shorten'},
+-- }
+
+require("telescope").load_extension "file_browser"
 -- require("telescope").load_extension("session-lens")
