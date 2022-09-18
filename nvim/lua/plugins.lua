@@ -14,6 +14,7 @@ packer.startup(function(use)
     }
     use 'kyazdani42/nvim-web-devicons' -- File icons
     use 'phaazon/hop.nvim'
+    use 'nvim-lua/popup.nvim'
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
@@ -27,7 +28,7 @@ packer.startup(function(use)
     use 'kyazdani42/nvim-tree.lua'
     -- use 'folke/which-key.nvim'
     use 'nvim-lualine/lualine.nvim' -- Statusline
-    use 'akinsho/nvim-bufferline.lua'
+    use 'akinsho/bufferline.nvim'
     use 'neovim/nvim-lspconfig' -- LSP
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
@@ -39,6 +40,9 @@ packer.startup(function(use)
     use 'hrsh7th/cmp-path' -- Completion
     use 'hrsh7th/cmp-buffer' -- Completion
     use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/cmp-calc'
+    use 'f3fora/cmp-spell'
     -- use 'folke/lsp-colors.nvim'
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use 'numToStr/Comment.nvim'

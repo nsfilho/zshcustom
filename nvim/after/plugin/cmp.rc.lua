@@ -1,3 +1,4 @@
+---@diagnostic disable: need-check-nil
 local status, cmp = pcall(require, "cmp")
 if (not status) then return end
 
@@ -6,13 +7,15 @@ if (not statusKind) then return end
 
 -- nvim-cmp setup
 local source_mapping = {
-    buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
     nvim_lua = "[Lua]",
+    buffer = "[Buffer]",
     cmp_tabnine = "[TN]",
     path = "[Path]",
     spell = "[Spell]",
     calc = "[Calc]",
+    nvim_lsp_signature_help = "[Signature]",
+    cmdline = "[Command]"
 }
 
 cmp.setup {
@@ -25,18 +28,20 @@ cmp.setup {
         end,
     },
     formatting = {
-        format = function(entry, vim_item)
-            vim_item.kind = lspkind.presets.default[vim_item.kind]
-            local menu = source_mapping[entry.source.name]
-            if entry.source.name == "cmp_tabnine" then
-                if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-                    menu = entry.completion_item.data.detail .. " " .. menu
+        format = lspkind.cmp_format({
+            mode = 'symbol_text', -- show only symbol annotations
+            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+            before = function(entry, vim_item)
+                local menu = source_mapping[entry.source.name]
+                if entry.source.name == "cmp_tabnine" then
+                    if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
+                        menu = entry.completion_item.data.detail .. " " .. menu
+                    end
                 end
-                vim_item.kind = ""
+                vim_item.menu = menu
+                return vim_item
             end
-            vim_item.menu = menu
-            return vim_item
-        end
+        })
     },
     mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -83,6 +88,7 @@ cmp.setup {
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
     view = {
+        -- entries = { name = 'wildmenu', separator = '|' }
         entries = { name = 'custom' }
     },
     mapping = cmp.mapping.preset.cmdline(),
@@ -93,6 +99,10 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
+    view = {
+        -- entries = { name = 'wildmenu', separator = '|' }
+        entries = { name = 'custom' }
+    },
     mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({
         { name = 'path' }
@@ -100,7 +110,3 @@ cmp.setup.cmdline(':', {
         { name = 'cmdline' }
     })
 })
-
-
--- local cmp_autopairs = require('nvim-autopairs.completion.cmp')
--- cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))

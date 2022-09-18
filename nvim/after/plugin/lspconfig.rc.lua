@@ -5,7 +5,7 @@ local statusNavic, navic = pcall(require, "nvim-navic")
 
 local protocol = require("vim.lsp.protocol")
 
-local on_attach = function(info, bufnr)
+local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -31,7 +31,7 @@ local on_attach = function(info, bufnr)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
 
     if (statusNavic) then
-        navic.attach(info, bufnr)
+        navic.attach(client, bufnr)
     end
 end
 
