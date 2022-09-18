@@ -54,8 +54,5 @@ fi
 deleteAndLink "$HOME/.zshcustoms/nvim" "$HOME/.config/nvim"
 
 set shell=/bin/bash
-$NEOVIM_LOCAL +PlugClean! +qall
-$NEOVIM_LOCAL +PlugUpgrade +qall
-$NEOVIM_LOCAL +PlugUpdate +qall
-$NEOVIM_LOCAL +PlugInstall +qall
+$NEOVIM_LOCAL --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 	

@@ -15,6 +15,7 @@ packer.startup(function(use)
     use 'kyazdani42/nvim-web-devicons' -- File icons
     use 'phaazon/hop.nvim'
     use 'nvim-lua/popup.nvim'
+    use 'folke/which-key.nvim'
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
