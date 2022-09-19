@@ -35,9 +35,9 @@ keymap.set('n', '>', '>gv')
 keymap.set('n', '<', '<gv')
 
 -- git signs
-keymap.set('n', '<leader>sn', '<cmd>Gitsigns next_hunk')
-keymap.set('n', '<leader>sp', '<cmd>Gitsigns prev_hunk')
-keymap.set('n', '<leader>ss', '<cmd>Gitsigns preview_hunk')
+keymap.set('n', '<leader>sn', '<cmd>Gitsigns next_hunk<cr>')
+keymap.set('n', '<leader>sp', '<cmd>Gitsigns prev_hunk<cr>')
+keymap.set('n', '<leader>ss', '<cmd>Gitsigns preview_hunk<cr>')
 
 -- telescope
 keymap.set('n', '<leader>ff',

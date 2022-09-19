@@ -25,6 +25,7 @@ packer.startup(function(use)
             require('nvim-treesitter.install').update({ with_sync = true })
         end,
     }
+    use 'nvim-treesitter/nvim-treesitter-context'
     use 'lewis6991/gitsigns.nvim'
     use 'kyazdani42/nvim-tree.lua'
     -- use 'folke/which-key.nvim'
@@ -55,11 +56,11 @@ packer.startup(function(use)
     use 'norcalli/nvim-colorizer.lua' -- see colors #ffee00 in buffer
     use 'dinhhuy258/git.nvim' -- For git blame & browse
 
-    if (vim.g.arch == 'i386' or vim.g.arch == 'x86_64') then
+    if (jit.arch == 'x64') then
         use 'tpope/vim-dadbod'
         use 'kristijanhusak/vim-dadbod-completion'
         use 'kristijanhusak/vim-dadbod-ui'
-        use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+        use { 'tzachar/cmp-tabnine', after = "nvim-cmp", run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
     end
     -- use 'editorconfig/editorconfig-vim'
 

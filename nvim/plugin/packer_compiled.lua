@@ -115,8 +115,11 @@ _G.packer_plugins = {
     url = "https://github.com/f3fora/cmp-spell"
   },
   ["cmp-tabnine"] = {
+    after_files = { "/Users/neliosantos/.local/share/nvim/site/pack/packer/opt/cmp-tabnine/after/plugin/cmp-tabnine.lua" },
+    load_after = {},
     loaded = true,
-    path = "/Users/neliosantos/.local/share/nvim/site/pack/packer/start/cmp-tabnine",
+    needs_bufread = false,
+    path = "/Users/neliosantos/.local/share/nvim/site/pack/packer/opt/cmp-tabnine",
     url = "https://github.com/tzachar/cmp-tabnine"
   },
   ["cmp-vsnip"] = {
@@ -204,6 +207,11 @@ _G.packer_plugins = {
     path = "/Users/neliosantos/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/Users/neliosantos/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
+  },
   ["nvim-ts-autotag"] = {
     loaded = true,
     path = "/Users/neliosantos/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
@@ -277,6 +285,11 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Load plugins in order defined by `after`
+time([[Sequenced loading]], true)
+vim.cmd [[ packadd nvim-cmp ]]
+vim.cmd [[ packadd cmp-tabnine ]]
+time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
