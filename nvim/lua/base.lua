@@ -37,7 +37,10 @@ vim.opt.backspace = { 'start', 'eol', 'indent' }
 vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
 vim.opt.wildignore:append { '*/node_modules/*' }
 vim.g.mapleader = ','
+vim.opt.foldcolumn = '3'
 vim.opt.completeopt = 'menu,menuone,noselect'
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.spelllang = { 'en', 'pt' }
 
@@ -47,19 +50,19 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]])
 
 -- Turn off paste mode when leaving insert
 vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = '*',
-  callback = function ()
-    vim.cmd([[set relativenumber]])
-    vim.cmd([[set nopaste]])
-    vim.cmd([[set nocursorcolumn]])
-  end
+    pattern = '*',
+    callback = function()
+        vim.cmd([[set relativenumber]])
+        vim.cmd([[set nopaste]])
+        vim.cmd([[set nocursorcolumn]])
+    end
 })
 vim.api.nvim_create_autocmd("InsertEnter", {
-  pattern = '*',
-  callback = function ()
-    vim.cmd([[set norelativenumber]])
-    vim.cmd([[set cursorcolumn]])
-  end
+    pattern = '*',
+    callback = function()
+        vim.cmd([[set norelativenumber]])
+        vim.cmd([[set cursorcolumn]])
+    end
 })
 
 local fileTypes = vim.api.nvim_create_augroup("filetypes", { clear = true })
