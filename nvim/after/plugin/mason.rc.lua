@@ -9,5 +9,5 @@ mason.setup({
 })
 
 masonConfig.setup {
-  ensure_installed = { "sumneko_lua", "rust_analyzer", "bashls", "tsserver", "html", "yamlls" },
+  ensure_installed = { "sumneko_lua", "rust_analyzer", "bashls", "tsserver", "html", "yamlls", "taplo" },
 }
