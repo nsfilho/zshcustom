@@ -47,9 +47,6 @@ if [ -d $HOME/.zshcustoms ] ; then
 	gitAlias "slog" "log --pretty=oneline --abbrev-commit"
 	gitAlias "ap" "add --patch"
     git config --global push.followTags true
-    npmGlobalInstall "neovim"
-    npmGlobalInstall "eslint_d"
-
 
     # Install rust language
     if [ ! -f $HOME/.cargo/bin/cargo ] ; then

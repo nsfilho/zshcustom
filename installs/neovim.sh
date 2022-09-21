@@ -36,6 +36,11 @@ if [ $? -eq 0 ] ; then
     pip3 install pynvim
 fi
 
+
+npmGlobalInstall "neovim"
+npmGlobalInstall "eslint_d"
+npmGlobalInstall "prettier"
+
 # In past, nvim is a directory. This small block is for compatibility upgrade
 if [ -d ~/.config/nvim ] ; then
     rm -rf ~/.config/nvim
