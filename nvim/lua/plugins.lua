@@ -16,6 +16,20 @@ packer.startup(function(use)
     use 'phaazon/hop.nvim'
     use 'nvim-lua/popup.nvim'
     -- use 'folke/which-key.nvim'
+    use 'lukas-reineke/indent-blankline.nvim'
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = function()
+            require("trouble").setup {}
+        end
+    }
+    -- use {
+    --     "petertriho/nvim-scrollbar",
+    --     config = function ()
+    --         require("scrollbar").setup {}
+    --     end
+    -- }
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
