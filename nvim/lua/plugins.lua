@@ -8,6 +8,7 @@ vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
     use 'wbthomason/packer.nvim'
+    use 'lewis6991/impatient.nvim'
     use {
         'folke/tokyonight.nvim',
         branch = 'main',
@@ -15,7 +16,7 @@ packer.startup(function(use)
     use 'kyazdani42/nvim-web-devicons' -- File icons
     use 'phaazon/hop.nvim'
     use 'nvim-lua/popup.nvim'
-    -- use 'folke/which-key.nvim'
+    use 'folke/which-key.nvim'
     use 'lukas-reineke/indent-blankline.nvim'
     use {
         "folke/trouble.nvim",
@@ -24,12 +25,25 @@ packer.startup(function(use)
             require("trouble").setup {}
         end
     }
-    -- use {
-    --     "petertriho/nvim-scrollbar",
-    --     config = function ()
-    --         require("scrollbar").setup {}
-    --     end
-    -- }
+    use {
+        "folke/todo-comments.nvim",
+        requires = "nvim-lua/plenary.nvim",
+        config = function()
+            require("todo-comments").setup {
+            }
+        end
+    }
+    use {
+        "petertriho/nvim-scrollbar",
+        config = function()
+            require("scrollbar").setup {}
+        end
+    }
+    use 'rmagatti/auto-session'
+    use {
+        'rmagatti/session-lens',
+        requires = { 'rmagatti/auto-session', 'nvim-telescope/telescope.nvim' },
+    }
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
@@ -78,3 +92,5 @@ packer.startup(function(use)
     -- use 'editorconfig/editorconfig-vim'
 
 end)
+
+require('impatient')

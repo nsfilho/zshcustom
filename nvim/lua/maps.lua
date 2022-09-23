@@ -14,6 +14,7 @@ keymap.set('', 'so', '<C-w>o')
 
 -- general maps
 keymap.set('', '<C-x>', ':bd!<CR>') -- force close buffer
+keymap.set('n', '<leader>x', ':quitall<CR>')
 keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
 keymap.set("n", "<F7>", ":NvimTreeRefresh<cr>:NvimTreeFindFile<cr>", { silent = true })
 keymap.set('n', '<esc><esc>', ':noh<CR>')
@@ -45,6 +46,7 @@ keymap.set('n', '<leader>ff',
         require("telescope.builtin").find_files({ hidden = true })
     end
 )
+keymap.set('n', '<leader>fs', '<cmd>Telescope session-lens search_session<CR>')
 keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
 keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')

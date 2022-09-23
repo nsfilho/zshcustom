@@ -53,4 +53,8 @@ telescope.setup {
 }
 
 telescope.load_extension("file_browser")
--- require("telescope").load_extension("session-lens")
+
+local statusLens, _sessionlens = pcall(require, "session-lens")
+if (statusLens) then
+    telescope.load_extension("session-lens")
+end
