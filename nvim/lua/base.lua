@@ -1,5 +1,5 @@
 vim.cmd("autocmd!")
-
+vim.opt.termguicolors = true
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
@@ -43,6 +43,7 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.spelllang = { 'en', 'pt' }
+vim.g.ayucolor="mirage"
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])

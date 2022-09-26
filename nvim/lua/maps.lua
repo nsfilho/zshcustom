@@ -5,12 +5,12 @@ keymap.set('n', 'ss', ':split<Return><C-w>w')
 keymap.set('n', 'sv', ':vsplit<Return><C-w>w')
 -- Move window
 -- keymap.set('n', '<Space>', '<C-w>w')
-keymap.set('', 'sh', '<C-w>h')
-keymap.set('', 'sk', '<C-w>k')
-keymap.set('', 'sj', '<C-w>j')
-keymap.set('', 'sl', '<C-w>l')
-keymap.set('', 'sc', '<C-w>q')
-keymap.set('', 'so', '<C-w>o')
+keymap.set('', 'sh', '<C-w>h', { remap = false })
+keymap.set('', 'sk', '<C-w>k', { remap = false })
+keymap.set('', 'sj', '<C-w>j', { remap = false })
+keymap.set('', 'sl', '<C-w>l', { remap = false })
+keymap.set('', 'sc', '<C-w>q', { remap = false })
+keymap.set('', 'so', '<C-w>o', { remap = false })
 
 -- general maps
 keymap.set('', '<C-x>', ':bd!<CR>') -- force close buffer

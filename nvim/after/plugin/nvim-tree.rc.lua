@@ -14,6 +14,7 @@ tree.setup {
         update_cwd  = false,
         ignore_list = {}
     },
+    remove_keymaps = { "s" },
     system_open         = {
         cmd  = nil,
         args = {}

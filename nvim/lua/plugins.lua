@@ -13,6 +13,7 @@ packer.startup(function(use)
         'folke/tokyonight.nvim',
         branch = 'main',
     }
+    use 'ayu-theme/ayu-vim'
     use 'kyazdani42/nvim-web-devicons' -- File icons
     use 'phaazon/hop.nvim'
     use 'nvim-lua/popup.nvim'
