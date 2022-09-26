@@ -47,6 +47,16 @@ require("mason-lspconfig").setup_handlers({
             on_attach = on_attach,
         }
     end,
+    ["html"] = function()
+        lspconfig.html.setup {
+            on_attach = function(c, b)
+                c.resolved_capabilities.document_formatting = false
+                c.resolved_capabilities.document_range_formatting = false
+                on_attach(c, b)
+            end,
+            capabilities = capabilities
+        }
+    end,
     ["tsserver"] = function()
         lspconfig.tsserver.setup {
             on_attach = function(c, b)
