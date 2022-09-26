@@ -20,6 +20,7 @@ keymap.set("n", "<F7>", ":NvimTreeRefresh<cr>:NvimTreeFindFile<cr>", { silent = 
 keymap.set('n', '<esc><esc>', ':noh<CR>')
 keymap.set('n', ']b', ':BufferLineCycleNext<CR>');
 keymap.set('n', '[b', ':BufferLineCyclePrev<CR>');
+keymap.set('n', '<leader>w', ':w<CR>', { remap = false })
 
 -- Move window in terminal mode
 keymap.set('n', '<leader>t', ':split <bar> :terminal<cr>')
