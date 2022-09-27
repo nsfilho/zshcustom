@@ -3,7 +3,11 @@
 # Autor: Nelio Santos (nelio@e01aio.com.br)
 #
 # Configurações gerais do zshrc com oh-my-zsh
-#
+
+if [ ! -f $HOME/.notmux ] && [ "x$TMUX" = "x" ] ; then
+    tmux 
+fi
+
 export VISUAL=vi
 export EDITOR=$VISUAL
 

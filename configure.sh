@@ -8,8 +8,8 @@ cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"
 # Install shell decorators
 #
 echo "Removing oh-my-zsh..."
-rm -rf $HOME/.oh-my-zsh
-curl -sS https://starship.rs/install.sh | sh -s -- -y
+rm -rf $HOME/.oh-my-zsh $HOME/.p10k.zsh >> $UPDATE_LOG
+curl -sS https://starship.rs/install.sh | sh -s -- -y >> $UPDATE_LOG
 
 echo "Installing fzf..."
 $HOME/.fzf/install --all >> $UPDATE_LOG
