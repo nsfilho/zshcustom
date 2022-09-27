@@ -2,18 +2,12 @@
 
 source $HOME/.zshcustoms/utils.sh
 
-echo -n "Checking oh-my-zsh: "
-if [ ! -d $HOME/.oh-my-zsh ] ; then
-    echo "installing..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-else
-    echo "already installed."
-fi
-
-cloneOrPull "https://github.com/romkatv/powerlevel10k.git" "$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
-cloneOrPull "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
-cloneOrPull "https://github.com/zsh-users/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
 cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"
+
+#
+# Install shell decorators
+#
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 echo "Installing fzf..."
 $HOME/.fzf/install --all >> $UPDATE_LOG
@@ -26,20 +20,9 @@ if [ -d $HOME/.zshcustoms ] ; then
 	if [ "$myOS" = "linux" ] ; then
         aptInstall "automake libtool libtool-bin"
     fi
-    if [ "$myOS" = "macos" ] ; then
-		mkdir -p $HOME/.zshcustoms/iterm2/
-        cloneOrPull "https://github.com/MartinSeeler/iterm2-material-design.git" "$HOME/.zshcustoms/iterm2/material-design"
-        cloneOrPull "https://github.com/dracula/iterm.git" "$HOME/.zshcustoms/iterm2/dracula"
-        npmGlobalInstall "svg-term-cli"
-	fi
 
 	deleteAndLink "$HOME/.zshcustoms/general/zshrc" "$HOME/.zshrc"
-	deleteAndLink "$HOME/.zshcustoms/themes/p10k.zsh" "$HOME/.p10k.zsh"
-
-	# Configurando Go
-	if [ -d /usr/local/go/bin ] ; then
-		/usr/local/go/bin/go get -u github.com/jmhobbs/terminal-parrot
-	fi
+	deleteAndLink "$HOME/.zshcustoms/general/starship.toml" "$HOME/.config/starship.toml"
 
 	# Configurando Git
     gitAlias "lg" "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
@@ -74,6 +57,10 @@ if [ -d $HOME/.zshcustoms ] ; then
     if [ ! -f $HOME/.cargo/bin/bat ] ; then
         $HOME/.cargo/bin/cargo install bat 
     fi
+
+    # if [ ! -f $HOME/.cargo/bin/z ] ; then
+    #     $HOME/.cargo/bin/cargo install zoxide --locked
+    # fi
 
     #
     # Dependencies for Neovim

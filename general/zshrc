@@ -4,37 +4,8 @@
 #
 # Configurações gerais do zshrc com oh-my-zsh
 #
-
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-export ZSH=~/.oh-my-zsh
-
-ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_DISABLE_COMPFIX="true"
-HIST_STAMPS="yyyy-mm-dd"
-plugins=(git history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
-DISABLE_UPDATE_PROMPT=true
-DISABLE_AUTO_UPDATE="true"
-ENABLE_CORRECTION="false"
-COMPLETION_WAITING_DOTS="true"
-
 export VISUAL=vi
 export EDITOR=$VISUAL
-
-# Previne iniciar tmux sob uma sessao em sudo
-ZSH_TMUX_AUTOSTART='false'
-if [ x"$SUDO_USER" = x ] ; then
-    if [ ! -f ~/.notmux ] ; then
-        ZSH_TMUX_AUTOSTART='true'
-        plugins=(tmux git history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
-    fi
-fi
-
-#
-# Habilitando tools
-#
 
 #
 # Scripts personalizados
@@ -68,29 +39,9 @@ if [ "$OSTYPE" = "darwin17.0" -o "$OSTYPE" = "darwin18.0" -o "$OSTYPE" = "darwin
     source ~/.zshcustoms/macos/zshrc
 fi
 
-#
-# SISTEMA DE COR PARA LESS && MAN
-#
-export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
-export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4) # yellow on blue
-export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
-export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7) # white
-export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
-export LESS_TERMCAP_mr=$(tput rev)
-export LESS_TERMCAP_mh=$(tput dim)
-export LESS_TERMCAP_ZN=$(tput ssubm)
-export LESS_TERMCAP_ZV=$(tput rsubm)
-export LESS_TERMCAP_ZO=$(tput ssupm)
-export LESS_TERMCAP_ZW=$(tput rsupm)
-export GROFF_NO_SGR=1
-
-source $ZSH/oh-my-zsh.sh
 source ~/.zshcustoms/general/aliases
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 if [ -f ~/.zshlocal ] ; then
     source ~/.zshlocal
 fi
@@ -101,10 +52,4 @@ function help() {
     fi
 }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# To customize prompt, run `p10k configure` or edit ~/.zshcustoms/themes/p10k.zsh.
-[[ ! -f ~/.zshcustoms/themes/p10k.zsh ]] || source ~/.zshcustoms/themes/p10k.zsh
-
+eval "$(starship init zsh)"

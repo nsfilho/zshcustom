@@ -2,21 +2,13 @@
 # E01-AIO Automacao Ltda. ME.
 # Autor: Nelio Santos (nelio@e01aio.com.br)
 #
-ZSH_TMUX_AUTOSTART='false'
 
 # Definições para Android Emulator (AVD)
 if [ -f ~/Library/Android/sdk/emulator/emulator ] ; then
     alias emulator="~/Library/Android/sdk/emulator/emulator"
 fi
 
-alias hosts="code /etc/hosts"
 alias df="df -h"
-#alias ls="ls -Gf"
-
-# Development variables
-export WORKSPACE_PATH=$HOME/workspace
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # key[F1] = '^[[[A'   key[F5] = '^[[[E'    key[F9]  = '^[[20~'
 # key[F2] = '^[[[B'   key[F6] = '^[[17~'   key[F10] = '^[[21~'

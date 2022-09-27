@@ -13,14 +13,15 @@ keymap.set('', 'sc', '<C-w>q', { remap = false })
 keymap.set('', 'so', '<C-w>o', { remap = false })
 
 -- general maps
-keymap.set('', '<C-x>', ':bd!<CR>') -- force close buffer
-keymap.set('n', '<leader>x', ':quitall<CR>')
+keymap.set('n', '<leader>xx', ':quitall<CR>')
+keymap.set('n', '<leader>xc', ':bd!<CR>')
 keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
 keymap.set("n", "<F7>", ":NvimTreeRefresh<cr>:NvimTreeFindFile<cr>", { silent = true })
 keymap.set('n', '<esc><esc>', ':noh<CR>')
 keymap.set('n', ']b', ':BufferLineCycleNext<CR>');
 keymap.set('n', '[b', ':BufferLineCyclePrev<CR>');
-keymap.set('n', '<leader>w', ':w<CR>', { remap = false })
+keymap.set('n', '<leader>ww', ':w<CR>', { remap = false })
+keymap.set('n', '<leader>wa', ':wall<CR>', { remap = false })
 
 -- Move window in terminal mode
 keymap.set('n', '<leader>t', ':split <bar> :terminal<cr>')
