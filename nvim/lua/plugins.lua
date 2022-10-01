@@ -18,7 +18,7 @@ packer.startup(function(use)
     use 'phaazon/hop.nvim'
     use 'nvim-lua/popup.nvim'
     use 'folke/which-key.nvim'
-    -- use 'lukas-reineke/indent-blankline.nvim'
+    use 'lukas-reineke/indent-blankline.nvim'
     use {
         "folke/trouble.nvim",
         requires = "kyazdani42/nvim-web-devicons",
@@ -83,6 +83,7 @@ packer.startup(function(use)
     use 'windwp/nvim-ts-autotag'
     use 'norcalli/nvim-colorizer.lua' -- see colors #ffee00 in buffer
     use 'dinhhuy258/git.nvim' -- For git blame & browse
+    use "j-hui/fidget.nvim"
 
     if (jit.arch == 'x64') then
         use 'tpope/vim-dadbod'

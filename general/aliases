@@ -4,6 +4,7 @@
 # Usando code como editor
 alias zedit="cd ~/.zshcustoms/ ; nvim"
 alias zlocal="nvim ~/.zshlocal"
+alias ".."="cd .."
 
 # Atalhos para o SSH
 if [ "$TERM" = "xterm-kitty" ] ; then

@@ -5,8 +5,10 @@
 # Configurações gerais do zshrc com oh-my-zsh
 
 if [ ! -f $HOME/.notmux ] && [ "x$TMUX" = "x" ] ; then
-    tmux 
+    tmux
 fi
+
+setopt auto_cd
 
 export VISUAL=vi
 export EDITOR=$VISUAL
