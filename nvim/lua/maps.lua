@@ -25,11 +25,8 @@ keymap.set('n', '<leader>wa', ':wall<CR>', { remap = false })
 
 -- Move window in terminal mode
 keymap.set('n', '<leader>t', ':split <bar> :terminal<cr>')
-keymap.set('t', 'sh', '<C-\\><C-n><C-w>h')
-keymap.set('t', 'sk', '<C-\\><C-n><C-w>k')
-keymap.set('t', 'sj', '<C-\\><C-n><C-w>j')
-keymap.set('t', 'sl', '<C-\\><C-n><C-w>l')
-keymap.set('t', '<C-x>', '<C-\\><C-n>:q!<CR>')
+keymap.set('t', '<C-d>', '<C-\\><C-n>')
+-- keymap.set('t', '<C-x>', '<C-\\><C-n>:q!<CR>')
 
 -- Move lines
 keymap.set('n', '<A-Down>', ':m .+1<CR>==')
@@ -52,7 +49,12 @@ keymap.set('n', '<leader>ff',
 )
 keymap.set('n', '<leader>fs', '<cmd>Telescope session-lens search_session<CR>')
 keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
-keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
+keymap.set('n', '<leader>fb', function()
+    require('telescope.builtin').buffers({
+        respect_gitignore = false,
+        initial_mode = 'normal',
+    })
+end)
 keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
 keymap.set('n', '<leader>fr', '<cmd>Telescope registers<CR>')
 keymap.set('n', '<leader>fn', function()

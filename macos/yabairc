@@ -36,6 +36,15 @@ yabai -m config window_gap                   15
 
 # apps to not manage (ignore)
 yabai -m rule --add app="^Preferências do Sistema$" manage=off
-yabai -m rule --add app="^Telegram$" manage=off
+yabai -m rule --add app="^Telegram" manage=off
+yabai -m rule --add app="^Steam" manage=off
+yabai -m rule --add app="^Liftoff" manage=off
+yabai -m rule --add app="^Fusion 360" manage=off
+yabai -m rule --add app="^Contatos" manage=off
+yabai -m rule --add app="^OpenVPN" manage=off
+yabai -m rule --add app="^Calendário" manage=off
+yabai -m rule --add app="^(Z|z)oom" manage=off
+yabai -m rule --add app="^eqMac" manage=off
+
 
 echo "yabai configuration loaded.."

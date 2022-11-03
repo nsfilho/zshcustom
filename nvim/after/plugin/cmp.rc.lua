@@ -28,20 +28,26 @@ cmp.setup {
         end,
     },
     formatting = {
-        format = lspkind.cmp_format({
-            mode = 'symbol_text', -- show only symbol annotations
-            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-            before = function(entry, vim_item)
-                local menu = source_mapping[entry.source.name]
-                if entry.source.name == "cmp_tabnine" then
-                    if entry.completion_item.data ~= nil and entry.completion_item.data.detail ~= nil then
-                        menu = entry.completion_item.data.detail .. " " .. menu
-                    end
+        format = function(entry, vim_item)
+            -- if you have lspkind installed, you can use it like
+            -- in the following line:
+            vim_item.kind = lspkind.symbolic(vim_item.kind, { mode = "symbol" })
+            vim_item.menu = source_mapping[entry.source.name]
+            if entry.source.name == "cmp_tabnine" then
+                local detail = (entry.completion_item.data or {}).detail
+                vim_item.kind = ""
+                if detail and detail:find('.*%%.*') then
+                    vim_item.kind = vim_item.kind .. ' ' .. detail
                 end
-                vim_item.menu = menu
-                return vim_item
+
+                if (entry.completion_item.data or {}).multiline then
+                    vim_item.kind = vim_item.kind .. ' ' .. '[ML]'
+                end
             end
-        })
+            local maxwidth = 80
+            vim_item.abbr = string.sub(vim_item.abbr, 1, maxwidth)
+            return vim_item
+        end,
     },
     mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),

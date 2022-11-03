@@ -52,6 +52,13 @@ if [ -f ~/.zshlocal ] ; then
     source ~/.zshlocal
 fi
 
+function nvm_start() {
+    unfunction "$0"
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+}
+
 function help() {
     if [ -f /usr/local/bin/mdless ] ; then
         mdless --no-pager ~/.zshcustoms/motd.md

@@ -84,6 +84,7 @@ packer.startup(function(use)
     use 'norcalli/nvim-colorizer.lua' -- see colors #ffee00 in buffer
     use 'dinhhuy258/git.nvim' -- For git blame & browse
     use "j-hui/fidget.nvim"
+    use "github/copilot.vim"
 
     if (jit.arch == 'x64') then
         use 'tpope/vim-dadbod'

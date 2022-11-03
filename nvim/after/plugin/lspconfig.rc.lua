@@ -29,17 +29,16 @@ local on_attach = function(client, bufnr)
     -- buf_set_keymap("n", "<leader>q", ":Telescope diagnostics<CR>", opts)
     buf_set_keymap("n", "<leader>q", ":TroubleToggle<CR>", opts)
     buf_set_keymap("n", "<leader>so", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting_sync()<CR>", opts)
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
 
     if (statusNavic) then
         navic.attach(client, bufnr)
     end
 end
 
-local capabilities = require("cmp_nvim_lsp").update_capabilities(
-    protocol.make_client_capabilities()
-)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+-- command to list server_capabilities: :lua =vim.lsp.get_active_clients()[1].server_capabilities
 require("mason-lspconfig").setup_handlers({
     function(server_name)
         -- print("Auto setup lsp for:" .. server_name)
@@ -50,8 +49,8 @@ require("mason-lspconfig").setup_handlers({
     ["html"] = function()
         lspconfig.html.setup {
             on_attach = function(c, b)
-                c.resolved_capabilities.document_formatting = false
-                c.resolved_capabilities.document_range_formatting = false
+                c.server_capabilities.documentFormattingProvider = false
+                c.server_capabilities.documentRangeFormattingProvider = false
                 on_attach(c, b)
             end,
             capabilities = capabilities
@@ -60,8 +59,8 @@ require("mason-lspconfig").setup_handlers({
     ["tsserver"] = function()
         lspconfig.tsserver.setup {
             on_attach = function(c, b)
-                c.resolved_capabilities.document_formatting = false
-                c.resolved_capabilities.document_range_formatting = false
+                c.server_capabilities.documentFormattingProvider = false
+                c.server_capabilities.documentRangeFormattingProvider = false
                 on_attach(c, b)
             end,
             filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
