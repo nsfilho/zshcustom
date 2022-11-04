@@ -11,7 +11,7 @@ SAVEHIST=10000
 setopt appendhistory
 
 if [ ! -f $HOME/.notmux ] && [ "x$TMUX" = "x" ] ; then
-    tmux attach
+    tmux new-session -A -s main
 fi
 
 setopt auto_cd
