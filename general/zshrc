@@ -4,8 +4,14 @@
 #
 # Configurações gerais do zshrc com oh-my-zsh
 
+# Save history
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
 if [ ! -f $HOME/.notmux ] && [ "x$TMUX" = "x" ] ; then
-    tmux
+    tmux attach
 fi
 
 setopt auto_cd
