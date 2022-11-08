@@ -40,6 +40,10 @@ if [ -d $HOME/.cargo/bin ] ; then
     export PATH="$PATH:$HOME/.cargo/bin"
 fi
 
+if [ -d $HOME/.platformio/penv/bin ] ; then
+    export PATH="$PATH:$HOME/.platformio/penv/bin"
+fi
+
 #
 # Personalizações por sistema operacional
 #
