@@ -81,7 +81,7 @@ packer.startup(function(use)
 
     use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
-    use 'norcalli/nvim-colorizer.lua' -- see colors #ffee00 in buffer
+    -- use 'norcalli/nvim-colorizer.lua' -- see colors #ffee00 in buffer
     use 'dinhhuy258/git.nvim' -- For git blame & browse
     use "j-hui/fidget.nvim"
     use "github/copilot.vim"
