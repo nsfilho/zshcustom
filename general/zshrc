@@ -19,7 +19,7 @@ ZSH_DISABLE_COMPFIX="true"
 DISABLE_UPDATE_PROMPT=true
 DISABLE_AUTO_UPDATE="true"
 ENABLE_CORRECTION="false"
-plugins=(git npm ansible brew docker nvm zsh-interactive-cd history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git npm ansible brew docker nvm zsh-interactive-cd history-substring-search)
 source $ZSH/oh-my-zsh.sh
 
 if [ ! -f $HOME/.notmux ] && [ "x$TMUX" = "x" ] ; then
