@@ -16,6 +16,9 @@ cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"
 if [ ! -d $HOME/.oh-my-zsh/ ] ; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
+if [ ! -d $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] ; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+fi
 curl -sS https://starship.rs/install.sh | sh -s -- -y >> $UPDATE_LOG
 
 echo "Installing fzf..."
