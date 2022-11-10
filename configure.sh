@@ -7,8 +7,15 @@ cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"
 #
 # Install shell decorators
 #
-echo "Removing oh-my-zsh..."
-rm -rf $HOME/.oh-my-zsh $HOME/.p10k.zsh >> $UPDATE_LOG
+
+# if [ -d $HOME/.oh-my-zsh ] ; then
+#     echo "Removing oh-my-zsh..."
+#     rm -rf $HOME/.oh-my-zsh $HOME/.p10k.zsh >> $UPDATE_LOG
+# fi
+
+if [ ! -d $HOME/.oh-my-zsh/ ] ; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
 curl -sS https://starship.rs/install.sh | sh -s -- -y >> $UPDATE_LOG
 
 echo "Installing fzf..."
