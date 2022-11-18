@@ -1,4 +1,3 @@
----@diagnostic disable: need-check-nil
 local status, cmp = pcall(require, "cmp")
 if (not status) then return end
 
@@ -61,20 +60,20 @@ cmp.setup {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true
         },
-        ["<Tab>"] = function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            else
-                fallback()
-            end
-        end,
-        ["<S-Tab>"] = function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            else
-                fallback()
-            end
-        end
+        -- ["<Tab>"] = function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_next_item()
+        --     else
+        --         fallback()
+        --     end
+        -- end,
+        -- ["<S-Tab>"] = function(fallback)
+        --     if cmp.visible() then
+        --         cmp.select_prev_item()
+        --     else
+        --         fallback()
+        --     end
+        -- end
     },
     sources = {
         { name = "nvim_lsp" },

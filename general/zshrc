@@ -19,7 +19,7 @@ DISABLE_AUTO_UPDATE="true"
 ENABLE_CORRECTION="false"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
-plugins=(git npm ansible brew docker nvm zsh-interactive-cd history-substring-search zsh-autosuggestions)
+plugins=(zsh-interactive-cd history-substring-search zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 if [ ! -f $HOME/.notmux ] && [ "x$TMUX" = "x" ] ; then
@@ -74,12 +74,14 @@ if [ -f ~/.zshlocal ] ; then
     source ~/.zshlocal
 fi
 
-# function nvm_start() {
-#     unfunction "$0"
-#     export NVM_DIR="$HOME/.nvm"
-#     [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-#     [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-# }
+function nvm_start() {
+    unfunction "$0"
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+}
+
+nvm_start
 
 function help() {
     if [ -f /usr/local/bin/mdless ] ; then
