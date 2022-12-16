@@ -56,6 +56,10 @@ if [ -d $HOME/.platformio/penv/bin ] ; then
     export PATH="$PATH:$HOME/.platformio/penv/bin"
 fi
 
+if [ -d $HOME/.luarocks/bin ] ; then
+    export PATH="$PATH:$HOME/.luarocks/bin"
+fi
+
 #
 # Personalizações por sistema operacional
 #

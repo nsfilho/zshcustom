@@ -5,6 +5,11 @@ local statusNavic, navic = pcall(require, "nvim-navic")
 
 local protocol = require("vim.lsp.protocol")
 
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- if you want to set up formatting on save, you can use this as a callback
+local augroupFormatting = vim.api.nvim_create_augroup("LspFormatting", {})
+
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
@@ -15,6 +20,17 @@ local on_attach = function(client, bufnr)
     -- enable auto-completition by <c-x><c-o>
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
+    -- maps for lsp
+    buf_set_keymap("n", "<leader>cf", ":Lspsaga lsp_finder<CR>", { silent = true })
+    buf_set_keymap("n", "K", ":Lspsaga hover_doc<CR>", { silent = true })
+    buf_set_keymap("n", "<leader>ck", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', { silent = true })
+    buf_set_keymap("n", "<leader>cj", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', { silent = true })
+    buf_set_keymap("n", "<leader>cs", ":Lspsaga signature_help<CR>", { silent = true })
+    buf_set_keymap("n", "<leader>ci", ":Lspsaga show_line_diagnostics<CR>", { silent = true })
+    buf_set_keymap("n", "<leader>cn", ":Lspsaga diagnostic_jump_next<CR>", { silent = true })
+    buf_set_keymap("n", "<leader>cp", ":Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+    buf_set_keymap("n", "<leader>cr", ":Lspsaga rename<CR>", { silent = true })
+    buf_set_keymap("n", "<leader>cd", ":Lspsaga preview_definition<CR>", { silent = true })
     buf_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
     buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
     buf_set_keymap("n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
@@ -29,14 +45,12 @@ local on_attach = function(client, bufnr)
     -- buf_set_keymap("n", "<leader>q", ":Telescope diagnostics<CR>", opts)
     buf_set_keymap("n", "<leader>q", ":TroubleToggle<CR>", opts)
     buf_set_keymap("n", "<leader>so", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
+    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format { async = false }<CR>", opts)
 
     if (statusNavic) then
         navic.attach(client, bufnr)
     end
 end
-
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- command to list server_capabilities: :lua =vim.lsp.get_active_clients()[1].server_capabilities
 require("mason-lspconfig").setup_handlers({
@@ -49,8 +63,8 @@ require("mason-lspconfig").setup_handlers({
     ["html"] = function()
         lspconfig.html.setup {
             on_attach = function(c, b)
-                c.server_capabilities.documentFormattingProvider = false
-                c.server_capabilities.documentRangeFormattingProvider = false
+                -- c.server_capabilities.documentFormattingProvider = false
+                -- c.server_capabilities.documentRangeFormattingProvider = false
                 on_attach(c, b)
             end,
             capabilities = capabilities
@@ -59,8 +73,8 @@ require("mason-lspconfig").setup_handlers({
     ["tsserver"] = function()
         lspconfig.tsserver.setup {
             on_attach = function(c, b)
-                c.server_capabilities.documentFormattingProvider = false
-                c.server_capabilities.documentRangeFormattingProvider = false
+                -- c.server_capabilities.documentFormattingProvider = false
+                -- c.server_capabilities.documentRangeFormattingProvider = false
                 on_attach(c, b)
             end,
             filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
