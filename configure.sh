@@ -33,7 +33,7 @@ if [ -d $HOME/.zshcustoms ] ; then
 
     checkOS
 	if [ "$myOS" = "linux" ] ; then
-        aptInstall "automake libtool libtool-bin"
+        aptInstall "automake libtool libtool-bin pkg-config"
     fi
 
 	deleteAndLink "$HOME/.zshcustoms/general/zshrc" "$HOME/.zshrc"
