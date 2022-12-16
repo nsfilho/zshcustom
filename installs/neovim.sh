@@ -7,9 +7,9 @@ NEOVIM_LAST_VERSION="0.8.1"
 
 if [ "$myOS" = "linux" ] && [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
     echo -n "Checking neovim: installing..."
-    rm -rf /usr/local/nvim-linux64/bin/nvim
+    rm -rf /usr/local/nvim-linux64/bin/nvim >> $UPDATE_LOG 2>&1
     downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v0.8.1.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
-    make all install >> $UPDATE_LOG
+    make all install
     touch $HOME/.neovim-$NEOVIM_LAST_VERSION
 else
     echo "already installed."
