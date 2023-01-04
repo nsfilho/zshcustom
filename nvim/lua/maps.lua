@@ -52,7 +52,8 @@ keymap.set('n', '<leader>ss', '<cmd>Gitsigns preview_hunk<cr>')
 -- telescope
 keymap.set('n', '<leader>ff',
     function()
-        require("telescope.builtin").git_files({ hidden = true })
+        -- require("telescope.builtin").git_files({ show_untracked = true, use_git_root = true, recurse_submodules = true, hidden = true })
+        require("telescope.builtin").find_files()
     end
 )
 keymap.set('n', '<leader>fs', '<cmd>Telescope session-lens search_session<CR>')

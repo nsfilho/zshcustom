@@ -13,7 +13,6 @@ packer.startup(function(use)
         'folke/tokyonight.nvim',
         branch = 'main',
     }
-    use 'ayu-theme/ayu-vim'
     use 'kyazdani42/nvim-web-devicons' -- File icons
     use 'phaazon/hop.nvim'
     use 'nvim-lua/popup.nvim'
@@ -34,17 +33,7 @@ packer.startup(function(use)
             }
         end
     }
-    use {
-        "petertriho/nvim-scrollbar",
-        config = function()
-            require("scrollbar").setup {}
-        end
-    }
     use 'rmagatti/auto-session'
-    use {
-        'rmagatti/session-lens',
-        requires = { 'rmagatti/auto-session', 'nvim-telescope/telescope.nvim' },
-    }
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
@@ -73,23 +62,16 @@ packer.startup(function(use)
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-calc'
     use 'f3fora/cmp-spell'
-    -- use 'folke/lsp-colors.nvim'
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use 'numToStr/Comment.nvim'
-    use 'SmiteshP/nvim-navic' -- show inside context in statusline
     use 'haringsrob/nvim_context_vt' -- show end tags
 
     use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
-    -- use 'norcalli/nvim-colorizer.lua' -- see colors #ffee00 in buffer
-    use 'dinhhuy258/git.nvim' -- For git blame & browse
-    use "j-hui/fidget.nvim"
+    -- use "j-hui/fidget.nvim"
     use "github/copilot.vim"
 
     if (jit.arch == 'x64') then
-        use 'tpope/vim-dadbod'
-        use 'kristijanhusak/vim-dadbod-completion'
-        use 'kristijanhusak/vim-dadbod-ui'
         use { 'tzachar/cmp-tabnine', after = "nvim-cmp", run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
     end
     -- use 'editorconfig/editorconfig-vim'
