@@ -56,7 +56,7 @@ keymap.set('n', '<leader>ff',
         require("telescope.builtin").find_files()
     end
 )
-keymap.set('n', '<leader>fs', '<cmd>Telescope session-lens search_session<CR>')
+keymap.set('n', '<leader>fw', 'viw"zy:lua require("telescope.builtin").grep_string({ search = vim.fn.getreg("z") })<CR>')
 keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<CR>')
 keymap.set('n', '<leader>fb', function()
     require('telescope.builtin').buffers({

@@ -46,6 +46,7 @@ yabai -m rule --add app="^OpenVPN" manage=off
 yabai -m rule --add app="^Calendário" manage=off
 yabai -m rule --add app="^(Z|z)oom" manage=off
 yabai -m rule --add app="^eqMac" manage=off
+yabai -m rule --add app="^uSign" manage=off
 
 
 echo "yabai configuration loaded.."

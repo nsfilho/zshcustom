@@ -33,7 +33,7 @@ packer.startup(function(use)
             }
         end
     }
-    use 'rmagatti/auto-session'
+    -- use 'rmagatti/auto-session'
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
@@ -47,7 +47,7 @@ packer.startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lualine/lualine.nvim' -- Statusline
-    use 'akinsho/bufferline.nvim'
+    -- use 'akinsho/bufferline.nvim'
     use 'neovim/nvim-lspconfig' -- LSP
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
