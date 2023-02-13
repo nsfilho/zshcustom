@@ -70,6 +70,7 @@ packer.startup(function(use)
     use 'windwp/nvim-ts-autotag'
     -- use "j-hui/fidget.nvim"
     use "github/copilot.vim"
+    use "tpope/vim-fugitive"
 
     if (jit.arch == 'x64') then
         use { 'tzachar/cmp-tabnine', after = "nvim-cmp", run = './install.sh', requires = 'hrsh7th/nvim-cmp' }

@@ -45,7 +45,7 @@ local on_attach = function(client, bufnr)
     -- buf_set_keymap("n", "<leader>q", ":Telescope diagnostics<CR>", opts)
     buf_set_keymap("n", "<leader>q", ":TroubleToggle<CR>", opts)
     buf_set_keymap("n", "<leader>so", [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
-    buf_set_keymap("n", "<leader>f", "<cmd>lua vim.lsp.buf.format { async = false }<CR>", opts)
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.format { async = false }<CR>", opts)
 
     if (statusNavic) then
         navic.attach(client, bufnr)
@@ -62,22 +62,14 @@ require("mason-lspconfig").setup_handlers({
     end,
     ["html"] = function()
         lspconfig.html.setup {
-            on_attach = function(c, b)
-                -- c.server_capabilities.documentFormattingProvider = false
-                -- c.server_capabilities.documentRangeFormattingProvider = false
-                on_attach(c, b)
-            end,
+            on_attach = on_attach,
             capabilities = capabilities
         }
     end,
     ["tsserver"] = function()
         lspconfig.tsserver.setup {
-            on_attach = function(c, b)
-                -- c.server_capabilities.documentFormattingProvider = false
-                -- c.server_capabilities.documentRangeFormattingProvider = false
-                on_attach(c, b)
-            end,
-            filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+            on_attach = on_attach,
+            -- filetypes = { "typescript", "typescriptreact", "typescript.tsx", "javascript" },
             cmd = { "typescript-language-server", "--stdio" },
             capabilities = capabilities
         }

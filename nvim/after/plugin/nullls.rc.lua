@@ -24,6 +24,7 @@ null_ls.setup({
             prefer_local = "node_modules/.bin",
         }),
         null_ls.builtins.completion.vsnip,
+        null_ls.builtins.formatting.xmlformat,
     },
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
