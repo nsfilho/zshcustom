@@ -14,6 +14,6 @@ if (jit.arch ~= 'x64') then
     }
 else
     masonConfig.setup {
-        ensure_installed = { "sumneko_lua", "rust_analyzer", "bashls", "tsserver", "html", "yamlls", "taplo" },
+        ensure_installed = { "lua_ls", "rust_analyzer", "bashls", "tsserver", "html", "yamlls", "taplo" },
     }
 end

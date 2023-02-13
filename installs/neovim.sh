@@ -3,13 +3,13 @@
 # Code piece to install neovim
 #
 source $HOME/.zshcustoms/utils.sh
-NEOVIM_LAST_VERSION="0.8.1"
+NEOVIM_LAST_VERSION="0.8.3"
 
 if [ "$myOS" = "linux" ] && [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
     echo -n "Checking neovim: installing..."
     rm -rf /usr/local/nvim-linux64/bin/nvim >> $UPDATE_LOG 2>&1
     if [ ! -d $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
-        downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v0.8.1.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
+        downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v$NEOVIM_LAST_VERSION.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
     fi
     cd $HOME/dist/neovim-$NEOVIM_LAST_VERSION
     make all install
