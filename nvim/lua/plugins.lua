@@ -1,12 +1,17 @@
-local status, packer = pcall(require, "packer")
-if (not status) then
-    print("Packer is not installed")
-    return
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
 
-vim.cmd [[packadd packer.nvim]]
+local packer_bootstrap = ensure_packer()
 
-packer.startup(function(use)
+require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'lewis6991/impatient.nvim'
     use {
@@ -33,7 +38,7 @@ packer.startup(function(use)
             }
         end
     }
-    -- use 'rmagatti/auto-session'
+    use 'rmagatti/auto-session'
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
@@ -68,12 +73,16 @@ packer.startup(function(use)
 
     use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
-    -- use "j-hui/fidget.nvim"
+    use "j-hui/fidget.nvim"
     use "github/copilot.vim"
     use "tpope/vim-fugitive"
 
     if (jit.arch == 'x64') then
         use { 'tzachar/cmp-tabnine', after = "nvim-cmp", run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+    end
+
+    if packer_bootstrap then
+        require('packer').sync()
     end
     -- use 'editorconfig/editorconfig-vim'
 
