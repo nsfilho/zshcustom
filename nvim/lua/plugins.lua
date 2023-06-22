@@ -38,7 +38,7 @@ require('packer').startup(function(use)
             }
         end
     }
-    use 'rmagatti/auto-session'
+    -- use 'rmagatti/auto-session'
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
@@ -77,9 +77,9 @@ require('packer').startup(function(use)
     use "github/copilot.vim"
     use "tpope/vim-fugitive"
 
-    if (jit.arch == 'x64') then
-        use { 'tzachar/cmp-tabnine', after = "nvim-cmp", run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
-    end
+    -- if (jit.arch == 'x64') then
+    --     use { 'tzachar/cmp-tabnine', after = "nvim-cmp", run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
+    -- end
 
     if packer_bootstrap then
         require('packer').sync()
