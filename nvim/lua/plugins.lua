@@ -73,7 +73,7 @@ require('packer').startup(function(use)
 
     use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
-    use "j-hui/fidget.nvim"
+    -- use "j-hui/fidget.nvim"
     use "github/copilot.vim"
     use "tpope/vim-fugitive"
 
