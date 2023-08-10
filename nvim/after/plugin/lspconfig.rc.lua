@@ -21,7 +21,7 @@ local on_attach = function(client, bufnr)
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- maps for lsp
-    buf_set_keymap("n", "<leader>cf", ":Lspsaga lsp_finder<CR>", { silent = true })
+    buf_set_keymap("n", "<leader>cf", ":Lspsaga finder<CR>", { silent = true })
     buf_set_keymap("n", "K", ":Lspsaga hover_doc<CR>", { silent = true })
     buf_set_keymap("n", "<leader>ck", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>', { silent = true })
     buf_set_keymap("n", "<leader>cj", '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>', { silent = true })

@@ -32,6 +32,9 @@ if [ $? -eq 0 ] ; then
     pip install neovim
     pip3 install pynvim
 fi
+aptInstall "python3-neovim"
+aptInstall "python3-pynvim"
+aptInstall "npm"
 
 
 npmGlobalInstall "neovim"
