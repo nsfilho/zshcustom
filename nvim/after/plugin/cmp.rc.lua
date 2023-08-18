@@ -6,15 +6,15 @@ if (not statusKind) then return end
 
 -- nvim-cmp setup
 local source_mapping = {
-    nvim_lsp = "[LSP]",
-    nvim_lua = "[Lua]",
-    buffer = "[Buffer]",
-    cmp_tabnine = "[TN]",
-    path = "[Path]",
-    spell = "[Spell]",
-    calc = "[Calc]",
-    nvim_lsp_signature_help = "[Signature]",
-    cmdline = "[Command]"
+    nvim_lsp = "🔨",
+    nvim_lua = "🛸",
+    buffer = "🔖",
+    cmp_tabnine = "🔦",
+    path = "🗂️",
+    spell = "💬",
+    calc = "🔢",
+    nvim_lsp_signature_help = "🖊️",
+    cmdline = "👉"
 }
 
 cmp.setup {

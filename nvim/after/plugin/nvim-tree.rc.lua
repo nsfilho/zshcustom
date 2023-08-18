@@ -72,7 +72,7 @@ local function on_attach(bufnr)
     vim.keymap.set('n', 'q', api.tree.close, opts('Close'))
     vim.keymap.set('n', 'r', api.fs.rename, opts('Rename'))
     vim.keymap.set('n', 'R', api.tree.reload, opts('Refresh'))
-    vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
+    -- vim.keymap.set('n', 's', api.node.run.system, opts('Run System'))
     vim.keymap.set('n', 'S', api.tree.search_node, opts('Search'))
     vim.keymap.set('n', 'U', api.tree.toggle_custom_filter, opts('Toggle Hidden'))
     vim.keymap.set('n', 'W', api.tree.collapse_all, opts('Collapse'))
@@ -108,7 +108,6 @@ tree.setup {
         update_cwd  = false,
         ignore_list = {}
     },
-    remove_keymaps      = { "s" },
     system_open         = {
         cmd  = nil,
         args = {}
@@ -117,9 +116,5 @@ tree.setup {
         width = 30,
         -- height = 30,
         side = 'left',
-        mappings = {
-            custom_only = false,
-            list = {}
-        }
     }
 }

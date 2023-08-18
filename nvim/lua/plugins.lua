@@ -38,7 +38,7 @@ require('packer').startup(function(use)
             }
         end
     }
-    use 'rmagatti/auto-session'
+    -- use 'rmagatti/auto-session'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
     use {
@@ -47,6 +47,7 @@ require('packer').startup(function(use)
             require('nvim-treesitter.install').update({ with_sync = true })
         end,
     }
+    use 'rcarriga/nvim-notify'
     use 'nvim-treesitter/nvim-treesitter-context'
     use 'lewis6991/gitsigns.nvim'
     use 'kyazdani42/nvim-tree.lua'
