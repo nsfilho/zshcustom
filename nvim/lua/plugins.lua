@@ -13,12 +13,12 @@ local packer_bootstrap = ensure_packer()
 
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
-    -- use 'lewis6991/impatient.nvim'
     use {
         'folke/tokyonight.nvim',
         branch = 'main',
     }
     use 'kyazdani42/nvim-web-devicons' -- File icons
+    use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'phaazon/hop.nvim'
     use 'nvim-lua/popup.nvim'
     use 'folke/which-key.nvim'
@@ -38,8 +38,7 @@ require('packer').startup(function(use)
             }
         end
     }
-    -- use 'rmagatti/auto-session'
-    use 'nvim-lua/plenary.nvim' -- Common utilities
+    use 'rmagatti/auto-session'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-file-browser.nvim'
     use {
@@ -52,17 +51,10 @@ require('packer').startup(function(use)
     use 'lewis6991/gitsigns.nvim'
     use 'kyazdani42/nvim-tree.lua'
     use 'nvim-lualine/lualine.nvim' -- Statusline
-    -- use 'akinsho/bufferline.nvim'
     use 'neovim/nvim-lspconfig'     -- LSP
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
-    use({
-        'nvimdev/lspsaga.nvim',
-        after = 'nvim-lspconfig',
-        config = function()
-            require('lspsaga').setup({})
-        end,
-    })
+    use 'nvimdev/lspsaga.nvim'
     use 'onsails/lspkind-nvim' -- vscode-like pictograms
     use 'hrsh7th/nvim-cmp'     -- Completion
     use 'hrsh7th/cmp-vsnip'    -- Completion
@@ -71,22 +63,21 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-buffer'   -- Completion
     use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
     use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/cmp-emoji'
     use 'hrsh7th/cmp-calc'
     use 'f3fora/cmp-spell'
-    use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+    -- use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use 'numToStr/Comment.nvim'
     use 'haringsrob/nvim_context_vt'      -- show end tags
-
-    -- use 'windwp/nvim-autopairs'
-    use 'windwp/nvim-ts-autotag'
-    use { "j-hui/fidget.nvim", tag = 'legacy' }
     use "github/copilot.vim"
     use "tpope/vim-fugitive"
+
+    use 'mfussenegger/nvim-dap'
+    use 'rcarriga/nvim-dap-ui'
+    use 'simrat39/rust-tools.nvim'
 
     if packer_bootstrap then
         require('packer').sync()
     end
-    -- use 'editorconfig/editorconfig-vim'
 end)
 
--- require('impatient')

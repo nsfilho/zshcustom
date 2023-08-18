@@ -16,6 +16,7 @@ end
 autosession.setup {
     log_level = "error",
     auto_session_suppress_dirs = { "~/", "~/Downloads" },
+    auto_session_allowed_dirs = { "~/workspace" },
     pre_save_cmds = { _G.close_all_floating_wins },
     cwd_change_handling = {
         restore_upcoming_session = true, -- already the default, no need to specify like this, only here as an example

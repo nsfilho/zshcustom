@@ -81,6 +81,7 @@ cmp.setup {
         { name = "path" },
         { name = "vsnip" },
         { name = "cmp_tabnine" },
+        { name = "emoji" },
         { name = "spell" },
         {
             name = "buffer",
