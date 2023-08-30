@@ -73,6 +73,7 @@ keymap.set('n', '<leader>fn', function()
         hidden = true,
         respect_gitignore = false,
         initial_mode = 'normal',
+        path = vim.fn.expand('%:p:h'),
     })
 end)
 

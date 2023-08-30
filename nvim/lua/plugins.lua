@@ -18,7 +18,7 @@ require('packer').startup(function(use)
         branch = 'main',
     }
     use 'kyazdani42/nvim-web-devicons' -- File icons
-    use 'nvim-lua/plenary.nvim' -- Common utilities
+    use 'nvim-lua/plenary.nvim'        -- Common utilities
     use 'phaazon/hop.nvim'
     use 'nvim-lua/popup.nvim'
     use 'folke/which-key.nvim'
@@ -69,7 +69,7 @@ require('packer').startup(function(use)
     use 'f3fora/cmp-spell'
     -- use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use 'numToStr/Comment.nvim'
-    use 'haringsrob/nvim_context_vt'      -- show end tags
+    use 'haringsrob/nvim_context_vt' -- show end tags
     use "github/copilot.vim"
     use "tpope/vim-fugitive"
 
@@ -77,8 +77,15 @@ require('packer').startup(function(use)
     use 'rcarriga/nvim-dap-ui'
     use 'simrat39/rust-tools.nvim'
 
+    use {
+        'linrongbin16/lsp-progress.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lsp-progress').setup()
+        end
+    }
+
     if packer_bootstrap then
         require('packer').sync()
     end
 end)
-
