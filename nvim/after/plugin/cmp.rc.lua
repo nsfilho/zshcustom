@@ -18,6 +18,9 @@ local source_mapping = {
 }
 
 cmp.setup {
+    experimental = {
+        ghost_text = false, -- avoid conflict with copilot
+    },
     view = {
         entries = { name = 'custom', selection_order = 'near_cursor' }
     },
@@ -60,6 +63,8 @@ cmp.setup {
             behavior = cmp.ConfirmBehavior.Replace,
             select = true
         },
+        -- Removing the bellow lines to avoid conflict with copilot
+        -- 
         -- ["<Tab>"] = function(fallback)
         --     if cmp.visible() then
         --         cmp.select_next_item()

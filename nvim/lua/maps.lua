@@ -1,6 +1,7 @@
 local keymap = vim.keymap
 
 -- general mappings
+keymap.set("i", "<C-c>", "<Esc>", { silent = true, remap = false }) -- facilitate exit from insert mode
 keymap.set("n", "<C-d>", "<C-d>zz")
 keymap.set("n", "<C-u>", "<C-u>zz")
 keymap.set("n", "n", "nzzzv")
@@ -8,8 +9,8 @@ keymap.set("n", "N", "Nzzzv")
 keymap.set("n", "J", "mzJ`z")
 
 -- Split window
-keymap.set('n', 'ss', ':split<Return><C-w>w')
-keymap.set('n', 'sv', ':vsplit<Return><C-w>w')
+keymap.set('n', 'ss', ':split<Return>')
+keymap.set('n', 'sv', ':vsplit<Return>')
 -- Move window
 -- keymap.set('n', '<Space>', '<C-w>w')
 keymap.set('', 'sh', '<C-w>h', { remap = false })
@@ -19,13 +20,24 @@ keymap.set('', 'sl', '<C-w>l', { remap = false })
 keymap.set('', 'sc', '<C-w>q', { remap = false })
 keymap.set('', 'so', '<C-w>o', { remap = false })
 keymap.set('', 'sw', ':set wrap!<Return>', { remap = false })
+-- keymap.set('', 's=', ':vert resize +5<Return>', { silent = true, remap = false })
+-- keymap.set('', 's-', ':vert resize -5<Return>', { silent = true, remap = false })
 
 -- general maps
 keymap.set('n', '<leader>xx', ':quitall<CR>')
 keymap.set('n', '<leader>xc', ':bd!<CR>')
-keymap.set('n', '<C-n>', ':NvimTreeToggle<CR>')
-keymap.set("n", "<F7>", ":NvimTreeRefresh<cr>:NvimTreeFindFile<cr>", { silent = true })
-keymap.set('n', '<esc><esc>', ':noh<CR>')
+keymap.set('n', '<C-n>', function ()
+    -- check if nvim-tree is opened
+    local tree = require('nvim-tree.api')
+    if tree.tree.is_visible() then
+        tree.tree.close()
+    else
+        tree.tree.open({
+            find_file = true,
+        })
+    end
+end)
+-- keymap.set('n', '<esc><esc>', ':noh<CR>')
 keymap.set('n', ']b', ':BufferLineCycleNext<CR>');
 keymap.set('n', '[b', ':BufferLineCyclePrev<CR>');
 keymap.set('n', '<leader>ww', ':w<CR>', { remap = false })
