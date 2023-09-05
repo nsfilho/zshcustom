@@ -95,3 +95,7 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter" }, {
 
 -- Add asterisks in block comments
 vim.opt.formatoptions:append { 'r' }
+
+-- added for neorg
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = "nc"

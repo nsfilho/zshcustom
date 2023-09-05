@@ -71,7 +71,6 @@ function isUpdate()
     fi
 }
 
-
 function finishUpdate()
 {
     rm -f $UPDATE_MARK
@@ -116,7 +115,6 @@ function checkGemInstall()
         echo "Checking Ruby Packages [$packages]: no ruby installed."
     fi
 }
-
 
 function gitAlias()
 {

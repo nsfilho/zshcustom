@@ -54,6 +54,24 @@ telescope.setup {
 
 telescope.load_extension("file_browser")
 
+local is_git_dir = function()
+    return os.execute('git rev-parse --is-inside-work-tree >> /dev/null 2>&1')
+end
+
+vim.api.nvim_create_autocmd('VimEnter', {
+    callback = function()
+        local ts_builtin = require('telescope.builtin')
+        vim.api.nvim_buf_delete(0, { force = true })
+        if is_git_dir() == 0 then
+            ts_builtin.git_files({ show_untracked = true })
+        else
+            ts_builtin.find_files()
+        end
+    end,
+})
+
+
+
 local statusLens, _sessionlens = pcall(require, "session-lens")
 if (statusLens) then
     telescope.load_extension("session-lens")

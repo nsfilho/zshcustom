@@ -1,6 +1,8 @@
 local status, ts = pcall(require, "nvim-treesitter.configs")
 if (not status) then return end
 
+require("nvim-treesitter.install").compilers = { "gcc-13" }
+
 ts.setup {
     ensure_installed = { "bash", "c", "cpp", "css", "dockerfile", "gitignore", "html", "java", "javascript", "json",
         "lua", "make", "markdown", "rust", "scss", "toml", "typescript", "tsx", "yaml" },

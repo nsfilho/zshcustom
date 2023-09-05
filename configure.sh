@@ -1,18 +1,14 @@
 #!/bin/bash
-
 source $HOME/.zshcustoms/utils.sh
 
+#
+# Fuzzy finder
+#
 cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"
 
 #
 # Install shell decorators
 #
-
-# if [ -d $HOME/.oh-my-zsh ] ; then
-#     echo "Removing oh-my-zsh..."
-#     rm -rf $HOME/.oh-my-zsh $HOME/.p10k.zsh >> $UPDATE_LOG
-# fi
-
 if [ ! -d $HOME/.oh-my-zsh/ ] ; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
@@ -22,6 +18,10 @@ fi
 if [ ! -d $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] ; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 fi
+
+#
+# Starship customizations
+#
 curl -sS https://starship.rs/install.sh | sh -s -- -y >> $UPDATE_LOG
 
 echo "Installing fzf..."

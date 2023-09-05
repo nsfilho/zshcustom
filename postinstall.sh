@@ -2,7 +2,6 @@
 #
 # Arquivo com as principais diretivas de instalacao
 #
-
 checkOS
 echo "Operational System: $myOS"
 echo "Checking basis OS packages..."
@@ -12,7 +11,7 @@ if [ "$myOS" = "linux" ] ; then
     aptInstall "ripgrep fd-find"
     if [ ! -f /usr/bin/node ] ; then
         # Install Node 16.x
-        curl -sL https://deb.nodesource.com/setup_16.x | bash -
+        curl -sL https://deb.nodesource.com/setup_18.x | bash -
         apt-get install -y nodejs
     fi
 fi

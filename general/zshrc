@@ -67,7 +67,7 @@ if [ "$OSTYPE" = "linux-gnueabihf" ] || [ "$OSTYPE" = "linux-gnu" ]; then
     source ~/.zshcustoms/linux/zshrc
 fi
 
-if [ "$OSTYPE" = "darwin17.0" -o "$OSTYPE" = "darwin18.0" -o "$OSTYPE" = "darwin19.0" -o "$OSTYPE" = "darwin20.0" -o "$OSTYPE" = "darwin21.0" ] ; then
+if [ "$OSTYPE" = "darwin21.0" -o "$OSTYPE" = "darwin22.0" ] ; then
     source ~/.zshcustoms/macos/zshrc
 fi
 

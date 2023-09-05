@@ -3,7 +3,6 @@
 # Prepare your computer to receive the shell zsh with esteroids
 # Author: Nelio Santos (nsfilho@icloud.com)
 #
-
 function downloadPart()
 {
     partName=$1
