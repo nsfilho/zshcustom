@@ -17,7 +17,7 @@ if [ "$myOS" = "linux" ] ; then
 fi
 
 if [ "$myOS" = "macos" ] ; then
-    brewInstall "terminal-notifier asciinema cmake tmux neovim llvm ripgrep exa bat wget ncdu fd"
+    brewInstall "terminal-notifier asciinema cmake tmux neovim llvm ripgrep exa bat wget ncdu fd dialog"
     brewUpgrade "neovim"
 fi
 

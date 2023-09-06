@@ -1,7 +1,7 @@
-local status, lspkind = pcall(require, "lspkind")
-if (not status) then return end
+local lspkind_ok, lspkind = pcall(require, "lspkind")
+if (not lspkind_ok) then return end
 
-require('lspkind').init({
+lspkind.init({
     -- DEPRECATED (use mode instead): enables text annotations
     --
     -- default: true
@@ -23,30 +23,30 @@ require('lspkind').init({
     --
     -- default: {}
     symbol_map = {
-      Text = "",
-      Method = "",
-      Function = "",
+      Text = "󰉿",
+      Method = "󰆧",
+      Function = "󰊕",
       Constructor = "",
-      Field = "ﰠ",
-      Variable = "",
-      Class = "ﴯ",
+      Field = "󰜢",
+      Variable = "󰀫",
+      Class = "󰠱",
       Interface = "",
       Module = "",
-      Property = "ﰠ",
-      Unit = "塞",
-      Value = "",
+      Property = "󰜢",
+      Unit = "󰑭",
+      Value = "󰎠",
       Enum = "",
-      Keyword = "",
+      Keyword = "󰌋",
       Snippet = "",
-      Color = "",
-      File = "",
-      Reference = "",
-      Folder = "",
+      Color = "󰏘",
+      File = "󰈙",
+      Reference = "󰈇",
+      Folder = "󰉋",
       EnumMember = "",
-      Constant = "",
-      Struct = "פּ",
+      Constant = "󰏿",
+      Struct = "󰙅",
       Event = "",
-      Operator = "",
-      TypeParameter = ""
+      Operator = "󰆕",
+      TypeParameter = "",
     },
 })

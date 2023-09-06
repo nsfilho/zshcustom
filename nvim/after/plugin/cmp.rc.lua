@@ -1,8 +1,8 @@
-local status, cmp = pcall(require, "cmp")
-if (not status) then return end
+local cmp_ok, cmp = pcall(require, "cmp")
+if (not cmp_ok) then return end
 
-local statusKind, lspkind = pcall(require, "lspkind")
-if (not statusKind) then return end
+local lspkind_ok, lspkind = pcall(require, "lspkind")
+if (not lspkind_ok) then return end
 
 -- nvim-cmp setup
 local source_mapping = {
