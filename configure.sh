@@ -12,22 +12,21 @@ cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"
 if [ ! -d $HOME/.oh-my-zsh/ ] ; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
-if [ ! -d $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions ] ; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-fi
-if [ ! -d $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ] ; then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-fi
+
+cloneOrPull "https://github.com/zsh-users/zsh-autosuggestions" "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+cloneOrPull "https://github.com/zsh-users/zsh-syntax-highlighting.git" "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" 
 
 #
 # Starship customizations
 #
-curl -sS https://starship.rs/install.sh | sh -s -- -y >> $UPDATE_LOG
+if [ ! -f /usr/local/bin/starship ] ; then
+    curl -sS https://starship.rs/install.sh | sh -s -- -y >> $UPDATE_LOG
+fi
 
 echo "Installing fzf..."
 $HOME/.fzf/install --all >> $UPDATE_LOG
 
-# Outra customizações
+# Outras customizações
 if [ -d $HOME/.zshcustoms ] ; then
 	cd $HOME/.zshcustoms
 
