@@ -61,6 +61,9 @@ keymap.set('n', '<leader>sn', '<cmd>Gitsigns next_hunk<cr>')
 keymap.set('n', '<leader>sp', '<cmd>Gitsigns prev_hunk<cr>')
 keymap.set('n', '<leader>ss', '<cmd>Gitsigns preview_hunk<cr>')
 
+-- change case
+keymap.set('n', '<leader>sc', '<cmd>lua require("case").switch_case()<cr>')
+
 -- telescope
 keymap.set('n', '<leader>ff',
     function()

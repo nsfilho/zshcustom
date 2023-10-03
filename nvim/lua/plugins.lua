@@ -85,6 +85,9 @@ require('packer').startup(function(use)
         end
     }
 
+    use 'stevearc/conform.nvim'
+    use 'mfussenegger/nvim-lint'
+
     -- use {
     --     "nvim-neorg/neorg",
     --     -- run = ":Neorg sync-parsers",
