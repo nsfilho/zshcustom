@@ -67,12 +67,10 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-emoji'
     use 'hrsh7th/cmp-calc'
     use 'f3fora/cmp-spell'
-    -- use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use 'numToStr/Comment.nvim'
     use 'haringsrob/nvim_context_vt' -- show end tags
     use "github/copilot.vim"
     use "tpope/vim-fugitive"
-
     use 'mfussenegger/nvim-dap'
     use 'rcarriga/nvim-dap-ui'
     use 'simrat39/rust-tools.nvim'
@@ -87,12 +85,6 @@ require('packer').startup(function(use)
 
     use 'stevearc/conform.nvim'
     use 'mfussenegger/nvim-lint'
-
-    -- use {
-    --     "nvim-neorg/neorg",
-    --     -- run = ":Neorg sync-parsers",
-    --     requires = "nvim-lua/plenary.nvim",
-    -- }
 
     if packer_bootstrap then
         require('packer').sync()
