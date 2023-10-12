@@ -22,6 +22,15 @@ ts.setup {
     autotag = {
         enable = true,
     },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = false,
+            node_decremental = "<BS>",
+        },
+    },
 }
 
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
