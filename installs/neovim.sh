@@ -9,7 +9,8 @@ NEOVIM_LAST_VERSION="0.9.4"
 
 if [ "$myOS" = "linux" ] && [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
     echo -n "Checking neovim: installing..."
-    rm -rf /usr/local/nvim-linux64 >> $UPDATE_LOG 2>&1
+    sudo rm -rf /usr/local/nvim-linux64 >> $UPDATE_LOG 2>&1
+    sudo rm -rf /usr/local/share/nvim/runtime
     if [ ! -d $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
         downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v$NEOVIM_LAST_VERSION.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
     fi
@@ -48,6 +49,10 @@ fi
 
 if [ -f $HOME/.config/nvim/plugin/packer_compiled.vim ] ; then
     rm -rf $HOME/.config/nvim/plugin/packer_compiled.vim
+fi
+
+if [ -f $HOME/.config/nvim/plugin/packer_compiled.lua ] ; then
+    rm -rf $HOME/.config/nvim/plugin/packer_compiled.lua
 fi
 
 deleteAndLink "$HOME/.zshcustoms/nvim" "$HOME/.config/nvim"

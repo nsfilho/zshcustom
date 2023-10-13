@@ -14,6 +14,7 @@ function downloadPart()
     rm -f $TEMPUTILS
 }
 
+sudo echo "Starting support to elevate privileges..."
 downloadPart "utils.sh"
 downloadPart "postinstall.sh"
 

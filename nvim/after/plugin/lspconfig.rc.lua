@@ -15,11 +15,12 @@ mason.setup({
 
 if (jit.arch ~= 'x64') then
     masonConfig.setup {
-        ensure_installed = { "bashls", "tsserver", "html", "yamlls" },
+        ensure_installed = { "bashls", "tsserver", "html", "yamlls", "prettierd", "eslint_d" },
     }
 else
     masonConfig.setup {
-        ensure_installed = { "lua_ls", "rust_analyzer", "bashls", "tsserver", "html", "yamlls", "taplo" },
+        ensure_installed = { "lua_ls", "rust_analyzer", "bashls", "tsserver", "html", "yamlls", "taplo", "prettierd",
+            "eslint_d" },
     }
 end
 
