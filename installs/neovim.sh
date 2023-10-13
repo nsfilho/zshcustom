@@ -3,9 +3,9 @@
 # Code piece to install neovim
 #
 source $HOME/.zshcustoms/utils.sh
-NEOVIM_LAST_VERSION="0.9.4"
-
 checkOS
+
+NEOVIM_LAST_VERSION="0.9.4"
 
 if [ "$myOS" = "linux" ] && [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
     echo -n "Checking neovim: installing..."
@@ -29,6 +29,7 @@ aptInstall "python3-pip"
 aptInstall "python3-neovim"
 aptInstall "python3-pynvim"
 aptInstall "npm"
+aptInstall "luarocks"
 
 npmGlobalInstall "neovim"
 
@@ -43,6 +44,10 @@ fi
 
 if [  -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ] ; then
    rm -rf ~/.local/share/nvim/site/pack/packer
+fi
+
+if [ -f $HOME/.config/nvim/plugin/packer_compiled.vim ] ; then
+    rm -rf $HOME/.config/nvim/plugin/packer_compiled.vim
 fi
 
 deleteAndLink "$HOME/.zshcustoms/nvim" "$HOME/.config/nvim"
