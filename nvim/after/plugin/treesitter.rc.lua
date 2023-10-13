@@ -8,7 +8,7 @@ end
 
 ts.setup {
     ensure_installed = { "bash", "c", "cpp", "css", "dockerfile", "gitignore", "html", "java", "javascript", "json",
-        "lua", "make", "markdown", "rust", "scss", "toml", "typescript", "tsx", "yaml" },
+        "lua", "make", "markdown", "markdown_inline", "rust", "scss", "toml", "typescript", "tsx", "yaml" },
     auto_install = false,
     highlight = {
         enable = true,
