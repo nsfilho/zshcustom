@@ -3,7 +3,9 @@
 # Code piece to install neovim
 #
 source $HOME/.zshcustoms/utils.sh
-NEOVIM_LAST_VERSION="0.9.1"
+NEOVIM_LAST_VERSION="0.9.4"
+
+checkOS
 
 if [ "$myOS" = "linux" ] && [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
     echo -n "Checking neovim: installing..."
@@ -12,7 +14,7 @@ if [ "$myOS" = "linux" ] && [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
         downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v$NEOVIM_LAST_VERSION.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
     fi
     cd $HOME/dist/neovim-$NEOVIM_LAST_VERSION
-    sudo make all install
+    sudo CMAKE_BUILD_TYPE=RelWithDebInfo make all install
     touch $HOME/.neovim-$NEOVIM_LAST_VERSION
     cd $HOME
 else
@@ -39,12 +41,11 @@ if [ ! -d $HOME/.config ] ; then
     mkdir -p $HOME/.config
 fi
 
-if [ ! -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ] ; then
-    git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-        ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+if [  -d ~/.local/share/nvim/site/pack/packer/start/packer.nvim ] ; then
+   rm -rf ~/.local/share/nvim/site/pack/packer
 fi
 
 deleteAndLink "$HOME/.zshcustoms/nvim" "$HOME/.config/nvim"
 
 set shell=/bin/bash
-$NEOVIM_LOCAL --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+$NEOVIM_LOCAL --headless "+Lazy! sync" +qa

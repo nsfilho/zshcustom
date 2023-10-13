@@ -4,8 +4,12 @@ local keymap = vim.keymap
 keymap.set("i", "<C-c>", "<Esc>", { silent = true, remap = false }) -- facilitate exit from insert mode
 keymap.set("n", "<C-d>", "<C-d>zz")
 keymap.set("n", "<C-u>", "<C-u>zz")
+
+-- center screen after search
 keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
+
+-- maintain cursor position when joining lines
 keymap.set("n", "J", "mzJ`z")
 
 -- Split window
@@ -26,7 +30,7 @@ keymap.set('', 'sw', ':set wrap!<Return>', { remap = false })
 -- general maps
 keymap.set('n', '<leader>xx', ':quitall<CR>')
 keymap.set('n', '<leader>xc', ':bd!<CR>')
-keymap.set('n', '<C-n>', function ()
+keymap.set('n', '<C-n>', function()
     -- check if nvim-tree is opened
     local tree = require('nvim-tree.api')
     if tree.tree.is_visible() then

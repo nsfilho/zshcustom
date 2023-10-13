@@ -87,7 +87,7 @@ function checkOS()
         myOS="linux"
     fi
 
-    if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then
+    if [ "$OSTYPE" = "linux-gnu" ] || [ "$OSTYPE" = "linux-android" ] || [ "$OSTYPE" = "linux" ] || [ "$OSTYPE" = "Linux" ] ; then
         myOS="linux"
     fi
 
