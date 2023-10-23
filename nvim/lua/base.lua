@@ -97,5 +97,5 @@ vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter" }, {
 vim.opt.formatoptions:append { 'r' }
 
 -- added for neorg
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 0
 vim.opt.concealcursor = "nc"
