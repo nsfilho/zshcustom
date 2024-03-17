@@ -27,6 +27,7 @@ NEOVIM_LOCAL="/usr/local/bin/nvim"
 
 # Install python modules
 aptInstall "python3-pip"
+aptInstall "python3-venv"
 aptInstall "python3-neovim"
 aptInstall "python3-pynvim"
 aptInstall "npm"
