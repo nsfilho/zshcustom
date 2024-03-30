@@ -36,14 +36,15 @@ aptInstall "luarocks"
 npmGlobalInstall "neovim"
 
 # In past, nvim is a directory. This small block is for compatibility upgrade
-rm -rf ~/.config/nvim
-rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
+if [ ! -f ~/.config/nvim/.zshcustom ]; then
+	rm -rf ~/.config/nvim
+	rm -rf ~/.local/share/nvim ~/.local/state/nvim ~/.cache/nvim
+	ln -s ~/.zshcustoms/lazyvim ~/.config/nvim
+fi
 
 if [ ! -d $HOME/.config ]; then
 	mkdir -p $HOME/.config
 fi
-
-git clone https://github.com/LazyVim/starter ~/.config/nvim
 
 set shell=/bin/bash
 $NEOVIM_LOCAL --headless "+Lazy! sync" +qa
