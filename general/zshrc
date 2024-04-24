@@ -73,7 +73,10 @@ fi
 
 source ~/.zshcustoms/general/aliases
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.fzf.zsh ] ; then 
+    source ~/.fzf.zsh
+fi
+
 if [ -f ~/.zshlocal ] ; then
     source ~/.zshlocal
 fi

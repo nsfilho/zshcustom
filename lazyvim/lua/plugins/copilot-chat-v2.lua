@@ -1,7 +1,7 @@
 local IS_DEV = false
 
 local prompts = {
-  Translate = "Please translate from portuguese to english the terms on following code.",
+  Translate = "Please translate from portuguese to english the following code.",
   -- Code related prompts
   Explain = "Please explain how the following code works.",
   Review = "Please review the following code and provide suggestions for improvement.",
@@ -27,6 +27,7 @@ return {
     -- branch = "canary", -- Use the canary branch if you want to test the latest features but it might be unstable
     -- Do not use branch and version together, either use branch or version
     dependencies = {
+      { "zbirenbaum/copilot.lua" },
       { "nvim-telescope/telescope.nvim" }, -- Use telescope for help actions
       { "nvim-lua/plenary.nvim" },
     },
