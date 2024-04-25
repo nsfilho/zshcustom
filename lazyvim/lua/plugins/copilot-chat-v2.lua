@@ -20,7 +20,7 @@ local function find_config_path()
 end
 
 local ok, exists = pcall(vim.fn.filereadable, find_config_path() .. "/github-copilot/hosts.json")
-if not ok or not exists then
+if not ok or exists == 0 then
   return {}
 end
 

@@ -46,7 +46,8 @@ if [ -d $HOME/.zshcustoms ]; then
 
 	git config --global pull.rebase false
 	git config --global push.followTags true
-	git config --global push.default simple
+	git config --global push.autoSetupRemote true
+	# git config --global push.default simple
 
 	# check if username is configured
 	if [ -z "$(git config --global user.name)" ]; then
