@@ -1,5 +1,29 @@
 local IS_DEV = false
 
+local function find_config_path()
+  local config = vim.fn.expand("$XDG_CONFIG_HOME")
+  if config and vim.fn.isdirectory(config) > 0 then
+    return config
+  elseif vim.fn.has("win32") > 0 then
+    config = vim.fn.expand("~/AppData/Local")
+    if vim.fn.isdirectory(config) > 0 then
+      return config
+    end
+  else
+    config = vim.fn.expand("~/.config")
+    if vim.fn.isdirectory(config) > 0 then
+      return config
+    else
+      -- print("Error: could not find config path")
+    end
+  end
+end
+
+local exists = vim.fn.filereadable(find_config_path() .. "/github-copilot/hosts.json")
+if not exists then
+  return {}
+end
+
 local prompts = {
   Translate = "Please translate from portuguese to english the following code.",
   -- Code related prompts
