@@ -11,3 +11,5 @@ vim.opt.smarttab = true
 vim.opt.smartindent = true
 -- set mininum lines to keep above and below cursor
 vim.opt.scrolloff = 10
+
+vim.opt.clipboard = "unnamedplus"
