@@ -71,6 +71,7 @@ function ddeploy {
 
     if [ -f prepare.sh ] ; then
         echo "Executando script de preparação: prepare.sh"
+        chmod +x prepare.sh
         bash prepare.sh
     fi
 
