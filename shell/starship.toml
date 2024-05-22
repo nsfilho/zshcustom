@@ -13,7 +13,7 @@ format = """
 [ ](fg:mantle)\
 \n$character"""
 
-palette = "catppuccin_macchiato"
+palette = "catppuccin_mocha"
 
 # palette tables should be last in the config ⚓️
 [palettes.catppuccin_macchiato]
