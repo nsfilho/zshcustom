@@ -1,39 +1,40 @@
 #!/bin/bash
-#
-# Code piece to install neovim
-#
 source $HOME/.zshcustoms/utils.sh
 checkOS
 
-NEOVIM_LAST_VERSION="0.9.5"
+NEOVIM_LAST_VERSION="0.10.0"
 
-if [ "$myOS" = "linux" ] && [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
-	echo -n "Checking neovim: installing..."
-	sudo rm -rf /usr/local/nvim-linux64 >>$UPDATE_LOG 2>&1
-	sudo rm -rf /usr/local/share/nvim/runtime
-	if [ ! -d $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
-		downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v$NEOVIM_LAST_VERSION.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
-	fi
-	cd $HOME/dist/neovim-$NEOVIM_LAST_VERSION
-	sudo CMAKE_BUILD_TYPE=RelWithDebInfo make all install
-	touch $HOME/.neovim-$NEOVIM_LAST_VERSION
-	cd $HOME
-else
-	echo "already installed."
+if [ ! -f $HOME/.cargo/bin/treesitter ]; then
+	$HOME/.cargo/bin/cargo install tree-sitter-cli
 fi
 
-# Atribui a versão correta do neovim
-NEOVIM_LOCAL="/usr/local/bin/nvim"
-
-# Install python modules
-aptInstall "python3-pip"
-aptInstall "python3-venv"
-aptInstall "python3-neovim"
-aptInstall "python3-pynvim"
-aptInstall "npm"
-aptInstall "luarocks"
-
-npmGlobalInstall "neovim"
+if [ "$myOS" = "linux" ]; then
+	if [ "$myDistro" = "debian" ]; then
+		npmGlobalRemove tree-sitter-cli
+		npmGlobalInstall "neovim"
+		aptInstall "python3-pip python3-venv python3-neovim python3-pynvim npm luarocks"
+	fi
+	if [ ! -f $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
+		echo -n "Checking neovim: installing..."
+		sudo rm -rf /usr/local/nvim-linux64 >>$UPDATE_LOG 2>&1
+		sudo rm -rf /usr/local/share/nvim/runtime
+		if [ ! -d $HOME/.neovim-$NEOVIM_LAST_VERSION ]; then
+			downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v$NEOVIM_LAST_VERSION.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
+		fi
+		cd $HOME/dist/neovim-$NEOVIM_LAST_VERSION
+		sudo CMAKE_BUILD_TYPE=RelWithDebInfo make all install
+		touch $HOME/.neovim-$NEOVIM_LAST_VERSION
+		cd $HOME
+	else
+		echo "already installed."
+	fi
+	# Atribui a versão correta do neovim
+	NEOVIM_LOCAL="/usr/local/bin/nvim"
+elif [ "$myOS" = "macos"]; then
+	brewInstall "neovim"
+	brewUpdate "neovim"
+	NEOVIM_LOCAL="nvim"
+fi
 
 # In past, nvim is a directory. This small block is for compatibility upgrade
 if [ ! -f ~/.config/nvim/.zshcustom ]; then

@@ -1,0 +1,110 @@
+#
+# E01-AIO Automacao Ltda. ME.
+# Autor: Nelio Santos (nelio@e01aio.com.br)
+#
+# configure zinit
+# Set the directory we want to store zinit and plugins
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Download Zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Add in zsh plugins
+zinit ice depth=1
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+
+# Load completions
+autoload -Uz compinit && compinit
+
+# Save history
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+setopt auto_cd
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+eval "$(fzf --zsh)"
+eval "$(zoxide init --cmd cd zsh)"
+
+if [ ! -f $HOME/.notmux ] && [ "x$TMUX" = "x" ] ; then
+    tmux new-session -A -s main
+fi
+
+#
+# Scripts personalizados
+#
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+if [ -d $HOME/.local/bin ] ; then
+    export PATH="$PATH:$HOME/.local/bin"
+fi
+
+if [ -d $HOME/.yarn ] ; then
+    export PATH="$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin"
+fi
+
+if [ -d $HOME/.deno ] ; then
+    export PATH="$PATH:$HOME/.deno/bin"
+fi
+
+if [ -d $HOME/.cargo/bin ] ; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
+
+if [ -d $HOME/.platformio/penv/bin ] ; then
+    export PATH="$PATH:$HOME/.platformio/penv/bin"
+fi
+
+if [ -d $HOME/.luarocks/bin ] ; then
+    export PATH="$PATH:$HOME/.luarocks/bin"
+fi
+
+if [ -d $HOME/.bun ] ; then
+    [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
+#
+# Personalizações por sistema operacional
+#
+if [ "$OSTYPE" = "linux-gnueabihf" ] || [ "$OSTYPE" = "linux-gnu" ]; then
+    source ~/.zshcustoms/shell/linux/zshrc
+fi
+
+if [ "$OSTYPE" = "darwin21.0" -o "$OSTYPE" = "darwin22.0" ] ; then
+    source ~/.zshcustoms/shell/macos/zshrc
+fi
+
+source ~/.zshcustoms/shell/aliases
+
+if [ -f ~/.zshlocal ] ; then
+    source ~/.zshlocal
+fi
+
+eval "$(starship init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
