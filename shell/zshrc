@@ -46,7 +46,6 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-
 if [ ! -f $HOME/.notmux ] && [ "x$TMUX" = "x" ] ; then
     tmux new-session -A -s main
 fi
@@ -85,6 +84,8 @@ if [ -d $HOME/.bun ] ; then
     export PATH="$BUN_INSTALL/bin:$PATH"
 fi
 
+source ~/.zshcustoms/shell/aliases
+
 #
 # Personalizações por sistema operacional
 #
@@ -95,8 +96,6 @@ fi
 if [ "$OSTYPE" = "darwin21.0" -o "$OSTYPE" = "darwin22.0" ] ; then
     source ~/.zshcustoms/shell/macos/zshrc
 fi
-
-source ~/.zshcustoms/shell/aliases
 
 if [ -f ~/.zshlocal ] ; then
     source ~/.zshlocal
