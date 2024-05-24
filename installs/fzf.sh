@@ -7,4 +7,4 @@ cloneOrPull "https://github.com/junegunn/fzf.git" "$HOME/.fzf"
 
 # install
 echo "Installing fzf..."
-$HOME/.fzf/install --all >>$UPDATE_LOG
+$HOME/.fzf/install --all --no-update-rc >>$UPDATE_LOG
