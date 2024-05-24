@@ -78,3 +78,10 @@ fi
 
 $HOME/.zshcustoms/installs/tmux.sh
 $HOME/.zshcustoms/installs/neovim.sh
+
+if [ -d $HOME/.dotfiles ]; then
+	CURRENT_DIR=$(pwd -P)
+	cd $HOME/.dotfiles
+	git pull
+	cd $CURRENT_DIR
+fi

@@ -46,8 +46,6 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-source $HOME/.fzf.zsh
-eval "$(zoxide init --cmd cd zsh)"
 
 if [ ! -f $HOME/.notmux ] && [ "x$TMUX" = "x" ] ; then
     tmux new-session -A -s main
@@ -104,7 +102,9 @@ if [ -f ~/.zshlocal ] ; then
     source ~/.zshlocal
 fi
 
-eval "$(starship init zsh)"
-
 export NVM_DIR="$HOME/.nvm"
+
+eval "$(starship init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
