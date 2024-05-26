@@ -17,7 +17,7 @@ if [ "$myOS" = "linux" ]; then
 		packages="$packages build-essential cmake python3 ruby ruby-dev automake libtool libtool-bin pkg-config"
 		packages="$packages dialog git telnet dnsutils openvpn gettext iptables iputils-ping tcpdump"
 		packages="$packages ripgrep fd-find ncdu"
-		aptInstall $packages
+		aptInstall "$packages"
 	fi
 elif [ "$myOS" = "macos" ]; then
 	brewInstall "terminal-notifier asciinema cmake tmux llvm ripgrep exa bat wget ncdu fd dialog"
