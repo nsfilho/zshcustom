@@ -41,6 +41,7 @@ gitAlias "ap" "add --patch"
 git config --global pull.rebase false
 git config --global push.followTags true
 git config --global push.autoSetupRemote true
+git config --global init.defaultBranch main
 
 # check if username is configured
 if [ -z "$(git config --global user.name)" ]; then
