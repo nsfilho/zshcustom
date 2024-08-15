@@ -5,7 +5,7 @@ format = """
 [](bg:peach fg:blue)\
 [$directory](bg:peach fg:crust)\
 [](fg:peach bg:surface0)\
-[$git_branch $git_metrics $git_status](fg:text bg:surface0)\
+[$git_branch $git_status](fg:text bg:surface0)\
 [](fg:surface0 bg:mantle)\
 [$nodejs$rust$golang$php](fg:blue bg:mantle)\
 [](fg:mantle bg:mantle)\
@@ -156,10 +156,10 @@ truncation_symbol = "…/"
 symbol = ""
 format = ' $symbol $branch '
 
-[git_metrics]
-disabled = false
-deleted_style = "bold red"
-format = '[+$added](fg:$added_style bg:surface0)/[-$deleted](fg:$deleted_style bg:surface0)'
+# [git_metrics]
+# disabled = false
+# deleted_style = "bold red"
+# format = '[+$added](fg:$added_style bg:surface0)/[-$deleted](fg:$deleted_style bg:surface0)'
 
 [git_status]
 format = '$all_status$ahead_behind '
