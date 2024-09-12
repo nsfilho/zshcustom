@@ -13,3 +13,5 @@ vim.opt.smartindent = true
 vim.opt.scrolloff = 10
 
 vim.opt.clipboard = "unnamedplus"
+-- vim.opt.display = vim.opt.display + "lastline"
+vim.opt.wrap = true
