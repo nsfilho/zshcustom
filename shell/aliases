@@ -50,3 +50,13 @@ alias drm="$HOME/.zshcustoms/scripts/docker-stack-remove.sh"
 alias dexec="$HOME/.zshcustoms/scripts/docker-exec.sh"
 alias dlist="$HOME/.zshcustoms/scripts/docker-list.sh"
 
+if [ -f $HOME/.kube/config ] ; then
+    export KUBECONFIG=$HOME/.kube/config
+fi
+if [ -x /usr/local/bin/kubectl ] ; then
+    source <(kubectl completion zsh)
+fi
+
+if [ -x /usr/local/bin/k3s ] ; then
+    source <(k3s completion zsh)
+fi
