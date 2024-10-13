@@ -15,3 +15,5 @@ vim.opt.scrolloff = 10
 vim.opt.clipboard = "unnamedplus"
 -- vim.opt.display = vim.opt.display + "lastline"
 vim.opt.wrap = true
+
+vim.opt.spelllang = { "en", "pt_br" }
