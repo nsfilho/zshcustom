@@ -3,3 +3,5 @@ Redux
 SQLite
 minikube
 kubernetes
+MongoDB
+rabbitmq
