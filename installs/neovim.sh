@@ -2,7 +2,7 @@
 source "$HOME"/.zshcustoms/utils.sh
 checkOS
 
-NEOVIM_LAST_VERSION="0.10.0"
+NEOVIM_LAST_VERSION="0.11.2"
 
 if [ ! -f "$HOME"/.cargo/bin/treesitter ]; then
     "$HOME"/.cargo/bin/cargo install tree-sitter-cli
