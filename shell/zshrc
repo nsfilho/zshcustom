@@ -53,7 +53,7 @@ fi
 #
 # Scripts personalizados
 #
-export PATH="/usr/local/bin:/usr/local/sbin:$HOME/.zshcustoms/scripts:$PATH"
+export PATH="/usr/local/node/bin:/usr/local/bin:/usr/local/sbin:$HOME/.zshcustoms/scripts:$PATH"
 if [ -d $HOME/.local/bin ] ; then
     export PATH="$PATH:$HOME/.local/bin"
 fi
