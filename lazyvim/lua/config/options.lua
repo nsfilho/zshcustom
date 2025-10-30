@@ -11,9 +11,8 @@ vim.opt.smarttab = true
 vim.opt.smartindent = true
 -- set mininum lines to keep above and below cursor
 vim.opt.scrolloff = 10
-
 vim.opt.clipboard = "unnamedplus"
 -- vim.opt.display = vim.opt.display + "lastline"
 vim.opt.wrap = true
-
 vim.opt.spelllang = { "en", "pt_br" }
+vim.opt.modeline = true
