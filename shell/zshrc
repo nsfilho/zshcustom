@@ -1,9 +1,12 @@
-# Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/nsfilho/.zsh/completions:"* ]]; then export FPATH="/home/nsfilho/.zsh/completions:$FPATH"; fi
 #
 # E01-AIO Automacao Ltda. ME.
 # Autor: Nelio Santos (nelio@e01aio.com.br)
 #
+
+if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then 
+    export FPATH="$HOME/.zsh/completions:$FPATH"
+fi
+
 # configure zinit
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -79,7 +82,7 @@ if [ -d $HOME/.luarocks/bin ] ; then
 fi
 
 if [ -d $HOME/.bun ] ; then
-    [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+    source "$HOME/.bun/_bun"
     export BUN_INSTALL="$HOME/.bun"
     export PATH="$BUN_INSTALL/bin:$PATH"
 fi
@@ -109,11 +112,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # pnpm
-export PNPM_HOME="/home/nsfilho/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-
-# bun completions
-[ -s "/home/nsfilho/.bun/_bun" ] && source "/home/nsfilho/.bun/_bun"

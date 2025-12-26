@@ -3,7 +3,7 @@
 # Arquivo com as principais diretivas de instalacao
 #
 if [ "x$UPDATE_LOG" = "x" ]; then
-	source $HOME/.zshcustoms/utils.sh
+    source $HOME/.zshcustoms/utils.sh
 fi
 
 checkOS
@@ -11,16 +11,15 @@ echo "💻 Operational System: $myOS"
 echo "📦 Checking basis OS packages..."
 
 if [ "$myOS" = "linux" ]; then
-	if [ "$myDistro" = "debian" ]; then
-		packages="sudo bash net-tools htop iftop rsync mtr zsh tmux git wget curl lynx mc"
-		packages="$packages clang cmake libclang-dev llvm-dev llvm rapidjson-dev exuberant-ctags"
-		packages="$packages build-essential cmake python3 ruby ruby-dev automake libtool libtool-bin pkg-config"
-		packages="$packages dialog git telnet dnsutils openvpn gettext iptables iputils-ping tcpdump"
-		packages="$packages ripgrep fd-find ncdu"
-		aptInstall "$packages"
-	fi
+    if [ "$myDistro" = "debian" ]; then
+        packages="sudo bash net-tools htop iftop rsync mtr zsh tmux git wget curl lynx"
+        packages="$packages build-essential cmake automake libtool pkg-config"
+        packages="$packages dialog git telnet dnsutils openvpn gettext iptables iputils-ping tcpdump"
+        packages="$packages ripgrep fd-find ncdu"
+        aptInstall "$packages"
+    fi
 elif [ "$myOS" = "macos" ]; then
-	brewInstall "terminal-notifier asciinema cmake tmux llvm ripgrep exa bat wget ncdu fd dialog"
+    brewInstall "terminal-notifier asciinema cmake tmux llvm ripgrep exa bat wget ncdu fd dialog"
 fi
 
 cloneOrPull "https://github.com/nsfilho/zshcustom.git" "$HOME/.zshcustoms"
@@ -45,44 +44,37 @@ git config --global init.defaultBranch main
 
 # check if username is configured
 if [ -z "$(git config --global user.name)" ]; then
-	# use dialog to get the username and set the git config
-	dialog --inputbox "Enter your name for git" 10 60 2>/tmp/inputbox.tmp
-	git config --global user.name $(cat /tmp/inputbox.tmp)
-	rm -f /tmp/inputbox.tmp
+    # use dialog to get the username and set the git config
+    dialog --inputbox "Enter your name for git" 10 60 2>/tmp/inputbox.tmp
+    git config --global user.name $(cat /tmp/inputbox.tmp)
+    rm -f /tmp/inputbox.tmp
 fi
 
 # check if email is configured
 if [ -z "$(git config --global user.email)" ]; then
-	# use dialog to get the email and set the git config
-	dialog --inputbox "Enter your email for git" 10 60 2>/tmp/inputbox.tmp
-	git config --global user.email $(cat /tmp/inputbox.tmp)
-	rm -f /tmp/inputbox.tmp
+    # use dialog to get the email and set the git config
+    dialog --inputbox "Enter your email for git" 10 60 2>/tmp/inputbox.tmp
+    git config --global user.email $(cat /tmp/inputbox.tmp)
+    rm -f /tmp/inputbox.tmp
 fi
 
 # Install rust language
 if [ ! -f $HOME/.cargo/bin/cargo ]; then
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs >/tmp/rust.sh
-	chmod +x /tmp/rust.sh
-	/tmp/rust.sh -y
-	rm -f /tmp/rust.sh
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs >/tmp/rust.sh
+    chmod +x /tmp/rust.sh
+    /tmp/rust.sh -y
+    rm -f /tmp/rust.sh
 else
-	rustup update
+    rustup update
 fi
 
-if [ ! -f $HOME/.cargo/bin/exa ]; then
-	$HOME/.cargo/bin/cargo install exa
-fi
+# if [ ! -f $HOME/.cargo/bin/exa ]; then
+#     $HOME/.cargo/bin/cargo install exa
+# fi
 
 if [ ! -f $HOME/.cargo/bin/bat ]; then
-	$HOME/.cargo/bin/cargo install bat
+    $HOME/.cargo/bin/cargo install bat
 fi
 
 $HOME/.zshcustoms/installs/tmux.sh
 $HOME/.zshcustoms/installs/neovim.sh
-
-if [ -d $HOME/.dotfiles ]; then
-	CURRENT_DIR=$(pwd -P)
-	cd $HOME/.dotfiles
-	git pull
-	cd $CURRENT_DIR
-fi

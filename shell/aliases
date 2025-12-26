@@ -18,13 +18,8 @@ alias sftp="sftp -oStrictHostKeyChecking=no"
 export LESS='-R'
 alias x="exit"
 
-if [ -f /usr/local/bin/exa ] ; then
-    alias ls="exa --icons --color-scale"
-elif [ -f $HOME/.cargo/bin/exa ] ; then
-    alias ls="$HOME/.cargo/bin/exa --icons --color-scale"
-fi
-
 alias ".."="cd .."
+alias ls="ls --color"
 alias l="ls -la"
 alias ll="ls -la"
 
