@@ -68,10 +68,6 @@ else
     rustup update
 fi
 
-# if [ ! -f $HOME/.cargo/bin/exa ]; then
-#     $HOME/.cargo/bin/cargo install exa
-# fi
-
 if [ ! -f $HOME/.cargo/bin/bat ]; then
     $HOME/.cargo/bin/cargo install bat
 fi
