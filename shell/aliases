@@ -4,7 +4,12 @@
 # Usando code como editor
 alias zupdate="bash $HOME/.zshcustoms/install.sh"
 alias zedit="cd ~/.zshcustoms/ ; nvim"
-alias zlocal="nvim ~/.zshlocal"
+
+if [ -f ~/.dotfiles/configs/zshlocal ] ; then
+    alias zlocal="nvim ~/.dotfiles/configs/zshlocal"
+else
+    alias zlocal="nvim ~/.zshlocal"
+fi
 
 # Atalhos para o SSH
 alias ssh="ssh -oStrictHostKeyChecking=no"
