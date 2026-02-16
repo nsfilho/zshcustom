@@ -60,3 +60,7 @@ fi
 if [ -x /usr/local/bin/k3s ] ; then
     source <(k3s completion zsh)
 fi
+
+if [ -f /home/linuxbrew/.linuxbrew/bin/argocd ] ; then
+    alias argocd="argocd --grpc-web"
+fi
