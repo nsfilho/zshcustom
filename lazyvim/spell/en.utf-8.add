@@ -5,3 +5,4 @@ minikube
 kubernetes
 MongoDB
 rabbitmq
+Traefik
