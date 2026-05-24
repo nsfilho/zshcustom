@@ -32,7 +32,7 @@ Personal dotfiles for shell (zsh), tmux, neovim (LazyVim), and starship prompt. 
 ## Avante (LLM/AI) — Remote LLM Access
 - **`lazyvim/lua/plugins/avante.lua`** uses the Avante Neovim plugin (Cursor-like AI assistant)
 - **Local machine**: LLM runs directly via vllm on `:8000` — no env vars needed
-- **Remote SSH sessions**: LLM accessed via tunnel (`-L 20430:127.0.0.1:8000`)
+- **Remote SSH sessions**: LLM accessed via reverse tunnel (`-R 20430:127.0.0.1:8000`)
 - **Environment variables** (sent via SSH `SendEnv`/`AcceptEnv`):\n  | Var | Default | Remote value | Purpose |\n  | `NEOVIM_LLM_REMOTE` | unset | `1` | Gate — plugin only loads on remote |\n  | `NEOVIM_LLM_PORT` | `8000` | `20430` | Tunneled port |\n  | `NEOVIM_LLM_HOST` | `127.0.0.1` | (same) | LLM host |\n  | `NEOVIM_LLM_MODEL` | `qwen` | (same) | Model name |\n- **`~/.ssh/config`** has `SendEnv NEOVIM_LLM_*` on `Host *`\n- **Remote servers** all have `AcceptEnv NEOVIM_LLM_*` in `sshd_config`\n- **`~/.zshlocal`** uses `ssh-llm()` function — wraps all SSH with tunnel + env\n- Changing the LLM model? Update `NEOVIM_LLM_MODEL` in `~/.zshlocal` env + plugin defaults
 
 ## Git
