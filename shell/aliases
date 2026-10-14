@@ -24,7 +24,10 @@ export LESS='-R'
 alias x="exit"
 
 alias ".."="cd .."
-alias ls="ls --color"
+case "$OSTYPE" in
+    darwin*) alias ls="ls -G" ;;
+    *) alias ls="ls --color" ;;
+esac
 alias l="ls -la"
 alias ll="ls -la"
 

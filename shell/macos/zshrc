@@ -34,8 +34,10 @@ bindkey "[C" forward-word
 bindkey "^[a" beginning-of-line
 bindkey "^[e" end-of-line
 
-if [ -d /usr/local/opt/sqlite/bin ] ; then
-    export PATH="/usr/local/opt/sqlite/bin:$PATH"
+BREW_PREFIX="$(brew --prefix 2>/dev/null)"
+
+if [ -n "$BREW_PREFIX" ] && [ -d "$BREW_PREFIX/opt/sqlite/bin" ] ; then
+    export PATH="$BREW_PREFIX/opt/sqlite/bin:$PATH"
 fi
 
 if [ -d /usr/local/go/bin ] ; then
@@ -49,10 +51,10 @@ if [ -f /usr/local/bin/nvim ] ; then
     alias vim="nvim"
 fi
 
-if [ -d /usr/local/opt/llvm/bin ] ; then
-    export PATH="$PATH:/usr/local/opt/llvm/bin"
+if [ -n "$BREW_PREFIX" ] && [ -d "$BREW_PREFIX/opt/llvm/bin" ] ; then
+    export PATH="$PATH:$BREW_PREFIX/opt/llvm/bin"
 fi
 
-if [ -d /usr/local/opt/openjdk ] ; then
-    export PATH="/usr/local/opt/openjdk/bin:$PATH"
+if [ -n "$BREW_PREFIX" ] && [ -d "$BREW_PREFIX/opt/openjdk" ] ; then
+    export PATH="$BREW_PREFIX/opt/openjdk/bin:$PATH"
 fi

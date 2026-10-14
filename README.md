@@ -22,12 +22,6 @@ Utilize o comando `visudo` e altere as linhas:
 chsh -s /bin/zsh
 ```
 
-## Evitar o TMUX no Linux
-
-```sh
-touch ~/.notmux
-```
-
 ## Teclas de função
 
 - **F02** : nvim
