@@ -9,15 +9,11 @@ if [ "$myOS" = "linux" ]; then
         aptInstall "python3-pip python3-venv"
     fi
     # Binario oficial do neovim por arquitetura
-    arch=$(uname -m)
-    if [ "$arch" = "x86_64" ]; then
-        NEOVIM_TARBALL="nvim-linux-x86_64.tar.gz"
-    elif [ "$arch" = "aarch64" ]; then
-        NEOVIM_TARBALL="nvim-linux-arm64.tar.gz"
-    else
-        echo "❌ Unsupported architecture for neovim: $arch (expected x86_64 or aarch64)"
-        exit 1
-    fi
+    arch=$(requireArch) || exit 1
+    case "$arch" in
+        x86_64)  NEOVIM_TARBALL="nvim-linux-x86_64.tar.gz" ;;
+        aarch64) NEOVIM_TARBALL="nvim-linux-arm64.tar.gz" ;;
+    esac
     if [ ! -f "$HOME"/.neovim-$NEOVIM_LAST_VERSION ]; then
         echo -n "Checking neovim: installing..."
         # Limpa instalacao anterior (build de fonte ou tarball legado)

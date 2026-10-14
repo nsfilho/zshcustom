@@ -25,6 +25,8 @@ Personal dotfiles for shell (zsh), neovim (LazyVim), and starship prompt. No bui
 - **`installs/neovim.sh` symlinks** `lazyvim/` → `~/.config/nvim`. Editing `~/.config/nvim/...` will modify this repo if the link is active.
 - **`shell/zshrc` source chain**: main → `shell/aliases` → OS-specific (`shell/linux/zshrc` or `shell/macos/zshrc`) → optional `~/.zshlocal`
 - **`utils.sh` is the single source of truth** for install helper functions. All `installs/*.sh` scripts call `source "$HOME"/.zshcustoms/utils.sh` first.
+- **`cloneOrPull` handles dirty trees with auto-stash**: if the repo has local changes (incl. untracked), it runs `git stash push -u` before `reset --hard` + `clean -fd` + `pull`, and tells the user the changes live in `git stash list` (no auto-pop). It only aborts if the stash itself fails (or the target directory cannot be accessed).
+- **`configure.sh` runs installs via `run_install`**: a failing install script prints a warning and the flow continues (failures are no longer silently swallowed).
 
 ## Avante (LLM/AI) — Remote LLM Access
 - **`lazyvim/lua/plugins/avante.lua`** uses the Avante Neovim plugin (Cursor-like AI assistant)

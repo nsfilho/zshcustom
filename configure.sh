@@ -21,24 +21,30 @@ echo "📦 Checking basis OS packages..."
 if [ "$myDistro" = "debian" ]; then
     packages="sudo bash net-tools htop iftop rsync mtr zsh git wget curl lynx"
     packages="$packages build-essential cmake automake libtool pkg-config"
-    packages="$packages dialog git telnet dnsutils gettext iputils-ping tcpdump"
+    packages="$packages dialog telnet dnsutils gettext iputils-ping tcpdump"
     packages="$packages ripgrep fd-find ncdu"
     aptInstall "$packages"
 fi
 
 cloneOrPull "https://github.com/nsfilho/zshcustom.git" "$HOME/.zshcustoms"
 
+# Executor de installs: uma falha avisa e nao interrompe o fluxo
+run_install() {
+    if ! bash "$HOME/.zshcustoms/installs/$1"; then
+        echo "⚠️  Instalação de [$1] falhou — continuando."
+    fi
+}
+
 # Shell configurations
-bash "$HOME/.zshcustoms/installs/fzf.sh"
-bash "$HOME/.zshcustoms/installs/starship.sh"
-bash "$HOME/.zshcustoms/installs/zoxide.sh"
-bash "$HOME/.zshcustoms/installs/nodejs.sh"
+run_install fzf.sh
+run_install starship.sh
+run_install zoxide.sh
+run_install nodejs.sh
 deleteAndLink "$HOME/.zshcustoms/shell/zshrc" "$HOME/.zshrc"
 deleteAndLink "$HOME/.zshcustoms/shell/starship.toml" "$HOME/.config/starship.toml"
 
 # Apps setup
-bash ~/.zshcustoms/installs/git.sh
-bash ~/.zshcustoms/installs/rust.sh
-bash ~/.zshcustoms/installs/bat.sh
-
-bash "$HOME/.zshcustoms/installs/neovim.sh"
+run_install git.sh
+run_install rust.sh
+run_install bat.sh
+run_install neovim.sh

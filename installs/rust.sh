@@ -4,6 +4,7 @@
 if [ ! -f $HOME/.cargo/bin/cargo ]; then
     if ! curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs >/tmp/rust.sh; then
         echo "❌ Failed to download rustup installer"
+        rm -f /tmp/rust.sh
         exit 1
     fi
     chmod +x /tmp/rust.sh

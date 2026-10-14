@@ -12,17 +12,22 @@ function deleteAndLink() {
     echo "done."
 }
 
+# Atualiza um repo git: em trabalho sujo, faz stash -u antes (sem pop automatico)
+# e avisa onde as alteracoes ficaram. So aborta se o proprio stash falhar.
 function cloneOrPull() {
     url=$1
     dest=$2
-    echo -n "📁 Checking git project [$dest]: "
     if [ -d "$dest" ]; then
-        if [ -n "$(cd "$dest" && git status --porcelain 2>/dev/null)" ]; then
-            echo "ABORT: working tree dirty — commit/stash antes (trabalho nao commitado seria descartado)"
-            return 1
+        cd "$dest" || { echo "ABORT: nao consigo acessar $dest"; return 1; }
+        if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+            if git stash push -u -m "zupdate auto-stash $(date +%F_%R)" >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"; then
+                echo "📁 Updating git project [$dest] — local changes stashed ('git stash list')"
+            else
+                echo "ABORT: nao consegui stashing as alteracoes locais — nada foi atualizado."
+                return 1
+            fi
         fi
         echo "updating..."
-        cd "$dest"
         git reset --hard >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
         git clean -fd >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
         git pull >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
@@ -30,6 +35,16 @@ function cloneOrPull() {
         echo "cloning..."
         git clone --depth 1 "$url" "$dest" >>$UPDATE_LOG 2>>$UPDATE_LOG
     fi
+}
+
+# Exige arquitetura suportada (x86_64 ou aarch64) e a imprime
+function requireArch() {
+    arch=$(uname -m)
+    if [ "$arch" != "x86_64" ] && [ "$arch" != "aarch64" ]; then
+        echo "❌ Unsupported architecture: $arch (expected x86_64 or aarch64)"
+        return 1
+    fi
+    echo "$arch"
 }
 
 # Return variables: myOS, myArch, myDistro

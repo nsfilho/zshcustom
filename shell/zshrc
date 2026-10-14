@@ -3,10 +3,6 @@
 # Autor: Nelio Santos (nelio@e01aio.com.br)
 #
 
-if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then 
-    export FPATH="$HOME/.zsh/completions:$FPATH"
-fi
-
 # configure zinit
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -14,7 +10,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 # Download Zinit, if it's not there yet
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
-   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+   git clone --depth 1 https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 # Source/Load zinit
@@ -32,7 +28,6 @@ zinit light zsh-users/zsh-autosuggestions
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-HISTDUP=erase
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
@@ -118,10 +113,7 @@ source ~/.zshcustoms/shell/aliases
 # Personalizações por sistema operacional
 #
 case "$OSTYPE" in
-    linux*) source ~/.zshcustoms/shell/linux/zshrc ;;
-esac
-
-case "$OSTYPE" in
+    linux*)  source ~/.zshcustoms/shell/linux/zshrc ;;
     darwin*) source ~/.zshcustoms/shell/macos/zshrc ;;
 esac
 
