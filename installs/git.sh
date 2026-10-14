@@ -12,18 +12,22 @@ git config --global push.followTags true
 git config --global push.autoSetupRemote true
 git config --global init.defaultBranch main
 
-# check if username is configured
-if [ -z "$(git config --global user.name)" ]; then
-    # use dialog to get the username and set the git config
-    dialog --inputbox "Enter your name for git" 10 60 2>/tmp/inputbox.tmp
-    git config --global user.name $(cat /tmp/inputbox.tmp)
-    rm -f /tmp/inputbox.tmp
-fi
+# Define um git config --global se vazio, perguntando via dialog ou stdin
+function gitEnsure() {
+    key=$1
+    prompt=$2
+    [ -n "$(git config --global "$key")" ] && return 0
+    if command -v dialog >/dev/null 2>&1; then
+        reply=$(mktemp)
+        dialog --inputbox "$prompt" 10 60 2>"$reply"
+        [ -s "$reply" ] && git config --global "$key" "$(cat "$reply")"
+        rm -f "$reply"
+    else
+        echo -n "$prompt: "
+        read -r value
+        git config --global "$key" "$value"
+    fi
+}
 
-# check if email is configured
-if [ -z "$(git config --global user.email)" ]; then
-    # use dialog to get the email and set the git config
-    dialog --inputbox "Enter your email for git" 10 60 2>/tmp/inputbox.tmp
-    git config --global user.email $(cat /tmp/inputbox.tmp)
-    rm -f /tmp/inputbox.tmp
-fi
+gitEnsure "user.name" "Enter your name for git"
+gitEnsure "user.email" "Enter your email for git"

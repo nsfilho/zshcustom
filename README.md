@@ -8,6 +8,10 @@ Facilitadores de shell universal e atalhos para automação de rotinas.
 curl -o - https://raw.githubusercontent.com/nsfilho/zshcustom/master/install.sh | /bin/bash -
 ```
 
+> O alias `zupdate` repete esse fluxo. Se houver alterações locais não
+> commitadas no repo, elas são preservadas automaticamente com `git stash -u`
+> antes da atualização — para recuperá-las: `git stash list` / `git stash pop`.
+
 ## Ativando sudo sem password
 
 Utilize o comando `visudo` e altere as linhas:
@@ -22,15 +26,8 @@ Utilize o comando `visudo` e altere as linhas:
 chsh -s /bin/zsh
 ```
 
-## Evitar o TMUX no Linux
-
-```sh
-touch ~/.notmux
-```
-
 ## Teclas de função
 
-- **F02** : nvim
 - **F06** : git pull
 - **F07** : git status
 - **F08** : git add --patch

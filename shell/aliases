@@ -4,12 +4,7 @@
 # Usando code como editor
 alias zupdate="bash $HOME/.zshcustoms/install.sh"
 alias zedit="cd ~/.zshcustoms/ ; nvim"
-
-if [ -f ~/.dotfiles/configs/zshlocal ] ; then
-    alias zlocal="nvim ~/.dotfiles/configs/zshlocal"
-else
-    alias zlocal="nvim ~/.zshlocal"
-fi
+alias zlocal="nvim ~/.zshlocal"
 
 # Atalhos para o SSH
 alias ssh="ssh -oStrictHostKeyChecking=no"
@@ -24,13 +19,11 @@ export LESS='-R'
 alias x="exit"
 
 alias ".."="cd .."
-alias ls="ls --color"
-alias l="ls -la"
+# LS_COLOR_FLAG e definido no zshrc principal (GNU: --color / BSD: -G)
+alias ls="ls $LS_COLOR_FLAG"
 alias ll="ls -la"
 
-if [ -f /usr/local/bat ] ; then
-    alias cat="bat --paging=never"
-elif [ -f $HOME/.cargo/bin/bat ] ; then
+if [ -f /usr/local/bat ] || [ -f $HOME/.cargo/bin/bat ] ; then
     alias cat="bat --paging=never"
 fi
 
@@ -64,3 +57,6 @@ fi
 if [ -f /home/linuxbrew/.linuxbrew/bin/argocd ] ; then
     alias argocd="argocd --grpc-web"
 fi
+
+# Scripts soltos
+alias alacritty-terminfo="$HOME/.zshcustoms/scripts/alacritty-terminfo.sh"

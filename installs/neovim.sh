@@ -2,31 +2,26 @@
 source "$HOME"/.zshcustoms/utils.sh
 checkOS
 
-NEOVIM_LAST_VERSION="0.11.2"
-
-if [ ! -f "$HOME"/.cargo/bin/treesitter ]; then
-    "$HOME"/.cargo/bin/cargo install tree-sitter-cli
-fi
+NEOVIM_LAST_VERSION="0.12.6"
 
 if [ "$myOS" = "linux" ]; then
     if [ "$myDistro" = "debian" ]; then
-        npmGlobalRemove tree-sitter-cli
-        npmGlobalInstall "neovim"
-        aptInstall "python3-pip python3-venv python3-neovim python3-pynvim npm luarocks"
+        aptInstall "python3-pip python3-venv"
     fi
+    # Binario oficial do neovim por arquitetura
+    arch=$(requireArch) || exit 1
+    case "$arch" in
+        x86_64)  NEOVIM_TARBALL="nvim-linux-x86_64.tar.gz" ;;
+        aarch64) NEOVIM_TARBALL="nvim-linux-arm64.tar.gz" ;;
+    esac
     if [ ! -f "$HOME"/.neovim-$NEOVIM_LAST_VERSION ]; then
-        echo -n "Checking neovim: installing..."
-        sudo rm -rf /usr/local/nvim-linux64 >>"$UPDATE_LOG" 2>&1
-        sudo rm -rf /usr/local/share/nvim/runtime
-        if [ ! -d "$HOME"/.neovim-$NEOVIM_LAST_VERSION ]; then
-            downloadExtract "https://github.com/neovim/neovim/archive/refs/tags/v$NEOVIM_LAST_VERSION.tar.gz" "$HOME/dist/neovim-$NEOVIM_LAST_VERSION"
-        fi
-        cd "$HOME"/dist/neovim-$NEOVIM_LAST_VERSION || exit
-        sudo CMAKE_BUILD_TYPE=RelWithDebInfo make all install
+        echo "Installing neovim $NEOVIM_LAST_VERSION"
+        # Limpa instalacao anterior (build de fonte ou tarball legado)
+        sudo rm -rf /usr/local/bin/nvim /usr/local/lib/nvim /usr/local/share/nvim /usr/local/nvim-linux64
+        wget -O /tmp/$NEOVIM_TARBALL "https://github.com/neovim/neovim/releases/download/v$NEOVIM_LAST_VERSION/$NEOVIM_TARBALL" >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
+        sudo tar xzf /tmp/$NEOVIM_TARBALL -C /usr/local --strip-components=1 >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
+        rm -f /tmp/$NEOVIM_TARBALL
         touch "$HOME"/.neovim-$NEOVIM_LAST_VERSION
-        cd "$HOME" || exit
-    else
-        echo "already installed."
     fi
     # Atribui a versão correta do neovim
     NEOVIM_LOCAL="/usr/local/bin/nvim"
@@ -47,4 +42,4 @@ if [ ! -d "$HOME"/.config ]; then
     mkdir -p "$HOME"/.config
 fi
 
-$NEOVIM_LOCAL --headless "+Lazy! sync" +qa
+$NEOVIM_LOCAL --headless "+Lazy! sync" +qa >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"

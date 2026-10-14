@@ -5,9 +5,11 @@ return {
   },
   opts = {
     sources = {
-      default = {
-        ...,
-        "emoji",
+      -- "enabled" ADICIONA o source emoji mantendo a lista padrão
+      -- (lsp, path, buffer, ...). "default = {...}" SUBSTITUIRIA a lista
+      -- — e "..." em Lua é vararg vazio, não spread, como sugere o README.
+      enabled = {
+        emoji = true,
       },
       providers = {
         emoji = {
