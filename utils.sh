@@ -2,14 +2,21 @@
 #
 # Biblioteca de funcoes e utilitarios
 #
-UPDATE_LOG="/tmp/zshcustoms_$(whoami)_$(date +%Y-%m-%d_%H%M%S).log"
+# Log desta sessao de install. Exportado para os scripts de install (rodados em
+# processos separados) herdarem o MESMO arquivo; nao recria se ja herdado do pai.
+if [ "x$UPDATE_LOG" = "x" ]; then
+    export UPDATE_LOG="/tmp/zshcustoms_$(whoami)_$(date +%Y-%m-%d_%H%M%S).log"
+fi
 
 function deleteAndLink() {
     orig=$1
     dest=$2
-    echo -n "🔀 Linking file $orig -> $dest: "
-    ln -sf "$orig" "$dest"
-    echo "done."
+    echo "🔀 Linking file $orig -> $dest"
+    mkdir -p "$(dirname "$dest")"
+    ln -sf "$orig" "$dest" || {
+        echo "FAILED — verifique o destino e o log em $UPDATE_LOG"
+        return 1
+    }
 }
 
 # Atualiza um repo git: em trabalho sujo, faz stash -u antes (sem pop automatico)
@@ -26,13 +33,14 @@ function cloneOrPull() {
                 echo "ABORT: nao consegui stashing as alteracoes locais — nada foi atualizado."
                 return 1
             fi
+        else
+            echo "📁 Updating git project [$dest]"
         fi
-        echo "updating..."
         git reset --hard >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
         git clean -fd >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
         git pull >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
     else
-        echo "cloning..."
+        echo "📁 Cloning git project [$dest]"
         git clone --depth 1 "$url" "$dest" >>$UPDATE_LOG 2>>$UPDATE_LOG
     fi
 }
@@ -72,18 +80,15 @@ function checkOS() {
 function gitAlias() {
     aliasToCheck=$1
     content=$2
-    echo -n "🔀 Checking git alias [$aliasToCheck]: "
+    echo "🔀 Checking git alias [$aliasToCheck]"
     if [ x"$(git config --get alias.$aliasToCheck)" = x ]; then
-        echo "setting done!"
         git config --global alias.$aliasToCheck "$content"
-    else
-        echo "already configured."
     fi
 }
 
 function aptInstall() {
     packages=$1
-    echo -n "📦 Installing APT packages [$packages]: "
+    echo "📦 Installing APT packages [$packages]"
     SUDOPREFIX=""
     if [ -x /usr/bin/sudo ]; then
         SUDOPREFIX="/usr/bin/sudo"
@@ -93,7 +98,6 @@ function aptInstall() {
         export APT_UPDATED=1
     fi
     $SUDOPREFIX apt-get install -y $packages >>$UPDATE_LOG 2>>$UPDATE_LOG
-    echo "done!"
 }
 
 function brewUpdate() {
@@ -103,9 +107,8 @@ function brewUpdate() {
         export BREW_UPDATED=1
     fi
     for i in $packages; do
-        echo -n "📦 Upgrading BREW package [$i]: "
+        echo "📦 Upgrading BREW package [$i]"
         brew upgrade $i >>$UPDATE_LOG 2>>$UPDATE_LOG
-        echo "done!"
     done
 }
 
@@ -116,8 +119,7 @@ function brewInstall() {
         export BREW_UPDATED=1
     fi
     for i in $packages; do
-        echo -n "📦 Installing BREW package [$i]: "
+        echo "📦 Installing BREW package [$i]"
         brew install $i >>$UPDATE_LOG 2>>$UPDATE_LOG
-        echo "done!"
     done
 }

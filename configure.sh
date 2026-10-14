@@ -31,7 +31,7 @@ cloneOrPull "https://github.com/nsfilho/zshcustom.git" "$HOME/.zshcustoms"
 # Executor de installs: uma falha avisa e nao interrompe o fluxo
 run_install() {
     if ! bash "$HOME/.zshcustoms/installs/$1"; then
-        echo "⚠️  Instalação de [$1] falhou — continuando."
+        echo "⚠️  Instalação de [$1] falhou (log: $UPDATE_LOG) — continuando."
     fi
 }
 

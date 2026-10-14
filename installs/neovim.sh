@@ -15,16 +15,13 @@ if [ "$myOS" = "linux" ]; then
         aarch64) NEOVIM_TARBALL="nvim-linux-arm64.tar.gz" ;;
     esac
     if [ ! -f "$HOME"/.neovim-$NEOVIM_LAST_VERSION ]; then
-        echo -n "Checking neovim: installing..."
+        echo "Installing neovim $NEOVIM_LAST_VERSION"
         # Limpa instalacao anterior (build de fonte ou tarball legado)
         sudo rm -rf /usr/local/bin/nvim /usr/local/lib/nvim /usr/local/share/nvim /usr/local/nvim-linux64
         wget -O /tmp/$NEOVIM_TARBALL "https://github.com/neovim/neovim/releases/download/v$NEOVIM_LAST_VERSION/$NEOVIM_TARBALL" >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
         sudo tar xzf /tmp/$NEOVIM_TARBALL -C /usr/local --strip-components=1 >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
         rm -f /tmp/$NEOVIM_TARBALL
         touch "$HOME"/.neovim-$NEOVIM_LAST_VERSION
-        echo "done."
-    else
-        echo "already installed."
     fi
     # Atribui a versão correta do neovim
     NEOVIM_LOCAL="/usr/local/bin/nvim"
@@ -45,4 +42,4 @@ if [ ! -d "$HOME"/.config ]; then
     mkdir -p "$HOME"/.config
 fi
 
-$NEOVIM_LOCAL --headless "+Lazy! sync" +qa
+$NEOVIM_LOCAL --headless "+Lazy! sync" +qa >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"

@@ -13,13 +13,11 @@ if [ "$myOS" = "linux" ]; then
     NODE_DIR="/usr/local/$(basename "$NODE_TARBALL" .tar.xz)"
     if [ ! -d "$NODE_DIR" ]; then
         echo "Installing Node.js $NODE_VERSION"
-        wget -O /tmp/nodejs.tar.xz "https://nodejs.org/dist/${NODE_VERSION}/${NODE_TARBALL}"
-        cd /usr/local && sudo tar xvf /tmp/nodejs.tar.xz
+        wget -O /tmp/nodejs.tar.xz "https://nodejs.org/dist/${NODE_VERSION}/${NODE_TARBALL}" >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
+        cd /usr/local && sudo tar xvf /tmp/nodejs.tar.xz >>"$UPDATE_LOG" 2>>"$UPDATE_LOG"
         sudo rm -f /usr/local/node
         sudo ln -s "$NODE_DIR" /usr/local/node
         rm -f /tmp/nodejs.tar.xz
-    else
-        echo "Node.js $NODE_VERSION already installed"
     fi
 elif [ "$myOS" = "macos" ]; then
     brewInstall "node"
