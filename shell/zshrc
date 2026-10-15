@@ -41,18 +41,49 @@ setopt auto_cd
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-# fzf-tab preview: flag de cor do ls por SO (GNU: --color / BSD: -G)
+# flag de cor do ls por SO (GNU: --color / BSD: -G + LSCOLORS)
 case "$OSTYPE" in
-    darwin*) LS_COLOR_FLAG="-G" ;;
+    darwin*)
+        LS_COLOR_FLAG="-G"
+        export LSCOLORS="${LSCOLORS:-7c4c6c1c3c5c1c6c4c0c4c}"
+        ;;
     *) LS_COLOR_FLAG="--color" ;;
 esac
 zstyle ':fzf-tab:complete:cd:*' fzf-preview "ls $LS_COLOR_FLAG \$realpath"
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview "ls $LS_COLOR_FLAG \$realpath"
 
 #
-# Scripts personalizados
+# Homebrew + PATH base (por SO)
+# no macOS, o brew fica ANTES de /usr/local/bin (que já vem do /etc/paths),
+# para que o Homebrew ganhe em colisões (ex.: kubectl)
 #
-export PATH="/usr/local/node/bin:/usr/local/bin:/usr/local/sbin:$HOME/.zshcustoms/scripts:$PATH:/usr/sbin"
+case "$OSTYPE" in
+    darwin*)
+        if [ -x /opt/homebrew/bin/brew ] ; then
+            eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+        elif [ -x /usr/local/bin/brew ] ; then
+            eval "$(/usr/local/bin/brew shellenv zsh)"
+        fi
+        export PATH="/usr/local/node/bin:$HOME/.zshcustoms/scripts:$PATH"
+        ;;
+    *)
+        export PATH="/usr/local/node/bin:/usr/local/bin:/usr/local/sbin:$HOME/.zshcustoms/scripts:$PATH:/usr/sbin"
+        if [ -d /home/linuxbrew ] ; then
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+        fi
+        ;;
+esac
+
+#
+# Editor padrão: nvim em todos os SOs
+#
+if command -v nvim >/dev/null 2>&1 ; then
+    alias vi="nvim"
+    alias vim="nvim"
+    export EDITOR="nvim"
+    export VISUAL="nvim"
+fi
+
 if [ -d $HOME/.local/bin ] ; then
     export PATH="$PATH:$HOME/.local/bin"
 fi
@@ -88,10 +119,6 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-if [ -d /home/linuxbrew ] ; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
-fi
-
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
@@ -123,4 +150,8 @@ fi
 
 eval "$(starship init zsh)"
 eval "$(zoxide init --cmd cd zsh)"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f "$HOME/.fzf.zsh" ] ; then
+    source "$HOME/.fzf.zsh"
+elif command -v fzf >/dev/null 2>&1 ; then
+    eval "$(fzf --zsh)"
+fi

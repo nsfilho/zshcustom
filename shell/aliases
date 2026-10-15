@@ -21,9 +21,11 @@ alias x="exit"
 alias ".."="cd .."
 # LS_COLOR_FLAG e definido no zshrc principal (GNU: --color / BSD: -G)
 alias ls="ls $LS_COLOR_FLAG"
+alias l="ls -la"
 alias ll="ls -la"
 
-if [ -f /usr/local/bat ] || [ -f $HOME/.cargo/bin/bat ] ; then
+# cat = bat quando existe (Linux: cargo; macOS: Homebrew)
+if command -v bat >/dev/null 2>&1 ; then
     alias cat="bat --paging=never"
 fi
 
@@ -46,7 +48,8 @@ alias dlist="$HOME/.zshcustoms/scripts/docker-list.sh"
 if [ -f $HOME/.kube/config ] ; then
     export KUBECONFIG=$HOME/.kube/config
 fi
-if [ -x /usr/local/bin/kubectl ] ; then
+# completion do kubectl do PATH (no macOS, o Homebrew ganha de /usr/local/bin)
+if command -v kubectl >/dev/null 2>&1 ; then
     source <(kubectl completion zsh)
 fi
 
@@ -59,4 +62,4 @@ if [ -f /home/linuxbrew/.linuxbrew/bin/argocd ] ; then
 fi
 
 # Scripts soltos
-alias alacritty-terminfo="$HOME/.zshcustoms/scripts/alacritty-terminfo.sh"
+alias alacritty-terminfo="$HOME/.zshcustoms/installs/shared/alacritty-terminfo.sh"
