@@ -35,11 +35,12 @@ bindkey "^[a" beginning-of-line
 bindkey "^[e" end-of-line
 
 # Diretórios de formula brew comuns (ordem de PATH preservada:
-# sqlite e openjdk antes, llvm depois dos demais)
+# python@3.10, sqlite e openjdk antes, llvm depois dos demais)
 BREW_PREFIX="$(brew --prefix 2>/dev/null)"
 if [ -n "$BREW_PREFIX" ] ; then
-    [ -d "$BREW_PREFIX/opt/sqlite/bin" ]  && export PATH="$BREW_PREFIX/opt/sqlite/bin:$PATH"
-    [ -d "$BREW_PREFIX/opt/openjdk/bin" ] && export PATH="$BREW_PREFIX/opt/openjdk/bin:$PATH"
+    [ -d "$BREW_PREFIX/opt/python@3.10/bin" ] && export PATH="$BREW_PREFIX/opt/python@3.10/bin:$PATH"
+    [ -d "$BREW_PREFIX/opt/sqlite/bin" ]      && export PATH="$BREW_PREFIX/opt/sqlite/bin:$PATH"
+    [ -d "$BREW_PREFIX/opt/openjdk/bin" ]     && export PATH="$BREW_PREFIX/opt/openjdk/bin:$PATH"
 fi
 
 if [ -d /usr/local/go/bin ] ; then
@@ -48,10 +49,4 @@ fi
 
 if [ -n "$BREW_PREFIX" ] && [ -d "$BREW_PREFIX/opt/llvm/bin" ] ; then
     export PATH="$PATH:$BREW_PREFIX/opt/llvm/bin"
-fi
-
-# Mas se houver o neovim, melhor ainda 🥳
-if [ -f /usr/local/bin/nvim ] ; then
-    alias vi="nvim"
-    alias vim="nvim"
 fi
