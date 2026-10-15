@@ -16,16 +16,6 @@ if [ "$myOS" = "linux" ] && [ ! -f /etc/debian_version ]; then
     exit 1
 fi
 
-echo "📦 Checking basis OS packages..."
-
-if [ "$myDistro" = "debian" ]; then
-    packages="sudo bash net-tools htop iftop rsync mtr zsh git wget curl lynx"
-    packages="$packages build-essential cmake automake libtool pkg-config"
-    packages="$packages dialog telnet dnsutils gettext iputils-ping tcpdump"
-    packages="$packages ripgrep fd-find ncdu"
-    aptInstall "$packages"
-fi
-
 cloneOrPull "https://github.com/nsfilho/zshcustom.git" "$HOME/.zshcustoms"
 
 # Executor de installs: uma falha avisa e nao interrompe o fluxo
@@ -35,16 +25,32 @@ run_install() {
     fi
 }
 
-# Shell configurations
-run_install fzf.sh
-run_install starship.sh
-run_install zoxide.sh
-run_install nodejs.sh
+# Configs de shell
 deleteAndLink "$HOME/.zshcustoms/shell/zshrc" "$HOME/.zshrc"
 deleteAndLink "$HOME/.zshcustoms/shell/starship.toml" "$HOME/.config/starship.toml"
 
-# Apps setup
-run_install git.sh
-run_install rust.sh
-run_install bat.sh
-run_install neovim.sh
+# Requisitos por SO (installs/<os>/):
+# linux  — pacotes apt + binarios oficiais por arquitetura (x86_64/aarch64)
+# macos  — tudo via Homebrew
+case "$myOS" in
+    linux)
+        if [ "$myDistro" = "debian" ] ; then
+            run_install linux/packages.sh
+        fi
+        run_install linux/neovim.sh
+        run_install linux/nodejs.sh
+        run_install linux/bat.sh
+        run_install linux/fzf.sh
+        run_install linux/starship.sh
+        run_install linux/zoxide.sh
+        ;;
+    macos)
+        run_install macos/brew.sh
+        ;;
+esac
+
+# Cross-OS
+run_install shared/git.sh
+run_install shared/rust.sh
+run_install shared/lazyvim.sh
+run_install shared/alacritty-terminfo.sh
