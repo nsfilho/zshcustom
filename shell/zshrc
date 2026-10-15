@@ -107,6 +107,11 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.lmstudio/bin"
 
+# opencode (binario nativo em ~/.opencode/bin)
+if [ -d $HOME/.opencode/bin ] ; then
+    export PATH="$PATH:$HOME/.opencode/bin"
+fi
+
 source ~/.zshcustoms/shell/aliases
 
 #
