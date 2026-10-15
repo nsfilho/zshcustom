@@ -62,8 +62,9 @@ chsh -s /bin/zsh
 
 ## Cores do `ls`
 
-Alias `ls` por SO: `--color` (GNU/Linux) ou `-G` + `LSCOLORS` (macOS,
-com valor padrão definido em `shell/zshrc` — ajuste à vontade).
+Alias `ls` por SO: `--color` (GNU/Linux) ou `-G` (macOS), cada um com o
+esquema de cores default do próprio sistema. No macOS, o esquema pode ser
+personalizado definindo `LSCOLORS` em `~/.zshlocal`.
 
 ## Atalhos do Neovim
 

@@ -41,12 +41,11 @@ setopt auto_cd
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-# flag de cor do ls por SO (GNU: --color / BSD: -G + LSCOLORS)
+# flag de cor do ls por SO (GNU: --color / BSD: -G)
+# O esquema de cores e o default do proprio sistema; em macOS, quem quiser
+# personalizar define LSCOLORS em ~/.zshlocal (o ls novo rejeita hex 0-9).
 case "$OSTYPE" in
-    darwin*)
-        LS_COLOR_FLAG="-G"
-        export LSCOLORS="${LSCOLORS:-7c4c6c1c3c5c1c6c4c0c4c}"
-        ;;
+    darwin*) LS_COLOR_FLAG="-G" ;;
     *) LS_COLOR_FLAG="--color" ;;
 esac
 zstyle ':fzf-tab:complete:cd:*' fzf-preview "ls $LS_COLOR_FLAG \$realpath"
